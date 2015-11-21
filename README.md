@@ -43,7 +43,7 @@ Simulacra.js exports only a single function, which does different things based o
 var σ = require('simulacra') // or `window.simulacra`
 var τ = function (s) { return fragment.querySelector(s) }
 
-var fragment = document.getElementById('#product').content
+var fragment = document.getElementById('product').content
 var bindings = σ(fragment, {
   name: σ(τ('.name')),
   details: σ(τ('.details'), {
