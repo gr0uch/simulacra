@@ -5,13 +5,71 @@
 <meta name="description" content="<%= description %>">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="index.css">
-<script src="simulacra.min.js"></script>
+<script src="simulacra.js"></script>
 <header>
   <h1><%= title %></h1>
   <h2><%= description %></h2>
   <code>npm install simulacra --save</code>
   <a href="simulacra.js" class="button">Download</a>
 </header>
+<div class="example">
+  <div class="container">
+    <div class="left">
+      <div class="product-container">
+      </div>
+    </div>
+    <div class="right">
+      <code>Some things to try:</code>
+      <ul>
+        <li><code>data.name = "Caramel Latte"</code></li>
+        <li><code>data.details.size = ["L", "XL"]</code></li>
+      </ul>
+      <input type="text" name="eval" placeholder="Change data...">
+    </div>
+  </div>
+</div>
 <article>
   <%- content %>
 </article>
+<template id="product">
+  <h1 class="name"></h1>
+  <div class="details">
+    <div><span class="size"></span></div>
+    <h4 class="vendor"></h4>
+  </div>
+</template>
+<script type="text/javascript">
+(function () {
+  window.data = {
+    name: 'Pumpkin Spice Latte',
+    details: {
+      size: [ 'Tall', 'Grande', 'Venti' ],
+      vendor: 'Starbucks'
+    }
+  }
+
+  var bind = window.simulacra
+  var fragment = document.getElementById('product').content
+  function $ (s) { return fragment.querySelector(s) }
+
+  var bindings = bind(fragment, {
+    name: bind($('.name')),
+    details: bind($('.details'), {
+      size: bind($('.size')),
+      vendor: bind($('.vendor'))
+    })
+  })
+
+  var output = bind(data, bindings)
+  document.querySelector('.product-container').appendChild(output)
+
+  var input = document.querySelector('input[name="eval"]')
+  input.addEventListener('keyup', function (event) {
+    if (event.keyCode === 13) {
+      var x = input.value
+      input.value = ''
+      eval(x)
+    }
+  })
+}())
+</script>

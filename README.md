@@ -13,15 +13,15 @@ $ npm install simulacra --save
 
 ## Usage
 
-Here's a sample template, note that it's just a `<template>` tag without any data-binding attributes, it's just plain HTML:
+Simulacra.js uses plain old HTML with nothing that is coupled with implementation for templating. Here's a sample template, note that it's just a `<template>` tag without any data-binding attributes:
 
 ```html
 <template id="product">
   <h1 class="name"></h1>
-  <ul class="details">
-    <li>Size: <span class="size"></span></li>
-    <li>Vendor: <span class="vendor"></span></li>
-  </ul>
+  <div class="details">
+    <div><span class="size"></span></div>
+    <h4 class="vendor"></h4>
+  </div>
 </template>
 ```
 
@@ -55,7 +55,7 @@ var bindings = σ(fragment, {
 document.appendChild(σ(data, bindings))
 ```
 
-The DOM will update if any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the key value will be assigned to the element's `textContent` property, additional functions for mounting and unmounting may be used for arbitrary element manipulation.
+The DOM will update *if and only if* any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the key value will be assigned to the element's `textContent` property, additional functions for mounting and unmounting may be used for arbitrary element manipulation.
 
 
 ## How it Works

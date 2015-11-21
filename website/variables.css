@@ -2,7 +2,10 @@
 
   /* colors */
   --color-background: #374D46;
-  --color-background-header: #57756D;
+  --color-background-header: #4C6961;
+  --color-background-subheader: #3C5A5C;
+  --color-background-subheader-border: #4C6769;
+  --color-background-subheader-alt: #355457;
   --color-body: rgba(255, 255, 255, 0.8);
   --color-alt: rgba(255, 255, 255, 0.6);
   --color-light: rgba(255, 255, 255, 0.2);
@@ -32,7 +35,7 @@
   --max-width: 40em;
   --size-body: 18px;
   --size-mono: 14px;
-  --line-height: calc(1em * 8 / 5);
+  --line-height: calc(1em * 5 / 3);
   --mono-height: calc(1em * 3 / 2);
   --border-radius: calc(1em / 2);
 

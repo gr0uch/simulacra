@@ -46,9 +46,20 @@ pre {
   margin: calc(var(--line-height) * 3 / 2) 0;
 }
 
+:--header {
+  font-size: calc(1em * 5 / 4);
+  font-family: var(--font-header);
+  margin: calc(var(--line-height) * 8 / 5) 0 calc(var(--line-height) * 4 / 5);
+}
+
+:--header a {
+  color: var(--color-light);
+  margin-left: 0.5em;
+}
+
 header {
   background-color: var(--color-background-header);
-  padding: calc(var(--line-height) * 5 / 2);
+  padding: calc(var(--line-height) * 3) var(--line-height);
   text-align: center;
 }
 
@@ -62,7 +73,7 @@ header h1 {
 
 header h2 {
   font-size: calc(1em * 3 / 2);
-  margin: 0 0 calc(var(--line-height) * 1);
+  margin: 0 0 calc(var(--line-height) * 4 / 3);
 }
 
 header code {
@@ -82,11 +93,154 @@ header code:before {
 
 header code,
 header .button {
+  color: var(--color-alt);
   margin: 0 0.4em;
+}
+
+.example {
+  border-bottom: 1px var(--color-background-header) solid;
+  padding: calc(var(--line-height) * 2) 0;
+}
+
+.example p,
+.example ul {
+  margin: 0;
+}
+
+.example ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.example li:before {
+  content: '- ';
+  color: var(--color-light);
+  font-family: var(--font-mono);
+  font-size: var(--size-mono);
+}
+
+.example .left,
+.example .right {
+  color: var(--color-alt);
+  width: 50%;
+}
+
+.example .left {
+  float: left;
+  padding-right: calc(var(--line-height) * 1 / 2);
+}
+
+.example .right {
+  float: right;
+  padding-left: calc(var(--line-height) * 1 / 2);
+}
+
+.container > div > code {
+  color: var(--color-body);
+}
+
+.example input {
+  color: var(--color-alt);
+  padding: 0 calc(var(--mono-height) * 3 / 4);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  line-height: calc(var(--mono-height) * 2);
+  margin: calc(var(--line-height) * 1 / 2) 0 0;
+  font-size: var(--size-mono);
+  font-family: var(--font-mono);
+  width: 100%;
+  border: none;
+}
+
+.product-container {
+  border-radius: var(--border-radius);
+  background-color: var(--color-background-subheader);
+  border: 1px var(--color-background-subheader-border) solid;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+  height: calc(var(--line-height) * 5);
+  font-family: var(--font-header);
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  padding-top: 1.4em;
+  position: relative;
+}
+
+.product-container h1 {
+  margin: 0;
+  font-size: calc(1em * 5 / 4);
+  font-weight: normal;
+  color: var(--color-body);
+}
+
+.product-container h4 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: normal;
+  color: var(--color-light);
+  position: relative;
+  top: -0.5em;
+}
+
+.product-container .details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px var(--color-background-subheader-border) solid;
+  background-color: var(--color-background-subheader-alt);
+  font-size: calc(1em * 4 / 5);
+  line-height: var(--line-height);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.product-container .details > div {
+  display: inline-block;
+  position: relative;
+  top: calc(var(--line-height) * -2 / 3);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background-subheader);
+  border: 1px var(--color-background-subheader-border) solid;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.product-container .details > div > span {
+  display: inline-block;
+  padding: calc(var(--line-height) * 1 / 6 - 2px) 1em;
+  position: relative;
+}
+
+.product-container .details > div > span:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-background-subheader-border);
+}
+
+.product-container .details > div > span:last-of-type:after {
+  display: none;
+}
+
+.container {
+  padding: 0 var(--line-height);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.container:after {
+  content: ' ';
+  display: block;
+  clear: both;
 }
 
 article {
   max-width: var(--max-width);
+  padding: 0 var(--line-height);
   margin: 0 auto;
 }
 
@@ -101,15 +255,4 @@ article {
   font-family: var(--font-mono);
   font-size: var(--size-mono);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
-}
-
-:--header {
-  font-size: calc(1em * 5 / 4);
-  font-family: var(--font-header);
-  margin: calc(var(--line-height) * 8 / 5) 0 calc(var(--line-height) * 4 / 5);
-}
-
-:--header a {
-  color: var(--color-light);
-  margin-left: 0.5em;
 }
