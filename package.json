@@ -20,6 +20,7 @@
     "build:dist": "(cat lib/header.js; browserify lib/global.js) > dist/simulacra.js",
     "build:min": "(cat lib/header.js; uglifyjs dist/simulacra.js) > dist/simulacra.min.js",
     "build:web": "node website/build",
+    "postpublish": "npm run deploy",
     "lint": "eslint lib test",
     "test": "(node test/server & browserify -t browserify-istanbul test | tape-run) && npm run report",
     "report": "./node_modules/browserify-istanbul/node_modules/.bin/istanbul report lcov text-summary"
