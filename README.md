@@ -63,7 +63,7 @@ The DOM will update *if and only if* any of the bound data keys are assigned. Al
 Simulacra.js is even faster than consecutively setting the `innerHTML` property. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a mid-2014 Macbook Pro using Chrome 46. All times are rounded to the nearest millisecond.
 
 | Name              | Loading  | Scripting  | Rendering  | Painting  | Other  |
-|:------------------|:--------------------------------------------------------|
+|:------------------|:---------|:-----------|:-----------|:----------|:-------|
 | Simulacra.js      | 1 ms     | 9 ms       | 7 ms       | 27 ms     | 12 ms  |
 | *innerHTML*       | 35 ms    | 32 ms      | 5 ms       | 24 ms     | 10 ms  |
 | Mithril.js        | 7 ms     | 69 ms      | 17 ms      | 25 ms     | 19 ms  |
