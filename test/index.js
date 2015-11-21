@@ -63,7 +63,10 @@ run(function () {
     'nesting works')
   ok(document.querySelectorAll('.currency').length === 2,
     'iteration works')
+})
 
+
+run(function () {
   return fetch('http://localhost:8890', {
     method: 'post',
     body: JSON.stringify(window.__coverage__, null, 2)
