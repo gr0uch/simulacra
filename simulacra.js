@@ -29,9 +29,10 @@ function defineSetters (obj, def) {
   }
 
   function define (key) {
-    var mount = def[key].mount
-    var unmount = def[key].unmount
-    var definition = def[key].definition
+    var branch = def[key]
+    var mount = branch.mount
+    var unmount = branch.unmount
+    var definition = branch.definition
 
     // Keeping state in this closure.
     var activeNodes = []
@@ -63,7 +64,7 @@ function defineSetters (obj, def) {
         activeNode = activeNodes[i]
         previousValue = previousValues[i]
         isEmpty = value === null || value === void 0
-        parentNode = def[key].marker.parentNode
+        parentNode = branch.marker.parentNode
 
         if (isEmpty) {
           delete previousValues[i]
@@ -81,16 +82,16 @@ function defineSetters (obj, def) {
         if (activeNode) parentNode.removeChild(activeNode)
 
         if (mount) {
-          node = def[key].node.cloneNode(true)
+          node = branch.node.cloneNode(true)
           node = mount(node, value, previousValue) || node
-          activeNodes[i] = parentNode.insertBefore(node, def[key].marker)
+          activeNodes[i] = parentNode.insertBefore(node, branch.marker)
           continue
         }
 
         if (definition) {
-          node = processNodes(def[key].node.cloneNode(true), definition)
+          node = processNodes(branch.node.cloneNode(true), definition)
           defineSetters(value, definition)
-          activeNodes[i] = parentNode.insertBefore(node, def[key].marker)
+          activeNodes[i] = parentNode.insertBefore(node, branch.marker)
           continue
         }
       }
@@ -205,7 +206,7 @@ function define (node, def, unmount) {
   else if (def === void 0)
     obj.mount = function (node, value) { node.textContent = value }
 
-  else throw new Error('Second argument must be either ' +
+  else throw new TypeError('Second argument must be either ' +
     'a function or an object.')
 
   return obj
@@ -228,8 +229,8 @@ function bind (obj, def) {
   if (!(def.node instanceof Node))
     throw new TypeError('Top-level binding must have a Node.')
 
-  if (!def.definition)
-    throw new Error('Top-level binding must be an object.')
+  if (typeof def.definition !== 'object')
+    throw new TypeError('Top-level binding must be an object.')
 
   node = processNodes(def.node.cloneNode(true), def.definition)
   defineSetters(obj, def.definition)

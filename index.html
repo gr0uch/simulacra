@@ -15,7 +15,7 @@
 </code></pre><p>Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are 3 use cases: defining mount/unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.</p><pre><code class="lang-js"><span class="hljs-keyword">var</span> σ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra'</span>) <span class="hljs-comment">// or `window.simulacra`</span>
 <span class="hljs-keyword">var</span> τ = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) </span>{ <span class="hljs-keyword">return</span> fragment.querySelector(s) }
 
-<span class="hljs-keyword">var</span> fragment = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'#product'</span>).content
+<span class="hljs-keyword">var</span> fragment = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'product'</span>).content
 <span class="hljs-keyword">var</span> bindings = σ(fragment, {
   name: σ(τ(<span class="hljs-string">'.name'</span>)),
   details: σ(τ(<span class="hljs-string">'.details'</span>), {
