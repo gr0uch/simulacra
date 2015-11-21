@@ -84,4 +84,4 @@ No polyfills are included.
 
 ## License
 
-This software is licensed under the MIT License.
+This software is licensed under the [MIT license](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE).

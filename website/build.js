@@ -41,6 +41,7 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
   ejs.render(template, {
     name: pkg.name,
     description: pkg.description,
+    homepage: pkg.homepage,
     content: html
   }),
   { collapseWhitespace: true }

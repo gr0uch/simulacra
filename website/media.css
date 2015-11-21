@@ -1,0 +1,31 @@
+@media screen and (max-width: 800px) {
+  body {
+    font-size: calc(var(--size-body) - 2px);
+    padding-bottom: calc(var(--line-height) * 1);
+  }
+
+  header .button {
+    margin-top: calc(var(--line-height) * 1);
+  }
+
+  .example .left,
+  .example .right {
+    width: 100%;
+    padding: 0;
+    float: none;
+  }
+
+  .example .left {
+    margin-bottom: calc(var(--line-height) * 1);
+  }
+
+  #corner {
+    top: 1.2em;
+    right: -2.5em;
+    width: 9em;
+  }
+
+  #corner span {
+    display: none;
+  }
+}
