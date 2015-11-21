@@ -14,7 +14,7 @@ a {
   text-decoration: inherit;
 }
 
-p, ul, ol, pre, table {
+p, ul, ol, pre, .table-wrapper {
   margin: 0 0 var(--line-height);
 }
 
@@ -33,6 +33,10 @@ pre {
   margin: calc(var(--line-height) * 3 / 2) 0;
 }
 
+pre code {
+  font-size: 1em;
+}
+
 :--header {
   font-size: calc(1em * 5 / 4);
   font-family: var(--font-header);
@@ -47,7 +51,7 @@ pre {
 
 header {
   background-color: var(--color-background-header);
-  padding: calc(var(--line-height) * 3) var(--line-height);
+  padding: calc(var(--line-height) * 4) var(--line-height);
   text-align: center;
   overflow: hidden;
   position: relative;

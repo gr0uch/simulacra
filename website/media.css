@@ -4,8 +4,14 @@
     padding-bottom: calc(var(--line-height) * 1);
   }
 
+  header {
+    padding-top: calc(var(--line-height) * 3);
+    padding-bottom: calc(var(--line-height) * 2);
+  }
+
+  header code,
   header .button {
-    margin-top: calc(var(--line-height) * 1);
+    margin-bottom: calc(var(--line-height) * 1);
   }
 
   .example .left,

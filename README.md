@@ -58,6 +58,20 @@ document.appendChild(σ(data, bindings))
 The DOM will update *if and only if* any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the key value will be assigned to the element's `textContent` property, additional functions for mounting and unmounting may be used for arbitrary element manipulation.
 
 
+## Benchmarks
+
+Simulacra.js is even faster than consecutively setting the `innerHTML` property. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a mid-2014 Macbook Pro using Chrome 46. All times are rounded to the nearest millisecond.
+
+| Name              | Loading  | Scripting  | Rendering  | Painting  | Other  |
+|:------------------|:--------------------------------------------------------|
+| Simulacra.js      | 1 ms     | 9 ms       | 7 ms       | 27 ms     | 12 ms  |
+| *innerHTML*       | 35 ms    | 32 ms      | 5 ms       | 24 ms     | 10 ms  |
+| Mithril.js        | 7 ms     | 69 ms      | 17 ms      | 25 ms     | 19 ms  |
+| jQuery            | 11 ms    | 101 ms     | 17 ms      | 25 ms     | 23 ms  |
+| React.js          | 8 ms     | 109 ms     | 15 ms      | 26 ms     | 22 ms  |
+| Angular.js        | 8 ms     | 115 ms     | 15 ms      | 28 ms     | 26 ms  |
+
+
 ## How it Works
 
 On initialization, Simulacra.js removes bound elements from the document and replaces them with a empty text node (marker) for memoizing its position. Based on a key value, it clones template elements and applies the DOM operations on the cloned elements, and appends them next to the marker.

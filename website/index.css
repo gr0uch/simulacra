@@ -10,5 +10,6 @@ html { box-sizing: border-box; }
 
 @import "variables.css";
 @import "code.css";
+@import "table.css";
 @import "page.css";
 @import "media.css";

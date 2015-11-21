@@ -1,0 +1,33 @@
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  position: relative;
+  box-shadow: 0 -1px 0 var(--color-background-header);
+  width: 100%;
+}
+
+table td, table th {
+  padding:
+    calc(var(--line-height) * 1 / 4)
+    calc(var(--line-height) * 1 / 2);
+}
+
+table th {
+  hyphens: none;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.08);
+  font-family: var(--font-header);
+}
+
+tbody code {
+  background: none;
+  padding: 0;
+}
+
+tbody tr:nth-of-type(2n) {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.table-wrapper {
+  overflow: auto;
+}

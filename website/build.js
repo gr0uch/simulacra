@@ -23,6 +23,12 @@ const readme = fs.readFileSync(
   path.join(__dirname, '../README.md')).toString()
 
 const renderer = new marked.Renderer()
+const tableMethod = renderer.table
+
+renderer.table = function () {
+  return '<div class="table-wrapper">' +
+    tableMethod.apply(null, arguments) + '</div>'
+}
 
 renderer.heading = (text, level) => {
   const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-')
