@@ -1,0 +1,97 @@
+{
+  "name": "simulacra",
+  "description": "One-way data binding to the DOM.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "email": "0x8890@airmail.cc",
+    "url": "http://0x8890.com"
+  },
+  "homepage": "https://github.com/0x8890/simulacra",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:0x8890/simulacra.git"
+  },
+  "bugs": "https://github.com/0x8890/simulacra/issues",
+  "scripts": {
+    "clean": "rimraf coverage.json coverage dist",
+    "build": "mkdirp dist && npm run build:dist && npm run build:min",
+    "build:dist": "(cat lib/header.js; browserify lib/global.js) > dist/simulacra.js",
+    "build:min": "(cat lib/header.js; uglifyjs dist/simulacra.js) > dist/simulacra.min.js",
+    "lint": "eslint lib test",
+    "test": "(node test/server & browserify test | tape-run) && npm run report",
+    "report": "./node_modules/browserify-istanbul/node_modules/.bin/istanbul report lcov text-summary"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "browserify-istanbul": "^0.2.1",
+    "eslint": "^1.9.0",
+    "eslint-config-0x8890": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.4.4",
+    "tapdance": "^4.0.1",
+    "tape-run": "^2.1.0",
+    "uglify-js": "^2.6.1"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib/",
+    "LICENSE"
+  ],
+  "browserify": {
+    "transform": [
+      "browserify-istanbul"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "0x8890",
+    "ecmaFeatures": {
+      "arrowFunctions": false,
+      "binaryLiterals": false,
+      "blockBindings": false,
+      "classes": false,
+      "defaultParams": false,
+      "destructuring": false,
+      "experimentalObjectRestSpread": false,
+      "forOf": false,
+      "generators": false,
+      "globalReturn": false,
+      "jsx": false,
+      "modules": false,
+      "objectLiteralComputedProperties": false,
+      "objectLiteralDuplicateProperties": false,
+      "objectLiteralShorthandMethods": false,
+      "objectLiteralShorthandProperties": false,
+      "octalLiterals": false,
+      "regexUFlag": false,
+      "regexYFlag": false,
+      "restParams": false,
+      "spread": false,
+      "superInFunctions": false,
+      "templateStrings": false,
+      "unicodeCodePointEscapes": false
+    },
+    "env": {
+      "es6": false
+    },
+    "rules": {
+      "block-scoped-var": 2,
+      "func-names": 0,
+      "no-var": 0,
+      "no-warning-comments": 1,
+      "one-var": 0,
+      "strict": [
+        2,
+        "global"
+      ]
+    }
+  },
+  "keywords": [
+    "browser",
+    "data",
+    "binding",
+    "object",
+    "dom"
+  ]
+}
