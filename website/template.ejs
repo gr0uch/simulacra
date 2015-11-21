@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<% const title = name.charAt(0).toUpperCase() + name.slice(1) + '.js' %>
+<meta charset="utf-8">
+<title><%= title %></title>
+<meta name="description" content="<%= description %>">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="index.css">
+<script src="simulacra.min.js"></script>
+<header>
+  <h1><%= title %></h1>
+  <h2><%= description %></h2>
+  <code>npm install simulacra --save</code>
+  <a href="simulacra.js" class="button">Download</a>
+</header>
+<article>
+  <%- content %>
+</article>

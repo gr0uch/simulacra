@@ -40,24 +40,22 @@ var data = {
 Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are 3 use cases: defining mount/unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
 
 ```js
-var σ = require('simulacra')
+var σ = require('simulacra') // or `window.simulacra`
 var τ = function (s) { return fragment.querySelector(s) }
 
 var fragment = document.getElementById('#product').content
 var bindings = σ(fragment, {
-  name: σ(τ('.name'), function (node, value) {
-    node.textContent = value + '!'
-  }),
+  name: σ(τ('.name')),
   details: σ(τ('.details'), {
     size: σ(τ('.size')),
-    color: σ(τ('.color'))
+    vendor: σ(τ('.vendor'))
   })
 })
 
 document.appendChild(σ(data, bindings))
 ```
 
-The DOM will update if any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory.
+The DOM will update if any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the key value will be assigned to the element's `textContent` property, additional functions for mounting and unmounting may be used for arbitrary element manipulation.
 
 
 ## How it Works

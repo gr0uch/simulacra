@@ -1,0 +1,39 @@
+:root {
+
+  /* colors */
+  --color-background: #374D46;
+  --color-background-header: #57756D;
+  --color-body: rgba(255, 255, 255, 0.8);
+  --color-alt: rgba(255, 255, 255, 0.6);
+  --color-light: rgba(255, 255, 255, 0.2);
+  --color-code-a: #E3A48D;
+  --color-code-b: #BF8ED1;
+  --color-code-c: #71AD9C;
+  --color-button: #A37665;
+
+  /* fonts */
+  --font-header:
+    'Avenir', /* Mac */
+    'DejaVu Sans', /* Linux */
+    'Calibri', /* Windows */
+    sans-serif /* Generic */;
+  --font-body:
+    'Baskerville', /* Mac */
+    'Georgia', /* Windows */
+    serif /* Generic */;
+  --font-mono:
+    'Monaco',
+    'Consolas',
+    'Andale Mono',
+    'Lucida Console',
+    monospace;
+
+  /* measurements */
+  --max-width: 40em;
+  --size-body: 18px;
+  --size-mono: 14px;
+  --line-height: calc(1em * 8 / 5);
+  --mono-height: calc(1em * 3 / 2);
+  --border-radius: calc(1em / 2);
+
+}

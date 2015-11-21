@@ -1,0 +1,115 @@
+/*
+Use `border-box` properly:
+https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+*/
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
+/* External CSS */
+@import "normalize.css/normalize.css";
+
+@import "variables.css";
+@import "code.css";
+
+@custom-selector :--header h1, h2, h3, h4, h5, h6;
+
+body {
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  color: var(--color-body);
+  line-height: var(--line-height);
+  padding-bottom: calc(var(--line-height) * 2);
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+p, ul, ol, pre, table {
+  margin: 0 0 var(--line-height);
+}
+
+pre, code {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono);
+}
+
+pre {
+  color: var(--color-alt);
+  padding: calc(var(--mono-height) * 1 / 2) calc(var(--mono-height) * 3 / 4);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  line-height: var(--mono-height);
+  margin: calc(var(--line-height) * 3 / 2) 0;
+}
+
+header {
+  background-color: var(--color-background-header);
+  padding: calc(var(--line-height) * 5 / 2);
+  text-align: center;
+}
+
+header h1 {
+  font-family: var(--font-body);
+  font-size: 1em;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0 0 calc(var(--line-height) * 1 / 2);
+}
+
+header h2 {
+  font-size: calc(1em * 3 / 2);
+  margin: 0 0 calc(var(--line-height) * 1);
+}
+
+header code {
+  display: inline-block;
+  color: var(--color-body);
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  line-height: calc(var(--mono-height) * 2);
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  padding: 0 1em;
+}
+
+header code:before {
+  content: '$ ';
+  opacity: 0.4;
+}
+
+header code,
+header .button {
+  margin: 0 0.4em;
+}
+
+article {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--color-button);
+  border-radius: var(--border-radius);
+  line-height: calc(var(--mono-height) * 2);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+  color: var(--color-body);
+  padding: 0 1em;
+  font-family: var(--font-mono);
+  font-size: var(--size-mono);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+:--header {
+  font-size: calc(1em * 5 / 4);
+  font-family: var(--font-header);
+  margin: calc(var(--line-height) * 8 / 5) 0 calc(var(--line-height) * 4 / 5);
+}
+
+:--header a {
+  color: var(--color-light);
+  margin-left: 0.5em;
+}

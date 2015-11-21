@@ -1,0 +1,24 @@
+.hljs-keyword,
+.hljs-label,
+.hljs-attribute {
+  color: var(--color-code-a);
+}
+
+.hljs-literal,
+.hljs-number,
+.hljs-title,
+.hljs-params,
+.hljs-built_in,
+.hljs-subst {
+  color: var(--color-code-b);
+}
+
+.hljs-tag,
+.hljs-type,
+.hljs-string {
+  color: var(--color-code-c);
+}
+
+.hljs-comment {
+  color: var(--color-light);
+}
