@@ -157,11 +157,8 @@ module.exports = simulacra
  * @param {Function}
  */
 function simulacra (a, b, c) {
-  if (a instanceof Node || typeof a === 'string')
-    return define(a, b, c)
-
-  if (typeof a === 'object')
-    return bind(a, b)
+  if (a instanceof Node) return define(a, b, c)
+  if (typeof a === 'object') return bind(a, b)
 
   throw new TypeError('First argument must be either ' +
     'an DOM Node or an Object.')
@@ -256,15 +253,15 @@ module.exports = processNodes
 function processNodes (node, def) {
   var keys = Object.keys(def)
   var map = findNodes(node, def)
-  var i, j, k, key, mirrorNode, marker, parent
+  var i, j, branch, key, mirrorNode, marker, parent
 
   for (i = 0, j = keys.length; i < j; i++) {
     key = keys[i]
-    k = def[key]
-    mirrorNode = map.get(k.node)
+    branch = def[key]
+    mirrorNode = map.get(branch.node)
     parent = mirrorNode.parentNode
     marker = document.createTextNode(emptyString)
-    k.marker = parent.insertBefore(marker, mirrorNode)
+    branch.marker = parent.insertBefore(marker, mirrorNode)
     parent.removeChild(mirrorNode)
   }
 
