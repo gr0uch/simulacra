@@ -47,6 +47,7 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
   ejs.render(template, {
     name: pkg.name,
     description: pkg.description,
+    version: pkg.version,
     homepage: pkg.homepage,
     content: html
   }),
