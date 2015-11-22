@@ -3,4 +3,4 @@ coverage/
 dist/
 coverage.json
 *.log
-*.html
+/*.html
