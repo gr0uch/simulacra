@@ -180,6 +180,12 @@ header .button {
   top: -0.75em;
 }
 
+.product-container h1,
+.product-container h4,
+.product-container .details > div > span {
+  text-transform: capitalize;
+}
+
 .product-container h1:after,
 .product-container h4:after {
   content: ', ';
