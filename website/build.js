@@ -51,7 +51,6 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
     name: pkg.name,
     description: pkg.description,
     version: pkg.version,
-    homepage: pkg.homepage,
     content: html
   }),
   { collapseWhitespace: true }
