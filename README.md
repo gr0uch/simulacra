@@ -105,7 +105,6 @@ This library is written in ES5 syntactically, and makes use of:
 
 - Object property getters & setters (ES5)
 - WeakMap (ES6)
-- DocumentFragment (DOM Level 1)
 - TreeWalker (DOM Level 2)
 - Node.isEqualNode (DOM Level 3)
 - Node.contains (DOM Living Standard)
