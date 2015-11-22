@@ -40,22 +40,35 @@ var data = {
 Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are 3 use cases: defining mount/unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
 
 ```js
-var σ = require('simulacra') // or `window.simulacra`
-var τ = function (s) { return fragment.querySelector(s) }
+var bind = require('simulacra') // or `window.simulacra`
+
+// Simulacra.js accepts DOM Nodes, the `$` function is just an alias for
+// `querySelector` which is a convenient way to select them.
+function $ (selector) { return fragment.querySelector(selector) }
 
 var fragment = document.getElementById('product').content
-var bindings = σ(fragment, {
-  name: σ(τ('.name')),
-  details: σ(τ('.details'), {
-    size: σ(τ('.size')),
-    vendor: σ(τ('.vendor'))
+var bindings = bind(fragment, {
+  name: bind($('.name')),
+  details: bind($('.details'), {
+    size: bind($('.size')),
+    vendor: bind($('.vendor'))
   })
 })
 
-document.appendChild(σ(data, bindings))
+document.appendChild(bind(data, bindings))
 ```
 
 The DOM will update *if and only if* any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the key value will be assigned to the element's `textContent` property, additional functions for mounting and unmounting may be used for arbitrary element manipulation.
+
+The mount & unmount functions are passed in as the 2nd and 3rd arguments respectively, and have the signature (`node`, `value`, `oldValue`). For example, to manipulate a node before mounting it, one may do this:
+
+```js
+bind($('.name'), function (node, value) {
+  node.textContent = 'Hi ' + value + '!'
+})
+```
+
+The mount function gets run before a node is replaced, and the unmount function gets run before a node is removed.
 
 
 ## Benchmarks
