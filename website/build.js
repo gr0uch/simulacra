@@ -9,12 +9,15 @@ const cssnext = require('cssnext')
 const hjs = require('highlight.js')
 const pkg = require('../package.json')
 const minifier = require('html-minifier')
+
 const minify = minifier.minify
-
-
 const start = Date.now()
-
 const outputPath = path.join(__dirname, '../dist')
+const CNAME = 'simulacra.js.org'
+
+
+// Render the page
+// ===============
 
 const template = fs.readFileSync(
   path.join(__dirname, 'template.ejs')).toString()
@@ -55,6 +58,9 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
 ))
 
 
+// Build the CSS
+// =============
+
 const cssIndex = path.join(__dirname, 'index.css')
 
 fs.writeFileSync(path.join(outputPath, 'index.css'),
@@ -62,5 +68,14 @@ fs.writeFileSync(path.join(outputPath, 'index.css'),
     compress: true, from: cssIndex
   }))
 
+
+// Write CNAME file
+// ================
+
+fs.writeFileSync(path.join(outputPath, 'CNAME'), CNAME)
+
+
+// Done!
+// =====
 
 process.stdout.write(`Build completed in ${(Date.now() - start) / 1000} s.\n`)
