@@ -106,7 +106,7 @@ This library is written in ES5 syntactically, and makes use of:
 - Node.isEqualNode (DOM Level 3)
 - Node.contains (DOM Living Standard)
 
-No polyfills are included.
+No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill.
 
 
 ## License
