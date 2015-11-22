@@ -37,7 +37,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are 3 use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
+Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are three use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
 
 ```js
 var bind = require('simulacra') // or `window.simulacra`
@@ -58,9 +58,11 @@ var bindings = bind(fragment, {
 document.appendChild(bind(data, bindings))
 ```
 
-The DOM will update *if and only if* any of the bound data keys are assigned. All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the key value will be assigned to the element's `textContent` property, additional functions for mounting and unmounting may be used for arbitrary element manipulation.
+The DOM will update *if and only if* any of the bound keys are assigned.
 
-The mount & unmount functions are passed in as the 2nd and 3rd arguments respectively, and have the signature (`node`, `value`, `oldValue`, `index`). For example, to manipulate a node before mounting it, one may do this:
+All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), additional functions for mounting and unmounting may be used for arbitrary element manipulation.
+
+The mount & unmount functions are passed in as the second and third arguments respectively, and have the signature (`node`, `value`, `oldValue`, `index`). For example, to manipulate a node before mounting it, one may do this:
 
 ```js
 bind($('.name'), function (node, value) {
@@ -68,7 +70,7 @@ bind($('.name'), function (node, value) {
 })
 ```
 
-The mount function gets run before a node is replaced, and the unmount function gets run before a node is removed.
+The mount function gets run before a node is replaced, and the unmount function gets run before a node is removed. If there is no return value, then it's assumed that the specified node will be appended. It's possible to return a different node in the mount function, which enables heterogeneous collections.
 
 
 ## Benchmarks
