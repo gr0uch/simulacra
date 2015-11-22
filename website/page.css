@@ -158,11 +158,12 @@ header .button {
   overflow: hidden;
   white-space: nowrap;
   text-align: center;
-  padding-top: 1.4em;
+  padding-top: 1.5em;
   position: relative;
 }
 
 .product-container h1 {
+  display: inline-block;
   margin: 0;
   font-size: calc(1em * 5 / 4);
   font-weight: normal;
@@ -170,12 +171,30 @@ header .button {
 }
 
 .product-container h4 {
+  display: inline-block;
   margin: 0;
   font-size: inherit;
   font-weight: normal;
   color: var(--color-light);
   position: relative;
-  top: -0.5em;
+  top: -0.75em;
+}
+
+.product-container h1:after,
+.product-container h4:after {
+  content: ', ';
+  margin-right: 0.5em;
+}
+
+.product-container h1:last-of-type:after,
+.product-container h4:last-of-type:after {
+  display: none;
+}
+
+.product-container hr {
+  border: none;
+  height: 0;
+  margin: 0;
 }
 
 .product-container .details {
@@ -187,6 +206,7 @@ header .button {
   background-color: var(--color-background-subheader-alt);
   font-size: calc(1em * 4 / 5);
   line-height: var(--line-height);
+  height: calc(var(--line-height) * 2);
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
