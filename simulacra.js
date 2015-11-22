@@ -200,8 +200,14 @@ function define (node, def, unmount) {
     }
   }
 
-  else if (def === void 0)
-    obj.mount = function (node, value) { node.textContent = value }
+  else if (def === void 0) {
+    if (node.nodeName === 'INPUT' || node.nodeName === 'SELECT') {
+      if (node.type === 'checkbox' || node.type === 'radio')
+        obj.mount = replaceChecked
+      else obj.mount = replaceValue
+    }
+    else obj.mount = replaceText
+  }
 
   else throw new TypeError('Second argument must be either ' +
     'a function or an object.')
@@ -233,6 +239,21 @@ function bind (obj, def) {
   defineSetters(obj, def.definition)
 
   return node
+}
+
+
+function replaceText (node, value) {
+  node.textContent = value
+}
+
+
+function replaceValue (node, value) {
+  node.value = value
+}
+
+
+function replaceChecked (node, value) {
+  node.checked = value
 }
 
 },{"./define_setters":1,"./process_nodes":5}],5:[function(require,module,exports){
