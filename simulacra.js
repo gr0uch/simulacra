@@ -1,6 +1,6 @@
 /*!
  * Simulacra.js
- * Version 0.0.5
+ * Version 0.0.6
  * https://github.com/0x8890/simulacra
  */
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -70,7 +70,7 @@ function defineSetters (obj, def) {
         if (isEmpty) {
           delete previousValues[i]
           delete activeNodes[i]
-          if (unmount) unmount(activeNode, value, previousValue)
+          if (unmount) unmount(activeNode, value, previousValue, i)
           if (activeNode) parentNode.removeChild(activeNode)
           continue
         }
@@ -79,12 +79,12 @@ function defineSetters (obj, def) {
 
         previousValues[i] = value
 
-        if (unmount) unmount(activeNode, value, previousValue)
+        if (unmount) unmount(activeNode, value, previousValue, i)
         if (activeNode) parentNode.removeChild(activeNode)
 
         if (mount) {
           node = branch.node.cloneNode(true)
-          node = mount(node, value, previousValue) || node
+          node = mount(node, value, previousValue, i) || node
           activeNodes[i] = parentNode.insertBefore(node, branch.marker)
           continue
         }
