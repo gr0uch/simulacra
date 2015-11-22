@@ -25,7 +25,7 @@ Simulacra.js uses plain old HTML with nothing that is coupled with implementatio
 </template>
 ```
 
-In the above template, there are no iteration mechanisms, because Simulacra.js will automatically clone DOM elements based on the data. Here's some sample data:
+Using the `<template>` tag is optional but optimal since its contents are not rendered by default, but any DOM element will suffice. In the above template, there are no iteration mechanisms, because Simulacra.js will automatically clone DOM elements based on the data. Here's some sample data:
 
 ```js
 var data = {
