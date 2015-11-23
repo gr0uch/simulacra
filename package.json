@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "One-way data binding for web applications.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
