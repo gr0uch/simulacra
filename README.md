@@ -91,12 +91,16 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 ## How it Works
 
-On initialization, Simulacra.js removes bound elements from the document and replaces them with a empty text node (marker) for memoizing its position. Based on a key value, it clones template elements and applies the DOM operations on the cloned elements, and appends them next to the marker.
+On initialization, Simulacra.js removes bound elements from the document and replaces them with a empty text node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the mount function on the cloned elements, and appends them near the marker or adjacent nodes.
+
+When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will unmount and mount a DOM Node corresponding to the value. This is faster and simpler than diffing changes between DOM trees, and performing DOM operations on "offline" nodes (not in the live tree) is faster than modifying live nodes.
 
 
 ## Caveats
 
 The DOM will update if there is an assignment on the object, since it uses a property setter under the hood. This means that using the `delete` keyword will not trigger a DOM update. Also, arrays need to be assigned after a mutation, even if it is mutated in place. This is a conscious decision based on performance; replacing the prototype of an object causes [performance problems in every JavaScript engine](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf).
+
+The bound data object may not contain any getters & setters of its own, since they will be overridden by Simulacra.js.
 
 
 ## Under the Hood
