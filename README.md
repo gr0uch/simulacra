@@ -55,7 +55,7 @@ var bindings = bind(fragment, {
   })
 })
 
-document.appendChild(bind(data, bindings))
+document.body.appendChild(bind(data, bindings))
 ```
 
 The DOM will update if any of the bound keys are assigned.
