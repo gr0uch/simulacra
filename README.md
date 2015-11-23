@@ -96,7 +96,7 @@ On initialization, Simulacra.js removes bound elements from the document and rep
 
 ## Caveats
 
-The DOM will update if there is an assignment on the object, since it uses a property setter under the hood. This means that using the `delete` keyword will not trigger a DOM update. Also, arrays need to be assigned after a mutation, even if it is mutated in place. This is a conscious decision based on performance, replacing the prototype of an object causes performance problems in every JavaScript engine.
+The DOM will update if there is an assignment on the object, since it uses a property setter under the hood. This means that using the `delete` keyword will not trigger a DOM update. Also, arrays need to be assigned after a mutation, even if it is mutated in place. This is a conscious decision based on performance; replacing the prototype of an object causes [performance problems in every JavaScript engine](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf).
 
 
 ## Under the Hood
