@@ -228,7 +228,7 @@ header .button {
 
 .product-container .details > div > span {
   display: inline-block;
-  padding: calc(var(--line-height) * 1 / 6 - 2px) 1em;
+  padding: calc(var(--line-height) * 1 / 6 - 2px) 0.8em;
   position: relative;
 }
 
