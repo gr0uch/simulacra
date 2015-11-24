@@ -79,7 +79,7 @@ Simulacra.js is even faster than consecutively setting the `innerHTML` property.
 
 | Name              | Loading  | Scripting  | Rendering  | Painting  | Other  |
 |:------------------|:---------|:-----------|:-----------|:----------|:-------|
-| Simulacra.js      | 1 ms     | 9 ms       | 7 ms       | 27 ms     | 12 ms  |
+| Simulacra.js      | 1 ms     | 12 ms      | 6 ms       | 24 ms     | 8 ms   |
 | *innerHTML*       | 35 ms    | 32 ms      | 5 ms       | 24 ms     | 10 ms  |
 | Mithril.js        | 7 ms     | 69 ms      | 17 ms      | 25 ms     | 19 ms  |
 | jQuery            | 11 ms    | 101 ms     | 17 ms      | 25 ms     | 23 ms  |
