@@ -4,7 +4,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~240 LOC, or 3 KB (min+gz). Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~250 LOC, or 2 KB (min+gz). Get it from `npm`:
 
 ```sh
 $ npm install simulacra --save
@@ -98,7 +98,7 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 ## Caveats
 
-The DOM will update if there is an assignment on the object, since it uses a property setter under the hood. This means that using the `delete` keyword will not trigger a DOM update. Assignment on an array at an index will not update the DOM, the array needs to be assigned to the bound object. Also, arrays need to be assigned after a mutation, even if it is mutated in place. However, array mutation is a missing feature that should be implemented, which will bring some performance improvements over assigning the array.
+The `delete` keyword will not trigger a DOM update, due to lack of reflection on this keyword.
 
 The bound data object may not contain any getters & setters of its own, since they will be overridden by Simulacra.js.
 
