@@ -1,5 +1,14 @@
 @custom-selector :--header h1, h2, h3, h4, h5, h6;
 
+/* Disable focus. */
+*:focus { outline: none; }
+
+/* Text selection */
+::selection {
+  background: var(--color-code-b);
+  color: #fff;
+}
+
 body {
   background-color: var(--color-background);
   font-family: var(--font-body);
