@@ -4,6 +4,9 @@ process.stdout.write([
   '/*!',
   ' * Simulacra.js',
   ' * Version ' + pkg.version,
+  ' * Copyright (c) ' + new Date().getFullyear() +
+    ' 0x8890 <0x8890@airmail.cc>',
+  ' * ' + pkg.license + ' License',
   ' * https://github.com/0x8890/simulacra',
   ' */', ''
 ].join('\n'))
