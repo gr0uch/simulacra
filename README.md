@@ -98,9 +98,9 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 ## Caveats
 
-The `delete` keyword will not trigger a DOM update, due to lack of reflection on this keyword.
-
-The bound data object may not contain any getters & setters of its own, since they will be overridden by Simulacra.js.
+- The `delete` keyword will not trigger a DOM update, due to lack of reflection on this keyword.
+- Out-of-bounds array index assignment will not work, because the number of settters is equal to the length of the array.
+- The bound data object may not contain any getters & setters of its own, since they will be overridden by Simulacra.js.
 
 
 ## Under the Hood
