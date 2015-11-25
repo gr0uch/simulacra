@@ -50,6 +50,7 @@ pre code {
 :--header {
   font-size: calc(1em * 5 / 4);
   font-family: var(--font-header);
+  font-weight: 900;
   margin: calc(var(--line-height) * 8 / 5) 0 calc(var(--line-height) * 4 / 5);
 }
 
