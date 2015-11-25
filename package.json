@@ -18,7 +18,7 @@
     "deploy": "npm run build && ./website/deploy.sh",
     "build": "mkdirp dist && npm run build:dist && npm run build:min && npm run build:web",
     "build:dist": "(node util/header; browserify util/global.js) > dist/simulacra.js",
-    "build:min": "(node util/header; uglifyjs dist/simulacra.js) > dist/simulacra.min.js",
+    "build:min": "(node util/header; uglifyjs -cm -- dist/simulacra.js) > dist/simulacra.min.js",
     "build:web": "node website/build",
     "postpublish": "npm run deploy",
     "lint": "eslint lib test",

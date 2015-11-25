@@ -1,4 +1,5 @@
 @custom-selector :--header h1, h2, h3, h4, h5, h6;
+@custom-selector :--button button, .button;
 
 /* Disable focus. */
 *:focus { outline: none; }
@@ -96,7 +97,7 @@ header code:before {
 }
 
 header code,
-header .button {
+header :--button {
   color: var(--color-alt);
   margin: 0 0.4em;
 }
@@ -278,7 +279,7 @@ article a {
   text-decoration: underline;
 }
 
-.button {
+:--button {
   display: inline-block;
   background-color: var(--color-button);
   border-radius: var(--border-radius);
@@ -289,6 +290,10 @@ article a {
   font-family: var(--font-mono);
   font-size: var(--size-mono);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+:--button:hover {
+  color: #fff;
 }
 
 #corner {
