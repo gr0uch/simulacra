@@ -4,7 +4,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~250 LOC, or 2 KB (min+gz). Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~270 LOC, or 2 KB (min+gz). Get it from `npm`:
 
 ```sh
 $ npm install simulacra --save
@@ -37,7 +37,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are three use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
+Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are four use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
 
 ```js
 var bind = require('simulacra') // or `window.simulacra`
@@ -71,6 +71,8 @@ bind($('.name'), function (node, value) {
 ```
 
 The mount function gets run before a node is replaced, and the unmount function gets run before a node is removed. If there is no return value, then it's assumed that the specified node will be appended. It's possible to return a different node in the mount function, which enables heterogeneous collections.
+
+There is a special case for the mount function: if the bound node is the same as its parent, its value will not be iterated over, and no index will be passed.
 
 
 ## Benchmarks
