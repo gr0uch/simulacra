@@ -37,7 +37,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are four use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
+Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are three use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
 
 ```js
 var bind = require('simulacra') // or `window.simulacra`
