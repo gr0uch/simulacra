@@ -51,7 +51,9 @@ https://github.com/0x8890/simulacra
   window.data = {
     name: 'Pumpkin Spice Latte',
     details: {
-      color: 'Orange',
+      meta: {
+        date: Date.now()
+      },
       size: [ 'Tall', 'Grande', 'Venti' ],
       vendor: 'Starbucks'
     }
@@ -64,8 +66,10 @@ https://github.com/0x8890/simulacra
   var bindings = bind(fragment, {
     name: bind($('.name')),
     details: bind($('.details'), {
-      color: bind($('.details'), function (node, value) {
-        node.setAttribute('data-color', value)
+      meta: bind($('.details'), {
+        date: bind($('.details'), function (node, value) {
+          node.setAttribute('data-timestamp', value)
+        })
       }),
       size: bind($('.size')),
       vendor: bind($('.vendor'))
