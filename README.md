@@ -13,7 +13,7 @@ $ npm install simulacra --save
 
 ## Usage
 
-Simulacra.js uses plain old HTML with nothing that is coupled with implementation for templating. Here's a sample template, note that it's just a `<template>` tag without any data-binding attributes:
+Simulacra.js uses plain old HTML with nothing that is coupled with implementation for templating. Here's a sample template:
 
 ```html
 <template id="product">
@@ -98,16 +98,16 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 ## Caveats
 
-- The `delete` keyword will not trigger a DOM update, due to lack of reflection on this keyword.
+- The `delete` keyword will not trigger a DOM update. ES6 `Proxy` fixes this, but not many JavaScript engines support it, and it can't be polyfilled.
 - Out-of-bounds array index assignment will not work, because the number of settters is equal to the length of the array.
-- The bound data object may not contain any getters & setters of its own, since they will be overridden by Simulacra.js.
+- The bound data object may not contain any conflicting getters & setters, since they will be overridden by Simulacra.js.
 
 
 ## Under the Hood
 
 This library is written in ES5 syntactically, and makes use of:
 
-- Object property getters & setters (ES5)
+- Object.defineProperty (ES5)
 - WeakMap (ES6)
 - TreeWalker (DOM Level 2)
 - Node.isEqualNode (DOM Level 3)
