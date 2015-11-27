@@ -72,7 +72,7 @@ bind($('.name'), function (node, value) {
 
 The mount function gets run before a node is replaced, and the unmount function gets run before a node is removed. If there is no return value, then it's assumed that the specified node will be appended. It's possible to return a different node in the mount function, which enables heterogeneous collections.
 
-There is a special case for the mount function: if the bound node is the same as its parent, its value will not be iterated over, and no index will be passed.
+There is a special case for the mount function: if the bound node is the same as its parent, it is a mutator function and no return value is accepted, its value will not be iterated over, and no index will be passed. After the initial mount of the parent node, the mutator function works on the live DOM node.
 
 
 ## Benchmarks
