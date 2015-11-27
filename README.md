@@ -93,7 +93,7 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 ## How it Works
 
-On initialization, Simulacra.js removes bound elements from the document and replaces them with a empty text node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the mount function on the cloned elements, and appends them near the marker or adjacent nodes.
+On initialization, Simulacra.js removes bound elements from the document and replaces them with a comment node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the mount function on the cloned elements, and appends them near the marker or adjacent nodes.
 
 When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will unmount and mount a DOM Node corresponding to the value. This is faster and simpler than diffing changes between DOM trees, and performing DOM operations on "offline" nodes (not in the live tree) is faster than modifying live nodes.
 
@@ -115,7 +115,7 @@ This library is written in ES5 syntactically, and makes use of:
 - Node.isEqualNode (DOM Level 3)
 - Node.contains (DOM Living Standard)
 
-No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill.
+No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
 
 
 ## License

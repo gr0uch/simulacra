@@ -78,7 +78,7 @@ header h1 {
 
 header h2 {
   font-size: calc(1em * 3 / 2);
-  margin: 0 0 calc(var(--line-height) * 4 / 3);
+  margin: 0 0 calc(var(--line-height) * 1);
 }
 
 header code {
