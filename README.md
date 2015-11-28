@@ -37,7 +37,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are three use cases: defining mount & unmount functions for an element, defining nested bindings for an element, and defining a binding for a data object.
+Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are three use cases: defining a mutator function for an element, defining nested bindings for an element, and defining a binding for a data object.
 
 ```js
 var bind = require('simulacra') // or `window.simulacra`
@@ -60,9 +60,9 @@ document.body.appendChild(bind(data, bindings))
 
 The DOM will update if any of the bound keys are assigned.
 
-All mount functions are "offline" operations, they mutate elements which exist only in memory. By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), additional functions for mounting and unmounting may be used for arbitrary element manipulation.
+By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation.
 
-The mount & unmount functions are passed in as the second and third arguments respectively, and have the signature (`node`, `value`, `oldValue`, `index`). For example, to manipulate a node before mounting it, one may do this:
+The mutator function may be passed as the second argument to Simulacra.js, and has the signature (`node`, `value`, `oldValue`, `index`). For example, to manipulate a node in a custom way, one may do this:
 
 ```js
 bind($('.name'), function (node, value) {
@@ -70,9 +70,13 @@ bind($('.name'), function (node, value) {
 })
 ```
 
-The mount function gets run before a node is replaced, and the unmount function gets run before a node is removed. If there is no return value, then it's assumed that the specified node will be appended. It's possible to return a different node in the mount function, which enables heterogeneous collections.
+A mutator function can be determined to be an insert, mutate, or remove operation based on whether the value and previous value is `null` or `undefined`:
 
-There is a special case for the mount function: if the bound node is the same as its parent, it is a mutator function and no return value is accepted, its value will not be iterated over, and no index will be passed. After the initial mount of the parent node, the mutator function works on the live DOM node.
+- Value but not previous value: insert operation.
+- Value and previous value: mutate operation.
+- No value: remove operation.
+
+There is a special case for the mutator function: if the bound node is the same as its parent, its value will not be iterated over, and no index will be passed.
 
 
 ## Benchmarks
@@ -93,9 +97,9 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 ## How it Works
 
-On initialization, Simulacra.js removes bound elements from the document and replaces them with a comment node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the mount function on the cloned elements, and appends them near the marker or adjacent nodes.
+On initialization, Simulacra.js removes bound elements from the document and replaces them with a comment node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the mutator function on the cloned elements, and appends them near the marker or adjacent nodes.
 
-When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will unmount and mount a DOM Node corresponding to the value. This is faster and simpler than diffing changes between DOM trees, and performing DOM operations on "offline" nodes (not in the live tree) is faster than modifying live nodes.
+When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM Node corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 
 
 ## Caveats
