@@ -70,7 +70,7 @@ bind($('.name'), function (node, value) {
 })
 ```
 
-A mutator function can be determined to be an insert, mutate, or remove operation based on whether the value and previous value is `null` or `undefined`:
+A mutator function can be determined to be an insert, mutate, or remove operation based on whether the value or previous value is `null`:
 
 - Value but not previous value: insert operation.
 - Value and previous value: mutate operation.
