@@ -40,7 +40,7 @@ renderer.heading = (text, level) => {
     `</h${level}>`
 }
 
-const text = (/(## Usage([\s\S]+)(?=))/g).exec(readme)[1]
+const text = (/(##([\s\S]+)(?=))/g).exec(readme)[1]
 const html = marked(text, {
   renderer, highlight: code => hjs.highlightAuto(code).value
 })

@@ -48,6 +48,7 @@ pre code {
 }
 
 :--header {
+  color: var(--color-solid);
   font-size: calc(1em * 5 / 4);
   font-family: var(--font-header);
   font-weight: 900;
@@ -66,6 +67,7 @@ header {
   text-align: center;
   overflow: hidden;
   position: relative;
+  color: var(--color-solid);
 }
 
 header h1 {
@@ -83,7 +85,6 @@ header h2 {
 
 header code {
   display: inline-block;
-  color: var(--color-body);
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: var(--border-radius);
   line-height: calc(var(--mono-height) * 2);
@@ -99,7 +100,7 @@ header code:before {
 
 header code,
 header :--button {
-  color: var(--color-alt);
+  color: var(--color-body);
   margin: 0 0.4em;
 }
 
