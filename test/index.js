@@ -50,9 +50,6 @@ run(function () {
     })
   })
 
-  util.inspect(bindings, { depth: null })
-    .split('\n').forEach(comment)
-
   ok(bindings, 'definition works')
 
   document.body.appendChild(bind(data, bindings))
