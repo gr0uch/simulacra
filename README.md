@@ -54,6 +54,7 @@ var bind = require('simulacra') // or `window.simulacra`
 function $ (selector) { return fragment.querySelector(selector) }
 
 var fragment = document.getElementById('product').content
+
 var bindings = bind(fragment, {
   name: bind($('.name')),
   details: bind($('.details'), {

@@ -1,5 +1,6 @@
 .hljs-keyword,
 .hljs-label,
+.hljs-attr,
 .hljs-attribute {
   color: var(--color-code-a);
 }
@@ -9,6 +10,7 @@
 .hljs-title,
 .hljs-params,
 .hljs-built_in,
+.hljs-name,
 .hljs-subst {
   color: var(--color-code-b);
 }
