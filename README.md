@@ -4,7 +4,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~270 LOC, or 2 KB (min+gz). Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~300 LOC, or 2 KB (min+gz). Get it from `npm`:
 
 ```sh
 $ npm install simulacra --save
@@ -15,7 +15,7 @@ $ npm install simulacra --save
 
 Simulacra.js aims to minimize the expression necessary to render a web application. In contrast with the public APIs of other software that interacts with the DOM, Simulacra.js exposes only a single function that accepts two arguments. It lacks a template syntax, so data binding works by selecting DOM nodes. All data binding beyond adding and removing elements, and changing plain text and form input values, is delegated to the DOM API.
 
-There is no coupling of templating with code, and no forced design paradigms, such as components. The goal is to demonstrate that ideas such as avoiding direct DOM manipulation and *unidirectional data flow* are not dependent on heavyweight software, and that it can be implemented with much better performance.
+There is no coupling of templating with code, and no forced design paradigms, such as components. The goal is to demonstrate that ideas such as avoiding direct DOM manipulation, isomorphic JavaScript, and *unidirectional data flow* are not dependent on heavyweight software, and that it can be implemented with much better performance.
 
 
 ## Usage
@@ -128,6 +128,27 @@ This library is written in ES5 syntactically, and makes use of:
 - Node.contains (DOM Living Standard)
 
 No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
+
+
+## Server-Side Rendering
+
+Simulacra.js works in Node.js (it's isomorphic!), with one thing to keep in mind: it should be called within the context of the `window` global, however this may be optional in some implementations. This is most easily done by using `Function.prototype.bind`, although `Function.prototype.call` is more performant. In the following example, [Domino](https://github.com/fgnass/domino) is used as the DOM implementation.
+
+```js
+const domino = require('domino')
+const simulacra = require('simulacra')
+
+const window = domino.createWindow('<h1></h1>')
+const bind = simulacra.bind(window)
+const data = { message: 'Hello world!' }
+const binding = bind(window.document.body, {
+  message: bind(window.document.querySelector('h1'))
+})
+
+process.stdout.write(bind(data, binding).innerHTML)
+```
+
+This will print the string `<h1>Hello world!</h1>` to `stdout`.
 
 
 ## License
