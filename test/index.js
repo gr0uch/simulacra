@@ -2,10 +2,8 @@
 
 var tapdance = require('tapdance')
 var ok = tapdance.ok
-var comment = tapdance.comment
 var run = tapdance.run
 
-var util = require('util')
 var bind = require('../lib')
 
 // ==========================
