@@ -3,13 +3,14 @@
   /* colors */
   --color-background: #FFFFFF;
   --color-background-header: #765DBA;
-  --color-background-subheader: #6750A6;
+  --color-background-subheader: rgba(0, 0, 0, 0.05);
   --color-header-alt: rgba(255, 255, 255, 0.6);
   --color-header-fade: rgba(255, 255, 255, 0.4);
   --color-header-light: rgba(255, 255, 255, 0.2);
   --color-solid: rgba(0, 0, 0, 1);
   --color-body: rgba(0, 0, 0, 0.8);
   --color-alt: rgba(0, 0, 0, 0.6);
+  --color-fade: rgba(0, 0, 0, 0.4);
   --color-light: rgba(0, 0, 0, 0.2);
   --color-code-a: #B56041;
   --color-code-b: #8F4AA8;

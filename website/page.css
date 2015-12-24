@@ -6,7 +6,7 @@
 
 /* Text selection */
 ::selection {
-  background: var(--color-background-subheader);
+  background: var(--color-background-header);
   color: #fff;
 }
 
@@ -113,7 +113,7 @@ header :--button {
 
 .example {
   background-color: var(--color-background-subheader);
-  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.075);
   padding: calc(var(--line-height) * 3 / 2) 0;
 }
 
@@ -135,8 +135,8 @@ header :--button {
 
 .example .left,
 .example .right {
-  color: var(--color-header-alt);
   width: 50%;
+  color: var(--color-alt);
 }
 
 .example .left {
@@ -152,16 +152,16 @@ header :--button {
 .container > div > p {
   font-family: var(--font-header);
   font-size: calc(1em * 4 / 5);
-  color: var(--color-background);
+  color: var(--color-body);
   font-weight: bold;
 }
 
 .example input {
-  color: var(--color-background);
+  color: var(--color-body);
   padding: 0 calc(var(--mono-height) * 3 / 4);
   background-color: rgba(0, 0, 0, 0.075);
   border-radius: var(--border-radius);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   line-height: calc(var(--mono-height) * 2);
   margin: calc(var(--line-height) * 1 / 2) 0 0;
   font-size: var(--size-mono);
@@ -172,9 +172,9 @@ header :--button {
 
 .product-container {
   border-radius: var(--border-radius);
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 1px rgba(0, 0, 0, 0.2) solid;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.075);
+  border: 1px rgba(0, 0, 0, 0.15) solid;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
   height: calc(var(--line-height) * 5);
   font-family: var(--font-header);
   overflow: hidden;
@@ -189,7 +189,8 @@ header :--button {
   margin: 0;
   font-size: calc(1em * 5 / 4);
   font-weight: normal;
-  color: var(--color-header-alt);
+  color: var(--color-alt);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .product-container h4 {
@@ -197,7 +198,7 @@ header :--button {
   margin: 0;
   font-size: inherit;
   font-weight: normal;
-  color: var(--color-header-light);
+  color: var(--color-fade);
   position: relative;
   top: -0.75em;
 }
@@ -230,12 +231,12 @@ header :--button {
   bottom: 0;
   left: 0;
   width: 100%;
-  border-top: 1px rgba(255, 255, 255, 0.15) solid;
+  border-top: 1px rgba(255, 255, 255, 0.5) solid;
   background-color: rgba(0, 0, 0, 0.05);
   font-size: calc(1em * 4 / 5);
   line-height: var(--line-height);
   height: calc(var(--line-height) * 2);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
 .product-container .details > div {
@@ -243,16 +244,16 @@ header :--button {
   position: relative;
   top: calc(var(--line-height) * -2 / 3);
   border-radius: var(--border-radius);
-  background-color: var(--color-background-subheader);
-  border: 1px rgba(0, 0, 0, 0.2) solid;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+  background-color: var(--color-background);
+  border: 1px rgba(0, 0, 0, 0.15) solid;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .product-container .details > div > span {
   display: inline-block;
   padding: calc(var(--line-height) * 1 / 6 - 2px) 0.8em;
   position: relative;
-  color: var(--color-header-fade);
+  color: var(--color-fade);
 }
 
 .product-container .details > div > span:after {
@@ -263,7 +264,7 @@ header :--button {
   right: 0;
   width: 1px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.075);
 }
 
 .product-container .details > div > span:last-of-type:after {
