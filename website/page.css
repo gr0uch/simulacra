@@ -162,7 +162,7 @@ header :--button {
   background-color: rgba(0, 0, 0, 0.075);
   border-radius: var(--border-radius);
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  line-height: calc(var(--mono-height) * 2);
+  line-height: calc(var(--mono-height) * 7 / 4);
   margin: calc(var(--line-height) * 1 / 2) 0 0;
   font-size: var(--size-mono);
   font-family: var(--font-mono);
@@ -287,6 +287,8 @@ article {
   max-width: var(--max-width);
   padding: 0 var(--line-height);
   margin: 0 auto;
+  font-family: var(--font-header);
+  text-align: justify;
 }
 
 article a {
