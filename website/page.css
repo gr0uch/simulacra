@@ -288,7 +288,6 @@ article {
   padding: 0 var(--line-height);
   margin: 0 auto;
   font-family: var(--font-header);
-  text-align: justify;
 }
 
 article a {
