@@ -13,9 +13,9 @@ $ npm install simulacra --save
 
 ## Abstract
 
-Simulacra.js aims to minimize the expression necessary to render a web application. In contrast with the public APIs of other software that interacts with the DOM, Simulacra.js exposes only a single function that accepts two arguments. It lacks a template syntax, so data binding works by selecting DOM nodes. All data binding beyond adding and removing elements, and changing plain text and form input values, is delegated to the DOM API.
+Simulacra.js provides an abstraction between data and the DOM. All data binding beyond adding and removing elements, and changing plain text and form input values, is delegated to the DOM API.
 
-There is no coupling of templating with code, and no forced design paradigms, such as components. The goal is to demonstrate that ideas such as avoiding direct DOM manipulation, isomorphic JavaScript, and *unidirectional data flow* are not dependent on heavyweight software, and that it can be implemented with much better performance.
+The goal is to demonstrate that ideas such as avoiding direct DOM manipulation, isomorphic JavaScript, and *unidirectional data flow* are not dependent on heavyweight software, and that it can be implemented with much better performance.
 
 
 ## Usage
