@@ -13,9 +13,7 @@ $ npm install simulacra --save
 
 ## Abstract
 
-Simulacra.js provides an abstraction between data and the DOM. All data binding beyond adding and removing elements, and changing plain text and form input values, is delegated to the DOM API.
-
-The goal is to demonstrate that ideas such as avoiding direct DOM manipulation, isomorphic JavaScript, and *unidirectional data flow* are not dependent on heavyweight software, and that it can be implemented with much better performance.
+Simulacra.js provides one-way binding between JavaScript objects and the DOM. Without configuration, it handles adding and removing elements, changing plain text and form input values. Everything else is delegated to the DOM API.
 
 
 ## Usage

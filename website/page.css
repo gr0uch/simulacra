@@ -64,8 +64,9 @@ pre code {
 header {
   background-color: var(--color-background-header);
   padding:
-    calc(var(--line-height) * 7 / 2)
-    var(--line-height);
+    calc(var(--line-height) * 5)
+    var(--line-height)
+    calc(var(--line-height) * 4);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -73,16 +74,17 @@ header {
 
 header h1 {
   font-family: var(--font-body);
-  font-size: 1em;
+  font-size: 5em;
   font-style: italic;
   font-weight: normal;
-  margin: 0 0 calc(var(--line-height) * 1 / 2);
+  margin: 0 0 calc(var(--line-height) * 2 / 5);
   color: var(--color-background);
 }
 
 header h2 {
   font-size: calc(1em * 3 / 2);
-  margin: 0 0 calc(var(--line-height) * 3 / 4);
+  font-weight: normal;
+  margin: 0 0 calc(var(--line-height) * 3 / 2);
   color: var(--color-background);
 }
 
@@ -113,8 +115,9 @@ header :--button {
 
 .example {
   background-color: var(--color-background-subheader);
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.075);
-  padding: calc(var(--line-height) * 3 / 2) 0;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border-radius: var(--border-radius);
+  padding: calc(var(--line-height) * 1) 0;
 }
 
 .example p,
@@ -161,7 +164,7 @@ header :--button {
   padding: 0 calc(var(--mono-height) * 3 / 4);
   background-color: rgba(0, 0, 0, 0.075);
   border-radius: var(--border-radius);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
   line-height: calc(var(--mono-height) * 7 / 4);
   margin: calc(var(--line-height) * 1 / 2) 0 0;
   font-size: var(--size-mono);
@@ -285,7 +288,7 @@ header :--button {
 
 article {
   max-width: var(--max-width);
-  padding: 0 var(--line-height);
+  padding: calc(var(--line-height) * 1) var(--line-height) 0;
   margin: 0 auto;
   font-family: var(--font-header);
 }

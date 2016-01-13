@@ -2,6 +2,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const domino = require('domino')
 const ejs = require('ejs')
 const marked = require('marked')
 const mkdirp = require('mkdirp')
@@ -21,7 +22,8 @@ const CNAME = 'simulacra.js.org'
 
 const template = fs.readFileSync(
   path.join(__dirname, 'template.ejs')).toString()
-
+const example = fs.readFileSync(
+  path.join(__dirname, 'example.html')).toString()
 const readme = fs.readFileSync(
   path.join(__dirname, '../README.md')).toString()
 
@@ -40,10 +42,20 @@ renderer.heading = (text, level) => {
     `</h${level}>`
 }
 
-const text = (/(##([\s\S]+)(?=))/g).exec(readme)[1]
-const html = marked(text, {
+const text = (/(##(?:[\s\S]+)(?=))/g).exec(readme)[1]
+let html = marked(text, {
   renderer, highlight: code => hjs.highlightAuto(code).value
 })
+const window = domino.createWindow(html)
+const document = window.document
+
+const node = document.createElement('div')
+node.innerHTML = example
+
+const marker = document.querySelectorAll('h2')[2]
+marker.parentNode.insertBefore(node, marker)
+
+html = document.innerHTML
 
 mkdirp.sync(outputPath)
 fs.writeFileSync(path.join(outputPath, 'index.html'), minify(

@@ -9,9 +9,17 @@
     padding-bottom: calc(var(--line-height) * 2);
   }
 
+  header h1 {
+    font-size: 3em;
+  }
+
   header code,
   header .button {
     margin-bottom: calc(var(--line-height) * 1);
+  }
+
+  article {
+    padding-top: 0;
   }
 
   .example .left,

@@ -1,0 +1,67 @@
+<p>Here is the result of the example above:</p>
+<div class="example">
+  <div class="container">
+    <div class="left">
+      <div class="product-container">
+      </div>
+    </div>
+    <div class="right">
+      <p>Live demo, try it out:</p>
+      <ul>
+        <li><code>data.name = "Caramel Latte"</code></li>
+        <li><code>data.details.size.push("Trenta")</code></li>
+      </ul>
+      <input type="text" name="eval" placeholder="Change data...">
+    </div>
+  </div>
+</div>
+<template id="product">
+  <h1 class="name"></h1>
+  <div class="details">
+    <div><span class="size"></span></div>
+    <hr><h4 class="vendor"></h4>
+  </div>
+</template>
+<script type="text/javascript">
+(function () {
+  window.data = {
+    name: 'Pumpkin Spice Latte',
+    details: {
+      meta: {
+        date: Date.now()
+      },
+      size: [ 'Tall', 'Grande', 'Venti' ],
+      vendor: 'Starbucks'
+    }
+  }
+
+  var bind = window.simulacra
+  var fragment = document.getElementById('product').content
+  function $ (s) { return fragment.querySelector(s) }
+
+  var bindings = bind(fragment, {
+    name: bind($('.name')),
+    details: bind($('.details'), {
+      meta: bind($('.details'), {
+        date: bind($('.details'), function (node, value) {
+          node.dataset.timestamp = value
+        })
+      }),
+      size: bind($('.size')),
+      vendor: bind($('.vendor'))
+    })
+  })
+
+  var output = bind(data, bindings)
+  document.querySelector('.product-container').appendChild(output)
+
+  var input = document.querySelector('input[name="eval"]')
+  input.addEventListener('keyup', function (event) {
+    if (event.keyCode === 13) {
+      var x = input.value
+      input.value = ''
+      eval(x)
+    }
+  })
+}())
+</script>
