@@ -76,7 +76,6 @@ header h1 {
   font-family: var(--font-body);
   font-size: 5em;
   font-style: italic;
-  font-weight: normal;
   margin: 0 0 calc(var(--line-height) * 2 / 5);
   color: var(--color-background);
 }
@@ -150,6 +149,7 @@ header :--button {
 .example .right {
   float: right;
   padding-left: calc(var(--line-height) * 1 / 2);
+  white-space: nowrap;
 }
 
 .container > div > p {
