@@ -62,7 +62,7 @@ pre code {
 }
 
 header {
-  background-color: var(--color-background-header);
+  background: linear-gradient(to right, var(--color-background-header), #356594);
   padding:
     calc(var(--line-height) * 5)
     var(--line-height)
