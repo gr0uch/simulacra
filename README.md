@@ -111,7 +111,7 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 ## Caveats
 
 - The `delete` keyword will not trigger a DOM update. Although ES6 `Proxy` has a trap for this keyword, its browser support is lacking and it can not be polyfilled. Also, it would break the API of Simulacra.js for this one feature, so the recommended practice is to set the value to `null` rather than trying to `delete` the key.
-- Out-of-bounds array index assignment will not work, because the number of settters is equal to the length of the array.
+- Out-of-bounds array index assignment will not work, because the number of setters is equal to the length of the array.
 - The bound data object may not contain any conflicting getters & setters, since they will be overridden by Simulacra.js.
 
 
