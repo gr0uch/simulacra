@@ -13,7 +13,7 @@ $ npm install simulacra --save
 
 ## Abstract
 
-Simulacra.js provides one-way binding between JavaScript objects and the DOM. Without configuration, it handles adding and removing elements, changing plain text and form input values. Everything else is delegated to the DOM API.
+Simulacra.js provides one-way binding between JavaScript objects and the DOM. When data changes, it maps those changes to the DOM by adding and removing elements, and changing plain text and form input values. Everything else is delegated to the DOM API.
 
 
 ## Usage
