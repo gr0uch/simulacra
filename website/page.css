@@ -64,9 +64,9 @@ pre code {
 header {
   background-color: var(--color-background-header);
   padding:
-    calc(var(--line-height) * 9 / 2)
+    calc(var(--line-height) * 5)
     var(--line-height)
-    calc(var(--line-height) * 7 / 2);
+    calc(var(--line-height) * 4);
   text-align: center;
   overflow: hidden;
   position: relative;
