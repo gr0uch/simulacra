@@ -64,9 +64,9 @@ pre code {
 header {
   background: linear-gradient(to right, var(--color-background-header), #356594);
   padding:
-    calc(var(--line-height) * 5)
+    calc(var(--line-height) * 11 / 2)
     var(--line-height)
-    calc(var(--line-height) * 4);
+    calc(var(--line-height) * 9 / 2);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -74,9 +74,9 @@ header {
 
 header h1 {
   font-family: var(--font-body);
-  font-size: 5em;
+  font-size: 4em;
   font-style: italic;
-  margin: 0 0 calc(var(--line-height) * 1 / 3);
+  margin: 0 0 calc(var(--line-height) * 2 / 5);
   color: var(--color-background);
 }
 
