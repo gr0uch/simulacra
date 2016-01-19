@@ -43,7 +43,7 @@
     "rimraf": "^2.5.0",
     "tap-dot": "^1.0.1",
     "tapdance": "^4.0.1",
-    "tape-run": "^2.1.1",
+    "tape-run": "^2.1.2",
     "uglify-js": "^2.6.1"
   },
   "main": "lib/index.js",

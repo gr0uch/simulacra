@@ -1,6 +1,6 @@
 @media screen and (max-width: 800px) {
   body {
-    font-size: calc(var(--size-body) - 3px);
+    font-size: calc(var(--size-body) - 2px);
     padding-bottom: calc(var(--line-height) * 1);
   }
 

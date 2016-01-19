@@ -64,9 +64,9 @@ pre code {
 header {
   background: linear-gradient(to right, var(--color-background-header), #356594);
   padding:
-    calc(var(--line-height) * 11 / 2)
+    calc(var(--line-height) * 5)
     var(--line-height)
-    calc(var(--line-height) * 9 / 2);
+    calc(var(--line-height) * 4);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -289,7 +289,7 @@ header :--button {
 
 article {
   max-width: var(--max-width);
-  padding: calc(var(--line-height) * 1) var(--line-height) 0;
+  padding: calc(var(--line-height) * 2) var(--line-height) 0;
   margin: 0 auto;
   font-family: var(--font-header);
 }
