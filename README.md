@@ -7,7 +7,7 @@
 Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~300 LOC, or 2 KB (min+gz). Get it from `npm`:
 
 ```sh
-$ npm install simulacra --save
+$ npm i simulacra --save
 ```
 
 
