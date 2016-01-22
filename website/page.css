@@ -64,9 +64,9 @@ pre code {
 header {
   background: linear-gradient(to right, var(--color-background-header), #356594);
   padding:
-    calc(var(--line-height) * 5)
+    calc(var(--line-height) * 4)
     var(--line-height)
-    calc(var(--line-height) * 4);
+    calc(var(--line-height) * 3);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -74,14 +74,14 @@ header {
 
 header h1 {
   font-family: var(--font-body);
-  font-size: 4em;
+  font-size: 3em;
   font-style: italic;
-  margin: 0 0 calc(var(--line-height) * 2 / 5);
+  margin: 0 0 calc(var(--line-height) * 1 / 3);
   color: var(--color-background);
 }
 
 header h2 {
-  font-size: calc(1em * 3 / 2);
+  font-size: 1em;
   font-weight: normal;
   margin: 0 0 calc(var(--line-height) * 3 / 2);
   color: var(--color-background);
@@ -289,7 +289,7 @@ header :--button {
 
 article {
   max-width: var(--max-width);
-  padding: calc(var(--line-height) * 2) var(--line-height) 0;
+  padding: calc(var(--line-height) * 1) var(--line-height) 0;
   margin: 0 auto;
   font-family: var(--font-header);
 }
