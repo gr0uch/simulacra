@@ -100,13 +100,13 @@ Simulacra.js is comparable to directly calling `Node.appendChild` in terms of DO
 
 | Name              | Loading  | Scripting  | Rendering  | Aggregate  |
 |:------------------|:---------|:-----------|:-----------|:-----------|
-| *appendChild*     | 10 ms    | 3 ms       | 13 ms      | **38 ms**  |
-| Simulacra.js      | 9 ms     | 9 ms       | 13 ms      | **39 ms**  |
-| React.js          | 23 ms    | 76 ms      | 13 ms      | **129 ms** |
-| Mithril.js        | 16 ms    | 77 ms      | 23 ms      | **165 ms** |
-| Backbone          | 20 ms    | 106 ms     | 23 ms      | **191 ms** |
-| jQuery            | 20 ms    | 119 ms     | 24 ms      | **211 ms** |
-| Angular.js        | 17 ms    | 159 ms     | 24 ms      | **295 ms** |
+| *appendChild*     | 10 ms    | 3 ms       | 13 ms      | 38 ms      |
+| Simulacra.js      | 9 ms     | 9 ms       | 13 ms      | 39 ms      |
+| React.js          | 23 ms    | 76 ms      | 13 ms      | 129 ms     |
+| Mithril.js        | 16 ms    | 77 ms      | 23 ms      | 165 ms     |
+| Backbone          | 20 ms    | 106 ms     | 23 ms      | 191 ms     |
+| jQuery            | 20 ms    | 119 ms     | 24 ms      | 211 ms     |
+| Angular.js        | 17 ms    | 159 ms     | 24 ms      | 295 ms     |
 
 To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/0x8890/simulacra/tree/master/benchmark).
 
