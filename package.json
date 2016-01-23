@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "One-way data binding for web applications.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
@@ -42,7 +42,7 @@
     "mkdirp": "^0.5.1",
     "normalize.css": "^3.0.3",
     "rimraf": "^2.5.1",
-    "tapdance": "^4.0.1",
+    "tapdance": "^4.1.1",
     "tape-run": "^2.1.2",
     "uglify-js": "^2.6.1"
   },

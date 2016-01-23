@@ -28,7 +28,7 @@
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
-        date: Date.now()
+        date: new Date()
       },
       size: [ 'Tall', 'Grande', 'Venti' ],
       vendor: 'Starbucks'
@@ -44,7 +44,7 @@
     details: bind($('.details'), {
       meta: bind($('.details'), {
         date: bind($('.details'), function (context) {
-          context.node.dataset.timestamp = context.value
+          context.node.dataset.timestamp = context.value.getTime()
         })
       }),
       size: bind($('.size')),

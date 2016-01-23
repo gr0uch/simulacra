@@ -68,7 +68,16 @@ The DOM will update if any of the bound keys are assigned a different value.
 
 By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. If a mutator function for an input is not specified, it automatically receives an event listener which will update its own data on change.
 
-The mutator function may be passed as the second argument to Simulacra.js, it accepts one argument, the context object, which may contain the keys `object`, `key`, `node`, `value`, `previousValue`, & `index`. For example, to manipulate a node in a custom way, one may do this:
+The mutator function may be passed as the second argument to Simulacra.js, it accepts one argument, the context object, which may contain the following keys:
+
+- `object`: the local bound object for the mutator function.
+- `key`: the key of the bound object.
+- `node`: the current DOM node.
+- `value`: the value assigned to the key of the bound object.
+- `previousValue`: the previous value assigned to the key of the bound object.
+- `index`: the internal array index of the value, may be omitted if the bound node is equal to its parent.
+
+For example, to manipulate a node in a custom way, one may do this:
 
 ```js
 bind($('.name'), function (context) {
@@ -87,17 +96,17 @@ There is a special case for the mutator function: if the bound node is the same 
 
 ## Benchmarks
 
-Simulacra.js is only marginally slower than `appendChild` in terms of DOM rendering. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chrome 48. All times are rounded to the nearest millisecond.
+Simulacra.js is comparable to directly calling `Node.appendChild` in terms of DOM rendering. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium. Only loading, scripting, rendering, and aggregate times are shown.
 
-| Name              | Loading  | Scripting  | Rendering  | Painting  | Other  |
-|:------------------|:---------|:-----------|:-----------|:----------|:-------|
-| *appendChild*     | 13 ms    | 5 ms       | 14 ms      | 2 ms      | 4 ms   |
-| Simulacra.js      | 12 ms    | 11 ms      | 13 ms      | 2 ms      | 4 ms   |
-| Mithril.js        | 9 ms     | 65 ms      | 20 ms      | 2 ms      | 3 ms   |
-| jQuery            | 11 ms    | 92 ms      | 14 ms      | 1 ms      | 3 ms   |
-| Backbone          | 16 ms    | 55 ms      | 12 ms      | 1 ms      | 4 ms   |
-| React.js          | 12 ms    | 79 ms      | 12 ms      | 1 ms      | 6 ms   |
-| Angular.js        | 19 ms    | 120 ms     | 13 ms      | 1 ms      | 5 ms   |
+| Name              | Loading  | Scripting  | Rendering  | Aggregate  |
+|:------------------|:---------|:-----------|:-----------|:-----------|
+| *appendChild*     | 10 ms    | 3 ms       | 13 ms      | **38 ms**  |
+| Simulacra.js      | 9 ms     | 9 ms       | 13 ms      | **39 ms**  |
+| React.js          | 23 ms    | 76 ms      | 13 ms      | **129 ms** |
+| Mithril.js        | 16 ms    | 77 ms      | 23 ms      | **165 ms** |
+| Backbone          | 20 ms    | 106 ms     | 23 ms      | **191 ms** |
+| jQuery            | 20 ms    | 119 ms     | 24 ms      | **211 ms** |
+| Angular.js        | 17 ms    | 159 ms     | 24 ms      | **295 ms** |
 
 To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/0x8890/simulacra/tree/master/benchmark).
 
