@@ -23,7 +23,7 @@
     "postpublish": "npm run deploy",
     "lint": "eslint lib test",
     "test": "npm run lint && npm run test:browser",
-    "test:browser": "node test/server & browserify -t browserify-istanbul test | tape-run",
+    "test:browser": "node test/server & browserify -t browserify-istanbul test | tape-run | tf-dot",
     "report": "./node_modules/.bin/istanbul report lcov text-summary"
   },
   "dependencies": {},
