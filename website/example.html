@@ -43,8 +43,8 @@
     name: bind($('.name')),
     details: bind($('.details'), {
       meta: bind($('.details'), {
-        date: bind($('.details'), function (node, value) {
-          node.dataset.timestamp = value
+        date: bind($('.details'), function (context) {
+          context.node.dataset.timestamp = context.value
         })
       }),
       size: bind($('.size')),

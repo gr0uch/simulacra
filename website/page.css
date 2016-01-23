@@ -204,7 +204,7 @@ header :--button {
   font-weight: normal;
   color: var(--color-fade);
   position: relative;
-  top: -0.75em;
+  top: calc(1em * 1 / 4);
 }
 
 .product-container h1,
@@ -227,7 +227,7 @@ header :--button {
 .product-container hr {
   border: none;
   height: 0;
-  margin: 0;
+  margin: 0 0 calc(var(--line-height) * -2 / 3);
 }
 
 .product-container .details {

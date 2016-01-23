@@ -68,11 +68,11 @@ The DOM will update if any of the bound keys are assigned a different value.
 
 By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation.
 
-The mutator function may be passed as the second argument to Simulacra.js, and has the signature (`node`, `value`, `oldValue`, `index`). For example, to manipulate a node in a custom way, one may do this:
+The mutator function may be passed as the second argument to Simulacra.js, it accepts one argument, the context object, which may contain the keys `object`, `key`, `node`, `value`, `previousValue`, & `index`. For example, to manipulate a node in a custom way, one may do this:
 
 ```js
-bind($('.name'), function (node, value) {
-  node.textContent = 'Hi ' + value + '!'
+bind($('.name'), function (context) {
+  context.node.textContent = 'Hi ' + context.value + '!'
 })
 ```
 
@@ -87,16 +87,17 @@ There is a special case for the mutator function: if the bound node is the same 
 
 ## Benchmarks
 
-Simulacra.js is even faster than consecutively setting the `innerHTML` property. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a mid-2014 Macbook Pro using Chrome 46. All times are rounded to the nearest millisecond.
+Simulacra.js is only marginally slower than `appendChild` in terms of DOM rendering. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chrome 48. All times are rounded to the nearest millisecond.
 
 | Name              | Loading  | Scripting  | Rendering  | Painting  | Other  |
 |:------------------|:---------|:-----------|:-----------|:----------|:-------|
-| Simulacra.js      | 1 ms     | 12 ms      | 6 ms       | 24 ms     | 8 ms   |
-| *innerHTML*       | 35 ms    | 32 ms      | 5 ms       | 24 ms     | 10 ms  |
-| Mithril.js        | 7 ms     | 69 ms      | 17 ms      | 25 ms     | 19 ms  |
-| jQuery            | 11 ms    | 101 ms     | 17 ms      | 25 ms     | 23 ms  |
-| React.js          | 8 ms     | 109 ms     | 15 ms      | 26 ms     | 22 ms  |
-| Angular.js        | 8 ms     | 115 ms     | 15 ms      | 28 ms     | 26 ms  |
+| *appendChild*     | 13 ms    | 5 ms       | 14 ms      | 2 ms      | 4 ms   |
+| Simulacra.js      | 12 ms    | 11 ms      | 13 ms      | 2 ms      | 4 ms   |
+| Mithril.js        | 9 ms     | 65 ms      | 20 ms      | 2 ms      | 3 ms   |
+| jQuery            | 11 ms    | 92 ms      | 14 ms      | 1 ms      | 3 ms   |
+| Backbone          | 16 ms    | 55 ms      | 12 ms      | 1 ms      | 4 ms   |
+| React.js          | 12 ms    | 79 ms      | 12 ms      | 1 ms      | 6 ms   |
+| Angular.js        | 19 ms    | 120 ms     | 13 ms      | 1 ms      | 5 ms   |
 
 To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/0x8890/simulacra/tree/master/benchmark).
 

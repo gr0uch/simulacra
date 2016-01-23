@@ -1,6 +1,7 @@
 'use strict'
 
 var tapdance = require('tapdance')
+var comment = tapdance.comment
 var ok = tapdance.ok
 var run = tapdance.run
 
@@ -30,11 +31,12 @@ template.innerHTML = '<h1 class="name"></h1>' +
 
 // ==========================
 
+comment('test simulacra.js')
 
 run(function () {
   var bindings = bind(fragment, {
-    name: bind($('.name'), function (node, value) {
-      node.textContent = value + '!'
+    name: bind($('.name'), function (context) {
+      context.node.textContent = context.value + '!'
     }),
     details: bind($('.details'), {
       size: bind($('.size')),
@@ -42,8 +44,10 @@ run(function () {
     }),
     prices: bind($('.price'), {
       amount: bind($('.amount')),
-      currency: bind($('.currency'), function (node, value) {
-        node.textContent = value.toUpperCase()
+      currency: bind($('.currency'), function (context) {
+        ok(context.object[context.key] === context.value,
+          'context is correct')
+        context.node.textContent = context.value.toUpperCase()
       })
     })
   })
