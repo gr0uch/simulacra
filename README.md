@@ -66,7 +66,7 @@ document.body.appendChild(bind(data, bindings))
 
 The DOM will update if any of the bound keys are assigned a different value.
 
-By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation.
+By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. If a mutator function for an input is not specified, it automatically receives an event listener which will update its own data on change.
 
 The mutator function may be passed as the second argument to Simulacra.js, it accepts one argument, the context object, which may contain the keys `object`, `key`, `node`, `value`, `previousValue`, & `index`. For example, to manipulate a node in a custom way, one may do this:
 
