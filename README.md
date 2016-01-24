@@ -70,7 +70,7 @@ By default, the value will be assigned to the element's `textContent` property (
 
 The mutator function may be passed as the second argument to Simulacra.js, it accepts one argument, the context object, which may contain the following keys:
 
-- `object`: the local bound object for the mutator function. The bound object contains a property `parent` which may be used to traverse up to the root object.
+- `object`: the local bound object for the mutator function. The bound object contains a non-enumerable and read-only property `parent` which may be used to traverse up to the root object.
 - `key`: the key of the bound object.
 - `node`: the current DOM node.
 - `value`: the value assigned to the key of the bound object.
