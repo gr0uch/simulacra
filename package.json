@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "One-way data binding for web applications.",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
@@ -23,12 +23,11 @@
     "postpublish": "npm run deploy",
     "lint": "eslint lib test",
     "test": "npm run lint && npm run test:browser",
-    "test:browser": "node test/server & browserify -t browserify-istanbul test | tape-run | tf-dot",
+    "test:browser": "node test/server & browserify -t browserify-istanbul test | tape-run",
     "report": "./node_modules/.bin/istanbul report lcov text-summary"
   },
   "dependencies": {},
   "devDependencies": {
-    "@tap-format/dot": "^0.2.0",
     "browserify": "^13.0.0",
     "browserify-istanbul": "^0.2.1",
     "cssnext": "^1.8.4",
