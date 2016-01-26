@@ -19,10 +19,13 @@
 
   /* fonts */
   --font-header:
-    'Avenir', /* Mac */
-    'DejaVu Sans', /* Linux */
-    'Calibri', /* Windows */
-    sans-serif /* Generic */;
+    /* Mac */
+    'Avenir',
+    /* Windows */
+    'Calibri',
+    /* Linux */
+    'FreeSans',
+    sans-serif;
   --font-body:
     'Baskerville', /* Mac */
     'Georgia', /* Windows */
@@ -30,8 +33,8 @@
   --font-mono:
     'Monaco',
     'Consolas',
-    'Andale Mono',
     'Lucida Console',
+    'Liberation Mono',
     monospace;
 
   /* measurements */
