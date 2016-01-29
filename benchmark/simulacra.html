@@ -17,8 +17,8 @@ template.innerHTML = '<input>'
 var fragment = template.content
 
 var bindings = bind(fragment, {
-  items: bind(fragment.querySelector('input'), function (context) {
-    context.node.value = context.value.name
+  items: bind(fragment.querySelector('input'), function (node, value) {
+    node.value = value.name
   })
 })
 
