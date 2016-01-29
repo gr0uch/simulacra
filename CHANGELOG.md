@@ -1,6 +1,10 @@
 # Changelog
 
 
+##### 0.9.1 (2016-01-29)
+- Polish: if mutator function throws an error, do not set internal value.
+
+
 ##### 0.9.0 (2016-01-28)
 - Breaking change: decided that `context` object is a bad idea, it should be as simple as possible.
 - Polish: differentiate between `undefined` and `0` index.

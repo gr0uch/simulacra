@@ -40,7 +40,10 @@ run(function () {
       node.textContent = value + '!'
     }),
     details: bind($('.details'), {
-      size: bind($('.size')),
+      size: bind($('.size'), function (node, value) {
+        if (value !== 'Large') throw new Error('BOOM!')
+        node.textContent = value
+      }),
       color: bind($('.color'), function (node, value, previousValue, index) {
         ok(typeof index === 'number', 'index value is a number')
       })
@@ -63,6 +66,15 @@ run(function () {
     'nesting works')
   ok(document.querySelectorAll('.currency').length === 2,
     'iteration works')
+
+  try {
+    data.details.size = 'Small'
+    ok(null, 'should have failed')
+  }
+  catch (error) {
+    ok(error.message === 'BOOM!', 'error message is correct')
+    ok(data.details.size === 'Large', 'value remains unchanged')
+  }
 })
 
 
