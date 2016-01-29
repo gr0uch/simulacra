@@ -1,8 +1,9 @@
 # Changelog
 
 
-##### 0.9.1 (2016-01-29)
+##### 0.9.2 (2016-01-29)
 - Polish: if mutator function throws an error, do not set internal value.
+- Polish: remove `parent` property since it is now useless.
 
 
 ##### 0.9.0 (2016-01-28)
