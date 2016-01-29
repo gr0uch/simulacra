@@ -16,7 +16,7 @@ var data = {
   name: 'Coroham Coron',
   details: {
     size: 'Large',
-    color: 'Brown'
+    color: ['Brown', 'Pink']
   },
   prices: [
     { amount: 34.99, currency: 'usd' },
@@ -35,19 +35,20 @@ comment('test simulacra.js')
 
 run(function () {
   var bindings = bind(fragment, {
-    name: bind($('.name'), function (context) {
-      context.node.textContent = context.value + '!'
+    name: bind($('.name'), function (node, value, previousValue, index) {
+      ok(index === void 0, 'index is not passed')
+      node.textContent = value + '!'
     }),
     details: bind($('.details'), {
       size: bind($('.size')),
-      color: bind($('.color'))
+      color: bind($('.color'), function (node, value, previousValue, index) {
+        ok(typeof index === 'number', 'index value is a number')
+      })
     }),
     prices: bind($('.price'), {
       amount: bind($('.amount')),
-      currency: bind($('.currency'), function (context) {
-        ok(context.object[context.key] === context.value,
-          'context is correct')
-        context.node.textContent = context.value.toUpperCase()
+      currency: bind($('.currency'), function (node, value) {
+        node.textContent = value.toUpperCase()
       })
     })
   })

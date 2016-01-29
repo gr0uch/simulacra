@@ -75,20 +75,18 @@ The DOM will update if any of the bound keys are assigned a different value.
 
 By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. If a mutator function for an input is not specified, it automatically receives an event listener which will update its own data when input is changed.
 
-The mutator function may be passed as the second argument to Simulacra.js, it accepts one argument, the context object, which may contain the following keys:
+The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `index`):
 
-- `object`: the local bound object for the mutator function. The bound object contains a non-enumerable and read-only property `parent` which may be used to traverse up to the root object.
-- `key`: the key of the bound object.
 - `node`: the local DOM node.
 - `value`: the value assigned to the key of the bound object.
 - `previousValue`: the previous value assigned to the key of the bound object.
-- `index`: the internal array index of the value, may be omitted if the bound node is equal to its parent.
+- `index`: the array index of the value, which may be omitted if the assigned value is not an array or if the bound node is equal to its parent.
 
 In general, it is not a good idea to mutate other DOM nodes within the mutator function other than the local node, since it may make rendering non-deterministic. To manipulate a node in a custom way, one may define a mutator function like so:
 
 ```js
-simulacra(node, function (context) {
-  context.node.textContent = 'Hi ' + context.value + '!'
+simulacra(node, function (node, value) {
+  node.textContent = 'Hi ' + value + '!'
 })
 ```
 
