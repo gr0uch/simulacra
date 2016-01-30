@@ -1,6 +1,11 @@
 # Changelog
 
 
+##### 0.10.0 (2016-01-30)
+- Feature: added support for passing in a string, which is used as the argument for `querySelector`.
+- Breaking change: removed `define` and `bind` on exported function, bypasses type checking in main function.
+
+
 ##### 0.9.2 (2016-01-29)
 - Polish: if mutator function throws an error, do not set internal value.
 - Polish: remove `parent` property since it is now useless.

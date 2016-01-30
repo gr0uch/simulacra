@@ -5,66 +5,92 @@ var comment = tapdance.comment
 var ok = tapdance.ok
 var run = tapdance.run
 
-var bind = require('../lib')
+var $ = require('../lib')
 
-// ==========================
-
-var template = document.createElement('template')
-var fragment = template.content
-var $ = function (s) { return fragment.querySelector(s) }
-var data = {
-  name: 'Coroham Coron',
-  details: {
-    size: 'Large',
-    color: ['Brown', 'Pink']
-  },
-  prices: [
-    { amount: 34.99, currency: 'usd' },
-    { amount: 3800, currency: 'jpy' }
-  ]
-}
-
-template.innerHTML = '<h1 class="name"></h1>' +
-  '<ul class="details"><li class="size"></li><li class="color"></li></ul>' +
-  '<h3 class="price"><span class="amount"></span>&nbsp;' +
-  '<span class="currency"></span></h3>'
-
-// ==========================
-
-comment('test simulacra.js')
 
 run(function () {
-  var bindings = bind(fragment, {
-    name: bind($('.name'), function (node, value, previousValue, index) {
+  var template, data, bindings, result
+
+  comment('test string paths')
+
+  template = document.createElement('div')
+  template.innerHTML = '<h1 class="name"></h1>'
+  document.body.appendChild(template)
+
+  data = { name: 'Babby' }
+  bindings = $('div', {
+    name: $('.name')
+  })
+
+  result = document.body.appendChild($(data, bindings))
+
+  ok(result.querySelector('.name').textContent === 'Babby',
+    'binding works')
+  ok(!template.querySelector('.name').textContent,
+    'original template unchanged')
+})
+
+
+run(function () {
+  var template, fragment, selector, data, bindings, outlet
+
+  comment('test main use case')
+
+  template = document.createElement('template')
+  template.innerHTML = '<h1 class="name"></h1>' +
+    '<ul class="details"><li class="size"></li><li class="color"></li></ul>' +
+    '<h3 class="price"><span class="amount"></span>&nbsp;' +
+    '<span class="currency"></span></h3>'
+
+  fragment = template.content
+  selector = function (s) { return fragment.querySelector(s) }
+
+  data = {
+    name: 'Coroham Coron',
+    details: {
+      size: 'Large',
+      color: ['Brown', 'Pink']
+    },
+    prices: [
+      { amount: 34.99, currency: 'usd' },
+      { amount: 3800, currency: 'jpy' }
+    ]
+  }
+
+  bindings = $(fragment, {
+    name: $('.name', function (node, value, previousValue, index) {
       ok(index === void 0, 'index is not passed')
       node.textContent = value + '!'
     }),
-    details: bind($('.details'), {
-      size: bind($('.size'), function (node, value) {
+    details: $(selector('.details'), {
+      size: $('.size', function (node, value) {
         if (value !== 'Large') throw new Error('BOOM!')
         node.textContent = value
       }),
-      color: bind($('.color'), function (node, value, previousValue, index) {
-        ok(typeof index === 'number', 'index value is a number')
-      })
+      color: $(selector('.color'),
+        function (node, value, previousValue, index) {
+          ok(typeof index === 'number', 'index value is a number')
+        })
     }),
-    prices: bind($('.price'), {
-      amount: bind($('.amount')),
-      currency: bind($('.currency'), function (node, value) {
+    prices: $(selector('.price'), {
+      amount: $(selector('.amount')),
+      currency: $(selector('.currency'), function (node, value) {
         node.textContent = value.toUpperCase()
       })
     })
   })
 
-  ok(bindings, 'definition works')
+  outlet = document.createElement('div')
+  outlet.id = 'outlet'
+  document.body.appendChild(outlet)
+  outlet.appendChild($(data, bindings))
 
-  document.body.appendChild(bind(data, bindings))
-  ok(document.querySelector('h1'), 'bound node appended to DOM')
-  ok(document.querySelector('.name').textContent === 'Coroham Coron!',
+  ok(outlet.querySelector('h1'), 'bound node appended to DOM')
+  ok(outlet.querySelector('.name').textContent === 'Coroham Coron!',
     'binding works')
-  ok(document.querySelector('.size').textContent === 'Large',
+  ok(outlet.querySelector('.size').textContent === 'Large',
     'nesting works')
-  ok(document.querySelectorAll('.currency').length === 2,
+  ok(outlet.querySelectorAll('.currency').length === 2,
     'iteration works')
 
   try {

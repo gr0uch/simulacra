@@ -4,7 +4,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~300 LOC, or 2 KB (min+gz). Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~300 LOC, or ~2 KB (min+gz). Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -13,9 +13,7 @@ $ npm i simulacra --save
 
 ## Abstract
 
-Simulacra.js provides one-way binding between JavaScript objects and the DOM. When data changes, it maps those changes to the DOM by adding and removing elements, and changing plain text and form input values.
-
-The goal is to make DOM rendering entirely deterministic from data. This is achieved by only mutating data, and resorting to DOM manipulation on local nodes only.
+Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements after invoking mutator functions, which by default, assign plain text and form input values. Deterministic rendering is achieved by only mutating data, and resorting to DOM manipulation on local nodes only.
 
 
 ## Usage
@@ -44,34 +42,25 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which does different things based on the types of the arguments. There are two use cases: defining bindings to the DOM, and applying bindings to an object. Alternatively, one may use `simulacra.define` and `simulacra.bind` for defining and binding, respectively.
+Simulacra.js exports only a single function, which can simultaneously define bindings to the DOM, and apply bindings to an object.
 
 ```js
-var simulacra = require('simulacra') // or `window.simulacra`
-var define = simulacra.define
-var bind = simulacra.bind
-
-// Simulacra.js accepts DOM Nodes, and it is entirely agnostic about how to
-// select them. Since it is so light on abstractions, a good idea would be to
-// use a wrapper function.
-function $ (a, b) {
-  return define(typeof a === 'string' ? fragment.querySelector(a) : a, b)
-}
+var $ = require('simulacra') // or `window.simulacra`
 
 var fragment = document.getElementById('product').content
 
-var bindings = $(fragment, {
+var content = $(data, $(fragment, {
   name: $('.name'),
   details: $('.details', {
     size: $('.size'),
     vendor: $('.vendor')
   })
-})
+}))
 
-document.body.appendChild(bind(data, bindings))
+document.body.appendChild(content)
 ```
 
-The DOM will update if any of the bound keys are assigned a different value.
+The DOM will update if any of the bound keys are assigned a different value, or if any `Array.prototype` methods on the value are invoked.
 
 By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. If a mutator function for an input is not specified, it automatically receives an event listener which will update its own data when input is changed.
 
@@ -85,9 +74,9 @@ The mutator function may be passed as the second argument to Simulacra.js, it ha
 In general, it is not a good idea to mutate other DOM nodes within the mutator function other than the local node, since it may make rendering non-deterministic. To manipulate a node in a custom way, one may define a mutator function like so:
 
 ```js
-simulacra(node, function (node, value) {
+function mutator (node, value) {
   node.textContent = 'Hi ' + value + '!'
-})
+}
 ```
 
 A mutator function can be determined to be an insert, mutate, or remove operation based on whether the value or previous value is `null`:
@@ -105,15 +94,15 @@ Since Simulacra.js is intended to be deterministic, the bound object can be clon
 
 ```js
 var clone = require('clone')
-var simulacra = require('simulacra')
+var $ = require('simulacra')
 
-var data = { ... }, bindings = { ... }
+var data = { ... }, bindings = $( ... )
 
-var node = simulacra(data, bindings)
+var node = $(data, bindings)
 var initialData = clone(data)
 
 // Do some mutations, and then reset to initial state.
-node = simulacra(initialData, bindings)
+node = $(initialData, bindings)
 ```
 
 This is just one way to implement time travel, but not the most efficient.
@@ -172,13 +161,13 @@ const domino = require('domino')
 const simulacra = require('simulacra')
 
 const window = domino.createWindow('<h1></h1>')
-const bind = simulacra.bind(window)
+const $ = simulacra.bind(window)
 const data = { message: 'Hello world!' }
-const binding = bind(window.document.body, {
-  message: bind(window.document.querySelector('h1'))
+const binding = $(window.document.body, {
+  message: $(window.document.querySelector('h1'))
 })
 
-process.stdout.write(bind(data, binding).innerHTML)
+process.stdout.write($(data, binding).innerHTML)
 ```
 
 This will print the string `<h1>Hello world!</h1>` to `stdout`.
