@@ -42,7 +42,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which can simultaneously define bindings to the DOM, and apply bindings to an object.
+Simulacra.js exports only a single function, which can simultaneously define bindings to the DOM, and apply bindings to an object. If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. Putting it all together:
 
 ```js
 var $ = require('simulacra') // or `window.simulacra`
@@ -74,9 +74,9 @@ The mutator function may be passed as the second argument to Simulacra.js, it ha
 In general, it is not a good idea to mutate other DOM nodes within the mutator function other than the local node, since it may make rendering non-deterministic. To manipulate a node in a custom way, one may define a mutator function like so:
 
 ```js
-function mutator (node, value) {
+$(node || selector, function mutator (node, value) {
   node.textContent = 'Hi ' + value + '!'
-}
+})
 ```
 
 A mutator function can be determined to be an insert, mutate, or remove operation based on whether the value or previous value is `null`:
