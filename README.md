@@ -163,11 +163,11 @@ const simulacra = require('simulacra')
 const window = domino.createWindow('<h1></h1>')
 const $ = simulacra.bind(window)
 const data = { message: 'Hello world!' }
-const binding = $(window.document.body, {
-  message: $(window.document.querySelector('h1'))
+const binding = $('body', {
+  message: $('h1')
 })
 
-process.stdout.write($(data, binding).innerHTML)
+console.log($(data, binding).innerHTML)
 ```
 
 This will print the string `<h1>Hello world!</h1>` to `stdout`.

@@ -1,6 +1,10 @@
 # Changelog
 
 
+##### 0.10.1 (2016-01-30)
+- Polish: internal renaming of variables and functions.
+
+
 ##### 0.10.0 (2016-01-30)
 - Feature: added support for passing in a string, which is used as the argument for `querySelector`.
 - Breaking change: removed `define` and `bind` on exported function, bypasses type checking in main function.
