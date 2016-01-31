@@ -42,7 +42,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which can simultaneously define bindings to the DOM, and apply bindings to an object. If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. Putting it all together:
+Simulacra.js exports only a single function, which can simultaneously define bindings to the DOM, and apply bindings to an object. If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a CSS selector string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. Putting it all together:
 
 ```js
 var $ = require('simulacra') // or `window.simulacra`
