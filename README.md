@@ -11,7 +11,7 @@ $ npm i simulacra --save
 ```
 
 
-## Abstract
+## Synopsis
 
 Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements after invoking mutator functions, which by default, assign plain text and form input values. Deterministic rendering is achieved by only mutating data, and resorting to DOM manipulation on local nodes only.
 
