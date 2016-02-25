@@ -13,7 +13,7 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements after invoking mutator functions, which by default, assign plain text and form input values. Deterministic rendering is achieved by only mutating data, and resorting to DOM manipulation on local nodes only.
+Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements after invoking mutator functions, which by default, assign plain text and form input values.
 
 
 ## Usage
@@ -71,7 +71,7 @@ The mutator function may be passed as the second argument to Simulacra.js, it ha
 - `previousValue`: the previous value assigned to the key of the bound object.
 - `index`: the array index of the value, which may be omitted if the assigned value is not an array or if the bound node is equal to its parent.
 
-In general, it is not a good idea to mutate other DOM nodes within the mutator function other than the local node, since it may make rendering non-deterministic. To manipulate a node in a custom way, one may define a mutator function like so:
+To manipulate a node in a custom way, one may define a mutator function like so:
 
 ```js
 $(node || selector, function mutator (node, value) {
