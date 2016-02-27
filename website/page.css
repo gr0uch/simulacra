@@ -1,6 +1,13 @@
 @custom-selector :--header h1, h2, h3, h4, h5, h6;
 @custom-selector :--button button, .button;
 
+/*
+Use `border-box` properly:
+https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+*/
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
 /* Disable focus. */
 *:focus { outline: none; }
 
@@ -93,10 +100,9 @@ header code {
   display: inline-block;
   background-color: var(--color-background-subheader);
   border-radius: var(--border-radius);
-  line-height: calc(var(--mono-height) * 2);
+  line-height: var(--mono-height);
   box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-  padding: 0 1em;
-  white-space: nowrap;
+  padding: calc(var(--mono-height) / 2) 1em;
   color: var(--color-header-alt);
 }
 

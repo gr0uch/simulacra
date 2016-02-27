@@ -6,7 +6,10 @@ const domino = require('domino')
 const ejs = require('ejs')
 const marked = require('marked')
 const mkdirp = require('mkdirp')
-const cssnext = require('cssnext')
+const postcss = require('postcss')
+const atImport = require('postcss-import')
+const cssnext = require('postcss-cssnext')
+const cssnano = require('cssnano')
 const hjs = require('highlight.js')
 const pkg = require('../package.json')
 const minifier = require('html-minifier')
@@ -74,10 +77,10 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
 
 const cssIndex = path.join(__dirname, 'index.css')
 
-fs.writeFileSync(path.join(outputPath, 'index.css'),
-  cssnext(fs.readFileSync(cssIndex).toString(), {
-    compress: true, from: cssIndex
-  }))
+postcss([ atImport, cssnext, cssnano() ])
+.process(fs.readFileSync(cssIndex).toString(), { from: cssIndex })
+.then(result =>
+  fs.writeFileSync(path.join(outputPath, 'index.css'), result.css))
 
 
 // Write CNAME file
