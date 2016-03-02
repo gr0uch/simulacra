@@ -139,6 +139,11 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 - The bound data object may not contain any conflicting getters & setters, since they will be overridden by Simulacra.js.
 
 
+## The Case Against Immutability
+
+An astute reader may notice that Simulacra.js deals only with mutable objects. Including a library for persistent data structures was considered, but is impractical for many reasons. First, any such library would be larger than Simulacra.js itself, and second, it would be detrimental to performance. For any changes, the differences would have to be calculated per data structure. While it may be useful to save a persistent snapshot of a bound object, it is an expensive operation and shouldn't be the default behavior. Another perspective is that Simulacra.js works with plain old JavaScript, and objects are plain old mutable objects as expected.
+
+
 ## Under the Hood
 
 This library is written in ES5 syntactically, and makes use of:
