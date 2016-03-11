@@ -18,7 +18,7 @@
   --color-button: #B56041;
 
   /* fonts */
-  --font-header:
+  --font-body:
     /* Mac */
     'Avenir',
     /* Windows */
@@ -26,10 +26,6 @@
     /* Linux */
     'FreeSans',
     sans-serif;
-  --font-body:
-    'Baskerville', /* Mac */
-    'Georgia', /* Windows */
-    serif /* Generic */;
   --font-mono:
     'Monaco',
     'Consolas',
@@ -38,7 +34,7 @@
     monospace;
 
   /* measurements */
-  --max-width: 50em;
+  --max-width: 48em;
   --size-body: 16px;
   --size-mono: calc(1em * 15 / 16);
   --line-height: calc(1em * 13 / 8);

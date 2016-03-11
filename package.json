@@ -34,7 +34,7 @@
     "cssnano": "^3.5.2",
     "domino": "^1.0.23",
     "ejs": "^2.4.1",
-    "eslint": "^2.3.0",
+    "eslint": "^2.4.0",
     "eslint-config-0x8890": "^1.0.2",
     "highlight.js": "^9.2.0",
     "html-minifier": "^1.2.0",
