@@ -64,12 +64,12 @@ The DOM will update if any of the bound keys are assigned a different value, or 
 
 By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. If a mutator function for an input is not specified, it automatically receives an event listener which will update its own data when input is changed.
 
-The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `index`):
+The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `path`):
 
 - `node`: the local DOM node.
 - `value`: the value assigned to the key of the bound object.
 - `previousValue`: the previous value assigned to the key of the bound object.
-- `index`: the array index of the value, which may be omitted if the assigned value is not an array or if the bound node is equal to its parent.
+- `path`: an array containing the full path to the value. For example: `[ 'users', 2, 'email' ]`. Integer values indicate array indices. The root object is accessible at the `root` property of the path array, i.e. `path.root`.
 
 To manipulate a node in a custom way, one may define a mutator function like so:
 
@@ -85,7 +85,7 @@ A mutator function can be determined to be an insert, mutate, or remove operatio
 - Value and previous value: mutate operation.
 - No value: remove operation.
 
-There is a special case for the mutator function: if the bound node is the same as its parent, its value will not be iterated over, and no index will be passed.
+There is a special case for the mutator function: if the bound node is the same as its parent, its value will not be iterated over if it is an array.
 
 
 ## Advanced Usage

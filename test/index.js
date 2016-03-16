@@ -32,7 +32,7 @@ run(function () {
 
 
 run(function () {
-  var template, fragment, selector, data, bindings, outlet
+  var template, fragment, selector, data, bindings, outlet, i = 0
 
   comment('test main use case')
 
@@ -58,18 +58,34 @@ run(function () {
   }
 
   bindings = $(fragment, {
-    name: $('.name', function (node, value, previousValue, index) {
-      ok(index === void 0, 'index is not passed')
+    name: $('.name', function (node, value, previousValue, path) {
+      ok(path.length === 1, 'path length is correct')
+      ok(path.root === data, 'root is correct')
+      ok(path[0] === 'name', 'path is correct')
       node.textContent = value + '!'
     }),
     details: $(selector('.details'), {
-      size: $('.size', function (node, value) {
-        if (value !== 'Large') throw new Error('BOOM!')
+      size: $('.size', function (node, value, previousValue, path) {
+        if (value !== 'Large') {
+          if (i < 1) {
+            i++
+            throw new Error('BOOM!')
+          }
+          ok(path.length === 3, 'path length is correct')
+          ok(path.root === data, 'root is correct')
+          ok(path[0] === 'details', 'path value is correct')
+          ok(path[1] === 0, 'path value is correct')
+          ok(path[2] === 'size', 'path value is correct')
+        }
         node.textContent = value
       }),
       color: $(selector('.color'),
-        function (node, value, previousValue, index) {
-          ok(typeof index === 'number', 'index value is a number')
+        function (node, value, previousValue, path) {
+          ok(path.length === 3, 'path length is correct')
+          ok(path.root === data, 'root is correct')
+          ok(path[0] === 'details', 'path value is correct')
+          ok(path[1] === 'color', 'path value is correct')
+          ok(typeof path[2] === 'number', 'array path is a number')
         })
     }),
     prices: $(selector('.price'), {
@@ -94,13 +110,17 @@ run(function () {
     'iteration works')
 
   try {
-    data.details.size = 'Small'
+    data.details.size = [ 'S', 'L' ]
     ok(null, 'should have failed')
   }
   catch (error) {
     ok(error.message === 'BOOM!', 'error message is correct')
     ok(data.details.size === 'Large', 'value remains unchanged')
   }
+
+  data.details = [ { size: 'XXL' } ]
+  ok(outlet.querySelector('.size').textContent === 'XXL',
+    'continues to work after error')
 })
 
 

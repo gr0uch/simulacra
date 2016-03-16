@@ -50,8 +50,19 @@ pre {
   margin: calc(var(--line-height) * 3 / 2) 0;
 }
 
+code {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: calc(var(--border-radius) / 2);
+  padding: 0.2em 0.3em 0.1em;
+}
+
+li pre {
+  margin: calc(var(--line-height) * 1 / 2) 0;
+}
+
 pre code {
   font-size: 1em;
+  background: none;
 }
 
 :--header {
@@ -127,6 +138,10 @@ header :--button {
 .example p,
 .example ul {
   margin: 0;
+}
+
+.example code {
+  background-color: transparent;
 }
 
 .example ul {
