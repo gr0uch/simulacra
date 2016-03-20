@@ -1,6 +1,14 @@
 # Changelog
 
 
+### 0.12.0 (2016-03-20)
+- Feature: returning any non-undefined value from a mutator function when the Node is about to be removed prevents the automatic call to remove the Node.
+
+
+### 0.11.0 (2016-03-16)
+- Breaking change: the fourth argument to the mutator function is now a path, instead of index.
+
+
 ### 0.10.2 (2016-02-24)
 - Polish: remove restriction on binding multiple keys to the same DOM node, it wasn't necessary.
 
