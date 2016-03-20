@@ -15,6 +15,8 @@ $ npm i simulacra --save
 
 Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements after invoking mutator functions, which by default, assign plain text and form input values.
 
+Fundamentally, it is a low-cost abstraction over the DOM that optimizes calls to `Node.insertBefore` and `Node.removeChild`. The simplicity of its design and execution enable it to perform nearly as well as hand-written DOM manipulation code.
+
 
 ## Usage
 
