@@ -90,7 +90,7 @@ A mutator function can be determined to be an insert, mutate, or remove operatio
 There are some special cases for the mutator function:
 
 - If the bound node is the same as its parent, its value will not be iterated over if it is an array.
-- If the mutator function returns a non-undefined value for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing a Node from the DOM.
+- If the mutator function returns `false` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing a Node from the DOM.
 
 
 ## Advanced Usage

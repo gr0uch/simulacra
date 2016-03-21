@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.13.0 (2016-03-21)
+- Breaking change: the mutator function must return `false` instead of any non-undefined value to prevent the DOM operation `removeChild`.
+
+
 ### 0.12.0 (2016-03-20)
 - Feature: returning any non-undefined value from a mutator function when the Node is about to be removed prevents the automatic call to remove the Node.
 
