@@ -20,7 +20,7 @@ Fundamentally, it is a low-cost abstraction over the DOM that optimizes calls to
 
 ## Usage
 
-Simulacra.js uses plain old HTML for templating. Here's a sample template:
+Simulacra.js uses plain old HTML for templating, and where it shines is that it does not require meta-information in the template at all. For example, the binding is not declared in the template, and there is no loop construct, because it's not necessary. Here's a sample template:
 
 ```html
 <template id="product">
@@ -32,7 +32,7 @@ Simulacra.js uses plain old HTML for templating. Here's a sample template:
 </template>
 ```
 
-Using the `<template>` tag is optional but optimal since its contents are not rendered by default, but any DOM element will suffice. In the above template, there are no iteration mechanisms, because Simulacra.js will automatically clone DOM elements based on the data. Here's some sample data:
+Using the `<template>` tag is optional but optimal since its contents are not rendered by default, but any DOM element will suffice. The shape of the data is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample data:
 
 ```js
 var data = {
@@ -44,7 +44,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which can simultaneously define bindings to the DOM, and apply bindings to an object. If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a CSS selector string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. Putting it all together:
+Simulacra.js exports only a single function, which can either define bindings to the DOM, or apply bindings to an object. If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a CSS selector string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. This can be combined in a single expression:
 
 ```js
 var $ = require('simulacra') // or `window.simulacra`
@@ -62,11 +62,9 @@ var content = $(data, $(fragment, {
 document.body.appendChild(content)
 ```
 
-The DOM will update if any of the bound keys are assigned a different value, or if any `Array.prototype` methods on the value are invoked.
+The DOM will update if any of the bound keys are assigned a different value, or if any `Array.prototype` methods on the value are invoked. Arrays and single values may be used interchangeably, the only difference is that Simulacra.js will iterate over array values.
 
-By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. If a mutator function for an input is not specified, it automatically receives an event listener which will update its own data when input is changed.
-
-The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `path`):
+By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `path`):
 
 - `node`: the local DOM node.
 - `value`: the value assigned to the key of the bound object.
