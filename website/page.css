@@ -63,6 +63,7 @@ li pre {
 pre code {
   font-size: 1em;
   background: none;
+  padding: 0;
 }
 
 :--header {
