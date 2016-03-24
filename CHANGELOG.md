@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.13.1 (2016-03-24)
+- Feature: expose `define` and `bind` again on the default export.
+
+
 ### 0.13.0 (2016-03-21)
 - Breaking change: the mutator function must return `false` instead of any non-undefined value to prevent the DOM operation `removeChild`.
 
