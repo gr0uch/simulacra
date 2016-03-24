@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.13.2 (2016-03-24)
+- Polish: rename internal functions so that they do not conflict with `Function.prototype`.
+
+
 ### 0.13.1 (2016-03-24)
 - Feature: expose `define` and `bind` again on the default export.
 
