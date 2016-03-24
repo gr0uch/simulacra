@@ -42,12 +42,12 @@ pre, code {
 
 pre {
   color: var(--color-alt);
-  padding: calc(var(--mono-height) * 1 / 2) calc(var(--mono-height) * 3 / 4);
+  padding: calc(var(--line-height) * 1 / 2) calc(var(--line-height) * 3 / 4);
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: var(--border-radius);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   line-height: var(--mono-height);
-  margin: calc(var(--line-height) * 3 / 2) 0;
+  margin: calc(var(--line-height) * 3 / 2) calc(var(--line-height) * -3 / 4);
 }
 
 code {
@@ -82,9 +82,9 @@ pre code {
 header {
   background: linear-gradient(to right, var(--color-background-header), #356594);
   padding:
-    calc(var(--line-height) * 5)
+    calc(var(--line-height) * 4)
     var(--line-height)
-    calc(var(--line-height) * 4);
+    calc(var(--line-height) * 3);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -92,9 +92,9 @@ header {
 
 header h1 {
   font-size: 3em;
-  margin: 0 0 calc(var(--line-height) * 1 / 4);
+  line-height: var(--line-height);
+  margin: 0;
   color: var(--color-background);
-  letter-spacing: calc(1em * -1 / 50);
 }
 
 header h2 {
@@ -148,6 +148,9 @@ header :--button {
 .example ul {
   padding: 0;
   list-style-type: none;
+  font-size: 0.8em;
+  line-height: var(--mono-height);
+  margin: 0.8em 0 0.6em;
 }
 
 .example li:before {

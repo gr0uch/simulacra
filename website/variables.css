@@ -8,10 +8,10 @@
   --color-header-fade: rgba(255, 255, 255, 0.4);
   --color-header-light: rgba(255, 255, 255, 0.2);
   --color-solid: rgba(0, 0, 0, 1);
-  --color-body: rgba(0, 0, 0, 0.8);
-  --color-alt: rgba(0, 0, 0, 0.6);
-  --color-fade: rgba(0, 0, 0, 0.4);
-  --color-light: rgba(0, 0, 0, 0.2);
+  --color-body: rgba(0, 0, 0, 0.6666);
+  --color-alt: rgba(0, 0, 0, 0.5);
+  --color-fade: rgba(0, 0, 0, 0.3333);
+  --color-light: rgba(0, 0, 0, 0.2222);
   --color-code-a: #B56041;
   --color-code-b: #8F4AA8;
   --color-code-c: #359479;
@@ -19,6 +19,7 @@
 
   /* fonts */
   --font-body:
+    'Roboto',
     /* Mac */
     'Avenir',
     /* Windows */
@@ -27,6 +28,7 @@
     'FreeSans',
     sans-serif;
   --font-mono:
+    'Fira Mono',
     'Monaco',
     'Consolas',
     'Lucida Console',
@@ -34,11 +36,11 @@
     monospace;
 
   /* measurements */
-  --max-width: 48em;
-  --size-body: 16px;
-  --size-mono: calc(1em * 15 / 16);
-  --line-height: calc(1em * 13 / 8);
-  --mono-height: calc(1em * 3 / 2);
-  --border-radius: calc(1em / 2);
+  --max-width: 47em;
+  --size-body: 17px;
+  --size-mono: calc(1em * 16 / 17);
+  --line-height: calc(1em * 5 / 3);
+  --mono-height: calc(1em * 4 / 3);
+  --border-radius: calc(1em / 3);
 
 }
