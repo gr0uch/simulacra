@@ -188,7 +188,7 @@ header :--button {
   background-color: rgba(0, 0, 0, 0.075);
   border-radius: var(--border-radius);
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
-  line-height: calc(var(--mono-height) * 7 / 4);
+  height: calc(var(--mono-height) * 7 / 4);
   margin: calc(var(--line-height) * 1 / 2) 0 0;
   font-size: var(--size-mono);
   font-family: var(--font-mono);

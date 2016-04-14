@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const domino = require('domino')
-const ejs = require('ejs')
+const simulacra = require('../lib')
 const marked = require('marked')
 const mkdirp = require('mkdirp')
 const postcss = require('postcss')
@@ -23,8 +23,10 @@ const CNAME = 'simulacra.js.org'
 // Render the page
 // ===============
 
-const template = fs.readFileSync(
-  path.join(__dirname, 'template.ejs')).toString()
+const head = fs.readFileSync(
+  path.join(__dirname, 'head.html')).toString()
+const body = fs.readFileSync(
+  path.join(__dirname, 'body.html')).toString()
 const example = fs.readFileSync(
   path.join(__dirname, 'example.html')).toString()
 const readme = fs.readFileSync(
@@ -46,10 +48,10 @@ renderer.heading = (text, level) => {
 }
 
 const text = (/(##(?:[\s\S]+)(?=))/g).exec(readme)[1]
-let html = marked(text, {
+let content = marked(text, {
   renderer, highlight: code => hjs.highlightAuto(code).value
 })
-const window = domino.createWindow(html)
+const window = domino.createWindow(content)
 const document = window.document
 
 const node = document.createElement('div')
@@ -58,16 +60,24 @@ node.innerHTML = example
 const marker = document.querySelectorAll('h2')[2]
 marker.parentNode.insertBefore(node, marker)
 
-html = document.innerHTML
+content = document.body.innerHTML
+
+const $ = simulacra.bind(domino.createWindow(body))
 
 mkdirp.sync(outputPath)
 fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
-  ejs.render(template, {
-    name: pkg.name,
-    description: pkg.description,
+  [ head, $({
+    content,
     version: pkg.version,
-    content: html
-  }),
+    name: pkg.name,
+    description: pkg.description
+  }, $('body', {
+    name: $('header h1', (node, value) => node.textContent =
+      value.charAt(0).toUpperCase() + value.slice(1) + '.js'),
+    description: $('header h2'),
+    version: $('.version'),
+    content: $('article', (node, value) => node.innerHTML = value)
+  })).innerHTML ].join(''),
   { collapseWhitespace: true }
 ))
 

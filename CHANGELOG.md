@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.14.0 (2016-04-14)
+- Feature: option to use comment nodes instead of empty text nodes, useful for debugging purposes or if `Node.normalize()` is needed.
+
+
 ### 0.13.2 (2016-03-24)
 - Polish: rename internal functions so that they do not conflict with `Function.prototype`.
 
