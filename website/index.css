@@ -1,6 +1,4 @@
 /* External CSS */
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900,400italic");
-@import url("https://fonts.googleapis.com/css?family=Fira+Mono");
 @import "normalize.css/normalize.css";
 
 @import "variables.css";
