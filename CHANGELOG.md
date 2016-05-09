@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.14.1 (2016-05-09)
+- Polish: use non-enumerable, non-writable private properties.
+
+
 ### 0.14.0 (2016-04-14)
 - Feature: option to use comment nodes instead of empty text nodes, useful for debugging purposes or if `Node.normalize()` is needed.
 
