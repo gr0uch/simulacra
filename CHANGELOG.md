@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 0.15.0 (2016-05-24)
+- Feature: add `target` on path object. This saves the hassle of always traversing the entire path to the local bound object.
+- Polish: setting an internal value should work no matter what.
+
+
 ### 0.14.1 (2016-05-09)
 - Polish: use non-enumerable, non-writable private properties.
 
