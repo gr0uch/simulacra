@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.16.1 (2016-05-26)
+- Polish: remove redundant logic in mutator function.
+
+
 ### 0.16.0 (2016-05-26)
 - Feature: add mount function for nested definitions as a third argument.
 
