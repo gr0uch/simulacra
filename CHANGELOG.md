@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 0.16.0 (2016-05-26)
+- Feature: add mount function for nested definitions as a third argument.
+
+
 ### 0.15.1 (2016-05-25)
 - Fix: use proper variable for checking if target value is array.
 

@@ -1,10 +1,10 @@
 # [Simulacra.js](http://simulacra.js.org/)
-
+*
 [![Build Status](https://img.shields.io/travis/0x8890/simulacra/master.svg?style=flat-square)](https://travis-ci.org/0x8890/simulacra)
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~300 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~350 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -20,7 +20,7 @@ Fundamentally, it is a low-cost abstraction over the DOM that optimizes calls to
 
 ## Usage
 
-Simulacra.js uses plain old HTML for templating, and where it shines is that it does not require meta-information in the template at all. For example, the binding is not declared in the template, and there is no loop construct, because it's not necessary. Here's a sample template:
+Simulacra.js uses plain old HTML for templating, and it does not require meta-information in the template at all. Here's a sample template:
 
 ```html
 <template id="product">
@@ -44,7 +44,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which can either define bindings to the DOM, or apply bindings to an object. If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a CSS selector string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. This can be combined in a single expression:
+Simulacra.js exports only a single function, which can either define bindings to the DOM, or apply bindings to an object (this is also exposed as `simulacra.defineBinding` and `simulacra.bindObject`). If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a CSS selector string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. This can be combined in a single expression:
 
 ```js
 var $ = require('simulacra') // or `window.simulacra`
@@ -63,6 +63,9 @@ document.body.appendChild(content)
 ```
 
 The DOM will update if any of the bound keys are assigned a different value, or if any `Array.prototype` methods on the value are invoked. Arrays and single values may be used interchangeably, the only difference is that Simulacra.js will iterate over array values.
+
+
+## Mutator Function
 
 By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `path`):
 
@@ -91,7 +94,22 @@ There are some special cases for the mutator function:
 - If the mutator function returns `false` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing a Node from the DOM.
 
 
-## Advanced Usage
+## Mount Function
+
+A mount function can be defined on a bound object, as the third argument. Its signature is very similar the mutator function, except that it does not provide `previousValue`. Instead, it can be determined if there was a mount or unmount based on whether `value` is an object or not.
+
+```js
+$(node || selector, { ... }, function mount (node, value) {
+  if (value !== null) {
+    // Mounting a node, maybe attach event listeners here.
+  }
+})
+```
+
+If the mount function returns false for an unmount, it will skip removing the node from the DOM. This is useful for implementing animations.
+
+
+## State Management
 
 Since Simulacra.js is intended to be deterministic, the bound object can be cloned at any point in time and bound again to reset to that state. For example, using the `clone` module:
 
@@ -140,11 +158,7 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 - The `delete` keyword will not trigger a DOM update. Although ES6 `Proxy` has a trap for this keyword, its browser support is lacking and it can not be polyfilled. Also, it would break the API of Simulacra.js for this one feature, so the recommended practice is to set the value to `null` rather than trying to `delete` the key.
 - Out-of-bounds array index assignment will not work, because the number of setters is equal to the length of the array.
 - The bound data object may not contain any conflicting getters & setters, since they will be overridden by Simulacra.js.
-
-
-## The Case Against Immutability
-
-An astute reader may notice that Simulacra.js deals only with mutable objects. Including a library for persistent data structures was considered, but is impractical for many reasons. First, any such library would be larger than Simulacra.js itself, and second, it would be detrimental to performance. For any changes, the differences would have to be calculated per data structure. While it may be useful to save a persistent snapshot of a bound object, it is an expensive operation and shouldn't be the default behavior. Another perspective is that Simulacra.js works with plain old JavaScript, and objects are plain old mutable objects as expected.
+- Using `bind`, `call`, `apply`, with `Array.prototype` on bound arrays won't work, because the bound arrays implement instance methods.
 
 
 ## Under the Hood
