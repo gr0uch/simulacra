@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.1 (2016-05-31)
+- Polish: add more type checking validations in main function.
+
+
 ### 1.0.0 (2016-05-30)
 - Breaking change: remove `defineBinding` function, now the default exported function does only one thing: binding an object to the DOM.
 - Breaking change: removed `return false` behavior to retain DOM element, it should instead return `simulacra.retainElement`.
