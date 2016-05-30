@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "One-way data binding for web applications.",
-  "version": "0.16.1",
+  "version": "1.0.0",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
@@ -33,7 +33,7 @@
     "browserify-istanbul": "^2.0.0",
     "cssnano": "^3.6.2",
     "domino": "^1.0.25",
-    "eslint": "^2.10.2",
+    "eslint": "^2.11.1",
     "eslint-config-0x8890": "^1.0.2",
     "highlight.js": "^9.4.0",
     "html-minifier": "^2.1.3",

@@ -18,9 +18,9 @@ run(function () {
   document.body.appendChild(template)
 
   data = { name: 'Babby' }
-  bindings = $('div', {
-    name: $('.name')
-  })
+  bindings = [ 'div', {
+    name: '.name'
+  } ]
 
   result = document.body.appendChild($(data, bindings))
 
@@ -57,16 +57,16 @@ run(function () {
     ]
   }
 
-  bindings = $(fragment, {
-    name: $('.name', function (node, value, previousValue, path) {
+  bindings = [ fragment, {
+    name: [ '.name', function (node, value, previousValue, path) {
       ok(path.length === 1, 'path length is correct')
       ok(path.root === data, 'root is correct')
       ok(path.target === data, 'target is correct')
       ok(path[0] === 'name', 'path is correct')
       node.textContent = value + '!'
-    }),
-    details: $(selector('.details'), {
-      size: $('.size', function (node, value, previousValue, path) {
+    } ],
+    details: [ selector('.details'), {
+      size: [ '.size', function (node, value, previousValue, path) {
         if (value !== 'Large') {
           if (i < 1) {
             i++
@@ -80,8 +80,8 @@ run(function () {
           ok(path[2] === 'size', 'path value is correct')
         }
         node.textContent = value
-      }),
-      color: $(selector('.color'),
+      } ],
+      color: [ selector('.color'),
         function (node, value, previousValue, path) {
           ok(path.length === 3, 'path length is correct')
           ok(path.root === data, 'root is correct')
@@ -89,15 +89,15 @@ run(function () {
           ok(path[0] === 'details', 'path value is correct')
           ok(path[1] === 'color', 'path value is correct')
           ok(typeof path[2] === 'number', 'array path is a number')
-        })
-    }),
-    prices: $(selector('.price'), {
-      amount: $(selector('.amount')),
-      currency: $(selector('.currency'), function (node, value) {
+        } ]
+    } ],
+    prices: [ selector('.price'), {
+      amount: selector('.amount'),
+      currency: [ selector('.currency'), function (node, value) {
         node.textContent = value.toUpperCase()
-      })
-    })
-  })
+      } ]
+    } ]
+  } ]
 
   outlet = document.createElement('div')
   outlet.id = 'outlet'

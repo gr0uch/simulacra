@@ -1,6 +1,13 @@
 # Changelog
 
 
+### 1.0.0 (2016-05-30)
+- Breaking change: remove `defineBinding` function, now the default exported function does only one thing: binding an object to the DOM.
+- Breaking change: removed `return false` behavior to retain DOM element, it should instead return `simulacra.retainElement`.
+- Feature: change function may accept a return value, which sets `textContent`, `value`, or `checked`. Returning `undefined` will have no effect.
+- Polish: rename *mutator* function to *change* function.
+
+
 ### 0.16.1 (2016-05-26)
 - Polish: remove redundant logic in mutator function.
 

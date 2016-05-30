@@ -71,13 +71,13 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
     version: pkg.version,
     name: pkg.name,
     description: pkg.description
-  }, $('body', {
-    name: $('header h1', (node, value) => node.textContent =
-      value.charAt(0).toUpperCase() + value.slice(1) + '.js'),
-    description: $('header h2'),
-    version: $('.version'),
-    content: $('article', (node, value) => node.innerHTML = value)
-  })).innerHTML ].join(''),
+  }, [ 'body', {
+    name: [ 'header h1', (node, value) =>
+      value.charAt(0).toUpperCase() + value.slice(1) + '.js' ],
+    description: 'header h2',
+    version: '.version',
+    content: [ 'article', (node, value) => { node.innerHTML = value } ]
+  } ]).innerHTML ].join(''),
   { collapseWhitespace: true }
 ))
 

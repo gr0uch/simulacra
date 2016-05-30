@@ -23,44 +23,44 @@
   </div>
 </template>
 <script type="text/javascript">
-  (function () {
-    window.simulacra.useCommentNode = true
-    window.data = {
-      name: 'Pumpkin Spice Latte',
-      details: {
-        meta: {
-          date: new Date()
-        },
-        size: [ 'Tall', 'Grande', 'Venti' ],
-        vendor: 'Starbucks'
-      }
+void function () {
+  window.simulacra.useCommentNode = true
+  window.data = {
+    name: 'Pumpkin Spice Latte',
+    details: {
+      meta: {
+        date: new Date()
+      },
+      size: [ 'Tall', 'Grande', 'Venti' ],
+      vendor: 'Starbucks'
     }
+  }
 
-    var $ = window.simulacra
-    var fragment = document.getElementById('product').content
+  var simulacra = window.simulacra
+  var fragment = document.getElementById('product').content
 
-    var output = $(data, $(fragment, {
-      name: $('.name'),
-      details: $('.details', {
-        meta: $('.details', {
-          date: $('.details', function (node, value) {
-            node.dataset.timestamp = value.getTime()
-          })
-        }),
-        size: $('.size'),
-        vendor: $('.vendor')
-      })
-    }))
+  var output = simulacra(data, [ fragment, {
+    name: '.name',
+    details: [ '.details', {
+      meta: [ '.details', {
+        date: [ '.details', function (node, value) {
+          node.dataset.timestamp = value.getTime()
+        } ]
+      } ],
+      size: '.size',
+      vendor: '.vendor'
+    } ]
+  } ])
 
-    document.querySelector('.product-container').appendChild(output)
+  document.querySelector('.product-container').appendChild(output)
 
-    var input = document.querySelector('input[name="eval"]')
-    input.addEventListener('keyup', function (event) {
-      if (event.keyCode === 13) {
-        var x = input.value
-        input.value = ''
-        eval(x)
-      }
-    })
-  }())
+  var input = document.querySelector('input[name="eval"]')
+  input.addEventListener('keyup', function (event) {
+    if (event.keyCode === 13) {
+      var x = input.value
+      input.value = ''
+      eval(x)
+    }
+  })
+}()
 </script>

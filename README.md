@@ -12,7 +12,7 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements after invoking mutator functions, which by default, assign plain text and form input values.
+Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
 
 Fundamentally, it is a low-cost abstraction over the DOM that optimizes calls to `Node.insertBefore` and `Node.removeChild`. Its performance is comparable to hand-written DOM manipulation code, see the [benchmarks](#benchmarks).
 
@@ -43,69 +43,76 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which can either define bindings to the DOM, or apply bindings to an object (this is also exposed as `simulacra.defineBinding` and `simulacra.bindObject`). If the first argument is an object, it will try to bind the second argument onto the object. If the first argument is either a DOM Node or a CSS selector string, it will return a definition object that is used by Simulacra.js internally, and the second argument then defines either a nested definition or a mutator function. This can be combined in a single expression:
+Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a single value or an array with at most three elements:
+
+- **Index 0**: either a DOM element or a CSS selector string.
+- **Index 1**: either a nested definition array, or a *change* function.
+- **Index 2**: if index 1 is a nested definition, this should be an optional *mount* function.
 
 ```js
-var $ = require('simulacra') // or `window.simulacra`
-
+var simulacra = require('simulacra') // or `window.simulacra`
 var fragment = document.getElementById('product').content
 
-var content = $(data, $(fragment, {
-  name: $('.name'),
-  details: $('.details', {
-    size: $('.size'),
-    vendor: $('.vendor')
-  })
-}))
+var node = simulacra(data, [ fragment, {
+  name: '.name',
+  details: [ '.details', {
+    size: '.size',
+    vendor: [ '.vendor', function change () { ... } ]
+  }, function mount () { ... } ]
+} ])
 
-document.body.appendChild(content)
+document.body.appendChild(node)
 ```
 
 The DOM will update if any of the bound keys are assigned a different value, or if any `Array.prototype` methods on the value are invoked. Arrays and single values may be used interchangeably, the only difference is that Simulacra.js will iterate over array values.
 
 
-## Mutator Function
+## Change Function
 
-By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs), a user-defined mutator function may be used for arbitrary element manipulation. The mutator function may be passed as the second argument to Simulacra.js, it has the signature (`node`, `value`, `previousValue`, `path`):
+By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs). A user-defined *change* function may be passed for arbitrary element manipulation, and its return value may affect the value used in the default behavior. The *change* function may be passed as the second position, it has the signature (`element`, `value`, `previousValue`, `path`):
 
-- `node`: the local DOM node.
-- `value`: the value assigned to the key of the bound object.
-- `previousValue`: the previous value assigned to the key of the bound object.
-- `path`: an array containing the full path to the value. For example: `[ 'users', 2, 'email' ]`. Integer values indicate array indices. The root object is accessible at the `root` property of the path array, i.e. `path.root`, and the deepest bound object is accessible at the `target` property, i.e. `path.target`.
+- **`element`**: the local DOM element.
+- **`value`**: the value assigned to the key of the bound object.
+- **`previousValue`**: the previous value assigned to the key of the bound object.
+- **`path`**: an array containing the full path to the value. For example: `[ 'users', 2, 'email' ]`. Integer values indicate array indices. The root object is accessible at the `root` property of the path array, i.e. `path.root`, and the deepest bound object is accessible at the `target` property, i.e. `path.target`.
 
-To manipulate a node in a custom way, one may define a mutator function like so:
+To manipulate an element in a custom way, one may define a *change* function like so:
 
 ```js
-$(node || selector, function mutator (node, value) {
-  node.textContent = 'Hi ' + value + '!'
-})
+[ element || selector, function change (element, value) {
+  return 'Hi ' + value + '!'
+} ]
 ```
 
-A mutator function can be determined to be an insert, mutate, or remove operation based on whether the value or previous value is `null`:
+A *change* function can be determined to be an insert, mutate, or remove operation based on whether the value or previous value is `null`:
 
-- Value but not previous value: insert operation.
-- Value and previous value: mutate operation.
-- No value: remove operation.
+- **Value but not previous value**: insert operation.
+- **Value and previous value**: mutate operation.
+- **No value**: remove operation.
 
-There are some special cases for the mutator function:
+There are some special cases for the *change* function:
 
-- If the bound node is the same as its parent, its value will not be iterated over if it is an array.
-- If the mutator function returns `false` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing a Node from the DOM.
+- If the bound element is the same as its parent, its value will not be iterated over if it is an array.
+- If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
 
 
 ## Mount Function
 
-A mount function can be defined on a bound object, as the third argument. Its signature is very similar the mutator function, except that it does not provide `previousValue`. Instead, it can be determined if there was a mount or unmount based on whether `value` is an object or not.
+A *mount* function can be defined as the third position. Its signature is similar to the *change* function, except that it does not provide `previousValue`. Instead, it can be determined if there was a mount or unmount based on whether `value` is an object or `null`.
 
 ```js
-$(node || selector, { ... }, function mount (node, value) {
+[ element || selector, { ... }, function mount (element, value) {
   if (value !== null) {
-    // Mounting a node, maybe attach event listeners here.
+    // Mounting an element, maybe attach event listeners here.
   }
-})
+  else {
+    // Unmounting an element, may return `simulacra.retainElement`
+    // to skip removal from the DOM.
+  }
+} ]
 ```
 
-If the mount function returns false for an unmount, it will skip removing the node from the DOM. This is useful for implementing animations.
+If the *mount* function returns `simulacra.retainElement` for an unmount, it will skip removing the element from the DOM. This is useful for implementing animations.
 
 
 ## State Management
@@ -114,15 +121,15 @@ Since Simulacra.js is intended to be deterministic, the bound object can be clon
 
 ```js
 var clone = require('clone')
-var $ = require('simulacra')
+var simulacra = require('simulacra')
 
-var data = { ... }, bindings = $( ... )
+var data = { ... }, bindings = [ ... ]
 
-var node = $(data, bindings)
+var node = simulacra(data, bindings)
 var initialData = clone(data)
 
 // Do some mutations, and then reset to initial state.
-node = $(initialData, bindings)
+node = simulacra(initialData, bindings)
 ```
 
 This is just one way to implement time travel, but not the most efficient.
@@ -147,9 +154,9 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 ## How it Works
 
-On initialization, Simulacra.js removes bound elements from the document and replaces them with an empty text node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the mutator function on the cloned elements, and appends them near the marker or adjacent nodes.
+On initialization, Simulacra.js removes bound elements from the document and replaces them with an empty text node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
 
-When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM Node corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
+When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 
 
 ## Caveats
@@ -164,11 +171,11 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 This library is written in ES5 syntactically, and makes use of:
 
-- Object.defineProperty (ES5)
-- WeakMap (ES6)
-- TreeWalker (DOM Level 2)
-- Node.isEqualNode (DOM Level 3)
-- Node.contains (DOM Living Standard)
+- **Object.defineProperty** (ES5)
+- **WeakMap** (ES6)
+- **TreeWalker** (DOM Level 2)
+- **Node.isEqualNode** (DOM Level 3)
+- **Node.contains** (DOM Living Standard)
 
 No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
 
@@ -184,9 +191,9 @@ const simulacra = require('simulacra')
 const window = domino.createWindow('<h1></h1>')
 const $ = simulacra.bind(window)
 const data = { message: 'Hello world!' }
-const binding = $('body', {
-  message: $('h1')
-})
+const binding = [ 'body', {
+  message: 'h1'
+} ]
 
 console.log($(data, binding).innerHTML)
 ```
