@@ -92,7 +92,7 @@ A *change* function can be determined to be an insert, mutate, or remove operati
 
 There are some special cases for the *change* function:
 
-- If the bound element is the same as its parent, its value will not be iterated over if it is an array.
+- If the bound element is the same as its parent, its value will not be iterated over if it is an array, and its return value will have no effect.
 - If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
 
 
