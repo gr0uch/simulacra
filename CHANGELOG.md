@@ -1,6 +1,15 @@
 # Changelog
 
 
+### 1.0.3 (2016-06-01)
+- Fix: `unshift` order was reversed, now inserts in correct order.
+- Fix: `push` was broken due to subtle variable assignment problem, now fixed.
+
+
+### 1.0.2 (2016-06-01)
+- Polish: improve performance by using `DocumentFragment` on bulk insertions.
+
+
 ### 1.0.1 (2016-05-31)
 - Polish: add more type checking validations in main function.
 
