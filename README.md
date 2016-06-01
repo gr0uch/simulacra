@@ -57,8 +57,8 @@ var node = simulacra(data, [ fragment, {
   name: '.name',
   details: [ '.details', {
     size: '.size',
-    vendor: [ '.vendor', function change () { ... } ]
-  }, function mount () { ... } ]
+    vendor: '.vendor'
+  } ]
 } ])
 
 document.body.appendChild(node)
