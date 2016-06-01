@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~350 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~400 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -174,6 +174,7 @@ This library is written in ES5 syntactically, and makes use of:
 - **Object.defineProperty** (ES5)
 - **WeakMap** (ES6)
 - **TreeWalker** (DOM Level 2)
+- **Document.createDocumentFragment** (DOM Level 2)
 - **Node.isEqualNode** (DOM Level 3)
 - **Node.contains** (DOM Living Standard)
 
