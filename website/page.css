@@ -152,11 +152,11 @@ header :--button {
   list-style-type: none;
   font-size: 0.8em;
   line-height: var(--mono-height);
-  margin: 0.8em 0 0.6em;
+  margin: 0.2em 0;
 }
 
 .example li:before {
-  content: '- ';
+  content: '-';
   font-family: var(--font-mono);
   font-size: var(--size-mono);
 }
