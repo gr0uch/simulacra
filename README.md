@@ -173,6 +173,9 @@ This library is written in ES5 syntactically, and makes use of:
 
 - **Object.defineProperty** (ES5): used for binding keys on objects.
 - **WeakMap** (ES6): memory efficient mapping of DOM nodes.
+
+It makes use of these DOM API features:
+
 - **Node.insertBefore** (DOM Level 1): used for inserting document fragments.
 - **Node.appendChild** (DOM Level 1): used for inserting elements in to document fragments.
 - **Node.removeChild** (DOM Level 1): used for removing elements.
