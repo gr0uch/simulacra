@@ -171,12 +171,15 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 This library is written in ES5 syntactically, and makes use of:
 
-- **Object.defineProperty** (ES5)
-- **WeakMap** (ES6)
-- **TreeWalker** (DOM Level 2)
-- **Document.createDocumentFragment** (DOM Level 2)
-- **Node.isEqualNode** (DOM Level 3)
-- **Node.contains** (DOM Living Standard)
+- **Object.defineProperty** (ES5): used for binding keys on objects.
+- **WeakMap** (ES6): memory efficient mapping of DOM nodes.
+- **Node.insertBefore** (DOM Level 1): used for inserting document fragments.
+- **Node.appendChild** (DOM Level 1): used for inserting elements in to document fragments.
+- **Node.removeChild** (DOM Level 1): used for removing elements.
+- **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
+- **Document.createDocumentFragment** (DOM Level 2): used for bulk insertions.
+- **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
+- **Node.contains** (DOM Living Standard): used for checking if bound elements are valid.
 
 No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
 
