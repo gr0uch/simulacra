@@ -131,6 +131,6 @@ run(function () {
 run(function () {
   return fetch('http://localhost:8890', {
     method: 'post',
-    body: JSON.stringify(window.__coverage__, null, 2)
+    body: JSON.stringify(window['__coverage__'], null, 2)
   })
 })

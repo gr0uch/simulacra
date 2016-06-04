@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "One-way data binding for web applications.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
@@ -34,7 +34,7 @@
     "cssnano": "^3.6.2",
     "domino": "^1.0.25",
     "eslint": "^2.11.1",
-    "eslint-config-0x8890": "^1.0.2",
+    "eslint-config-boss": "^1.0.3",
     "highlight.js": "^9.4.0",
     "html-minifier": "^2.1.3",
     "istanbul": "^0.4.3",
@@ -55,48 +55,7 @@
     "LICENSE"
   ],
   "eslintConfig": {
-    "extends": "0x8890",
-    "ecmaFeatures": {
-      "arrowFunctions": false,
-      "binaryLiterals": false,
-      "blockBindings": false,
-      "classes": false,
-      "defaultParams": false,
-      "destructuring": false,
-      "experimentalObjectRestSpread": false,
-      "forOf": false,
-      "generators": false,
-      "globalReturn": false,
-      "jsx": false,
-      "modules": false,
-      "objectLiteralComputedProperties": false,
-      "objectLiteralDuplicateProperties": false,
-      "objectLiteralShorthandMethods": false,
-      "objectLiteralShorthandProperties": false,
-      "octalLiterals": false,
-      "regexUFlag": false,
-      "regexYFlag": false,
-      "restParams": false,
-      "spread": false,
-      "superInFunctions": false,
-      "templateStrings": false,
-      "unicodeCodePointEscapes": false
-    },
-    "env": {
-      "es6": false
-    },
-    "rules": {
-      "block-scoped-var": 2,
-      "func-names": 0,
-      "no-underscore-dangle": 0,
-      "no-var": 0,
-      "no-warning-comments": 1,
-      "one-var": 0,
-      "strict": [
-        2,
-        "global"
-      ]
-    }
+    "extends": "boss/es5"
   },
   "keywords": [
     "browser",

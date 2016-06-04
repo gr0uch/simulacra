@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.4 (2016-06-04)
+- Polish: rename ESLint configuration.
+
+
 ### 1.0.3 (2016-06-01)
 - Fix: `unshift` order was reversed, now inserts in correct order.
 - Fix: `push` was broken due to subtle variable assignment problem, now fixed.
