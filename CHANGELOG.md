@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.5 (2016-06-05)
+- Polish: some build tools such as Webpack mangle the function named `define`, this has been renamed internally to avoid compatibility problems with build tools, but this is actually their fault.
+
+
 ### 1.0.4 (2016-06-04)
 - Polish: rename ESLint configuration.
 
