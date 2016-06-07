@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Its size is roughly ~400 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM, with an emphasis on performance. Its size is roughly ~400 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
