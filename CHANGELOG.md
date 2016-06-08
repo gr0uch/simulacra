@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.8 (2016-06-08)
+- Fix: do some micro-optimization. Avoid creating document fragments when not needed, and remove internal `checkValue` function.
+
+
 ### 1.0.5 (2016-06-05)
 - Polish: some build tools such as Webpack mangle the function named `define`, this has been renamed internally to avoid compatibility problems with build tools, but this is actually their fault.
 
