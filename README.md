@@ -158,6 +158,8 @@ On initialization, Simulacra.js removes bound elements from the document and rep
 
 When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 
+The performance bottleneck of Simulacra.js is not the DOM interactions, since most high performance view libraries more or less produce the same DOM interactions in the end. Actually it is the `Object.defineProperty` mechanism which is slow, but also provides its rather unique immediate mode of operation. Simulacra.js is faster than most, but can never be the absolute fastest abstraction due to the API that it provides.
+
 
 ## Caveats
 

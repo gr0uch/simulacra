@@ -19,7 +19,7 @@
           <span data-id="lastSample"></span>
         </td>
         <td data-id="topFiveQueries">
-          <span data-id="formatElapsed"></span>
+          &nbsp;
           <div class="popover left">
             <div class="popover-content" data-id="query"></div>
             <div class="arrow"></div>
@@ -60,7 +60,9 @@ document.getElementById('body').appendChild(simulacra(window.data, [
         elapsedClassName: [ id('topFiveQueries'), function (node, value) {
           node.className = value
         } ],
-        formatElapsed: id('formatElapsed'),
+        formatElapsed: [ id('topFiveQueries'), function (node, value) {
+          node.childNodes[0].textContent = value
+        } ],
         query: id('query')
       } ]
     } ]
