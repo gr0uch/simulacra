@@ -1,1 +1,1 @@
-module.exports = require('./lib/deferred')
+module.exports = require('./lib/render')
