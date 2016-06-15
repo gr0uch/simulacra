@@ -5,7 +5,7 @@ var comment = tapdance.comment
 var ok = tapdance.ok
 var run = tapdance.run
 
-var $ = require('../lib')
+var simulacra = require('../lib')
 
 
 run(function () {
@@ -22,7 +22,7 @@ run(function () {
     name: '.name'
   } ]
 
-  result = document.body.appendChild($(data, bindings))
+  result = document.body.appendChild(simulacra(data, bindings))
 
   ok(result.querySelector('.name').textContent === 'Babby',
     'binding works')
@@ -32,7 +32,7 @@ run(function () {
 
 
 run(function () {
-  var template, fragment, selector, data, bindings, outlet, i = 0
+  var template, fragment, data, bindings, outlet, i = 0
 
   comment('test main use case')
 
@@ -43,7 +43,6 @@ run(function () {
     '<span class="currency"></span></h3>'
 
   fragment = template.content
-  selector = function (s) { return fragment.querySelector(s) }
 
   data = {
     name: 'Coroham Coron',
@@ -65,7 +64,7 @@ run(function () {
       ok(path[0] === 'name', 'path is correct')
       return value + '!'
     } ],
-    details: [ selector('.details'), {
+    details: [ '.details', {
       size: [ '.size', function (node, value, previousValue, path) {
         if (value !== 'Large') {
           if (i < 1) {
@@ -81,7 +80,7 @@ run(function () {
         }
         return value
       } ],
-      color: [ selector('.color'),
+      color: [ '.color',
         function (node, value, previousValue, path) {
           ok(path.length === 3, 'path length is correct')
           ok(path.root === data, 'root is correct')
@@ -91,9 +90,9 @@ run(function () {
           ok(typeof path[2] === 'number', 'array path is a number')
         } ]
     } ],
-    prices: [ selector('.price'), {
-      amount: selector('.amount'),
-      currency: [ selector('.currency'), function (node, value) {
+    prices: [ '.price', {
+      amount: '.amount',
+      currency: [ '.currency', function (node, value) {
         return value.toUpperCase()
       } ]
     } ]
@@ -102,7 +101,7 @@ run(function () {
   outlet = document.createElement('div')
   outlet.id = 'outlet'
   document.body.appendChild(outlet)
-  outlet.appendChild($(data, bindings))
+  outlet.appendChild(simulacra(data, bindings))
 
   ok(outlet.querySelector('h1'), 'bound node appended to DOM')
   ok(outlet.querySelector('.name').textContent === 'Coroham Coron!',
