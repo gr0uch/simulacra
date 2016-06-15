@@ -63,7 +63,7 @@ run(function () {
       ok(path.root === data, 'root is correct')
       ok(path.target === data, 'target is correct')
       ok(path[0] === 'name', 'path is correct')
-      node.textContent = value + '!'
+      return value + '!'
     } ],
     details: [ selector('.details'), {
       size: [ '.size', function (node, value, previousValue, path) {
@@ -79,7 +79,7 @@ run(function () {
           ok(path[1] === 0, 'path value is correct')
           ok(path[2] === 'size', 'path value is correct')
         }
-        node.textContent = value
+        return value
       } ],
       color: [ selector('.color'),
         function (node, value, previousValue, path) {
@@ -94,7 +94,7 @@ run(function () {
     prices: [ selector('.price'), {
       amount: selector('.amount'),
       currency: [ selector('.currency'), function (node, value) {
-        node.textContent = value.toUpperCase()
+        return value.toUpperCase()
       } ]
     } ]
   } ]
