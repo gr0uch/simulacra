@@ -122,7 +122,7 @@ If one does not need or desire the *immediate mode* of rendering which is the de
 ```js
 var render = require('simulacra/render')
 var data = { ... }
-var node = render(data, [ ... ]) // Same function signature as Simulacra.js.
+var node = render(data, [ ... ]) // Same signature as Simulacra.js.
 
 render(data) // This commits changes to the DOM.
 ```
