@@ -25,8 +25,8 @@
 </template>
 <script type="text/javascript">
 void function () {
-  window.simulacra.useCommentNode = true
-  window.data = {
+  var simulacra = window.simulacra
+  var data = window.data = {
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
@@ -37,25 +37,25 @@ void function () {
     }
   }
 
-  var simulacra = window.simulacra
   var fragment = document.getElementById('product').content
-
-  var output = simulacra(data, [ fragment, {
-    name: '.name',
-    details: [ '.details', {
-      meta: [ '.details', {
-        date: [ '.details', function (node, value) {
-          node.dataset.timestamp = value.getTime()
-        } ]
-      } ],
-      size: '.size',
-      vendor: '.vendor'
-    } ]
-  } ])
-
-  document.querySelector('.product-container').appendChild(output)
-
   var input = document.querySelector('input[name="eval"]')
+
+  simulacra.useCommentNode = true
+
+  document.querySelector('.product-container').appendChild(
+    simulacra(data, [ fragment, {
+      name: '.name',
+      details: [ '.details', {
+        meta: [ '.details', {
+          date: [ '.details', function (node, value) {
+            node.dataset.timestamp = value.getTime()
+          } ]
+        } ],
+        size: '.size',
+        vendor: '.vendor'
+      } ]
+    } ]))
+
   input.addEventListener('keyup', function (event) {
     if (event.keyCode === 13) {
       var x = input.value

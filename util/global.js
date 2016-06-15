@@ -1,3 +1,3 @@
 'use strict'
 
-window.simulacra = require('../lib')
+window.simulacra = require('../lib/deferred')
