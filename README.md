@@ -115,19 +115,6 @@ A *mount* function can be defined as the third position. Its signature is simila
 If the *mount* function returns `simulacra.retainElement` for an unmount, it will skip removing the element from the DOM. This is useful for implementing animations.
 
 
-## Deferred Rendering
-
-If one does not need or desire the *immediate mode* of rendering which is the default, one can require `simulacra/render`. This forces the program to explicitly call `render` to commit changes to the DOM.
-
-```js
-var render = require('simulacra/render')
-var data = { ... }
-var node = render(data, [ ... ]) // Same signature as Simulacra.js.
-
-render(data) // This commits changes to the DOM.
-```
-
-
 ## State Management
 
 Since Simulacra.js is intended to be deterministic, the bound object can be cloned at any point in time and bound again to reset to that state. For example, using the `clone` module:
