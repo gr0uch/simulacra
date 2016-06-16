@@ -70,10 +70,10 @@ document.getElementById('body').appendChild(simulacra(window.data, [
 ]))
 
 function redraw () {
-	perfMonitor.startProfile('view update')
+  perfMonitor.startProfile('view update')
   ENV.generateData(true)
-	perfMonitor.endProfile('view update')
-	setTimeout(redraw, ENV.timeout)
+  perfMonitor.endProfile('view update')
+  setTimeout(redraw, ENV.timeout)
 }
 
 redraw()

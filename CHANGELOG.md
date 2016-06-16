@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.8 (2016-06-16)
+- Fix: edge case in array index setter which would not insert a new node if needed.
+
+
 ### 1.0.7 (2016-06-13)
 - Fix: prevent error in Internet Explorer due to bad DOM API call.
 - Fix: do some micro-optimization. Avoid creating document fragments when not needed, and remove internal `checkValue` function.

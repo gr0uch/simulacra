@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM, with an emphasis on performance. Its size is roughly ~450 LOC, or ~3 KB (min+gz), and it has no dependencies. Get it from `npm`:
+Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -14,12 +14,12 @@ $ npm i simulacra --save
 
 Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
 
-Fundamentally, it is a low-cost abstraction over the DOM that optimizes calls to `Node.insertBefore` and `Node.removeChild`. Its performance is comparable to hand-written DOM manipulation code, see the [benchmarks](#benchmarks).
+It emphasizes [performance](#benchmarks) and terseness, and it has no dependencies. The approximate size of this library is ~4 KB (minified and gzipped).
 
 
 ## Usage
 
-Simulacra.js uses plain old HTML for templating, and it does not require meta-information in the template at all. Here's a sample template:
+Simulacra.js uses plain HTML for templating, and it does not require meta-information in the template at all. Here's a sample template:
 
 ```html
 <template id="product">
@@ -158,8 +158,6 @@ On initialization, Simulacra.js removes bound elements from the document and rep
 
 When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 
-The performance bottleneck of Simulacra.js is not the DOM interactions, since most high performance view libraries more or less produce the same DOM interactions in the end. Actually it is the `Object.defineProperty` mechanism which is slow, but also provides its rather unique immediate mode of operation. Simulacra.js is faster than most, but can never be the absolute fastest abstraction due to the API that it provides.
-
 
 ## Caveats
 
@@ -171,12 +169,12 @@ The performance bottleneck of Simulacra.js is not the DOM interactions, since mo
 
 ## Under the Hood
 
-This library is written in ES5 syntactically, and makes use of:
+This library is written in ES5 syntactically, and requires:
 
 - **Object.defineProperty** (ES5): used for binding keys on objects.
 - **WeakMap** (ES6): memory efficient mapping of DOM nodes.
 
-It makes use of these DOM API features:
+It also requires these DOM API features:
 
 - **Node.insertBefore** (DOM Level 1): used for inserting document fragments.
 - **Node.appendChild** (DOM Level 1): used for inserting elements in to document fragments.
