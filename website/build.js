@@ -1,6 +1,6 @@
 'use strict'
 
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 const domino = require('domino')
 const simulacra = require('../lib')
@@ -97,6 +97,15 @@ postcss([ atImport, cssnext, cssnano() ])
 // ================
 
 fs.writeFileSync(path.join(outputPath, 'CNAME'), CNAME)
+
+
+// Copy benchmarks folder
+// ======================
+
+fs.copySync(
+  path.join(__dirname, '../benchmark/dbmonster'),
+  path.join(outputPath, 'dbmonster'),
+  { clobber: true })
 
 
 // Done!
