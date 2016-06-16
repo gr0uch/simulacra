@@ -137,7 +137,7 @@ This is just one way to implement time travel, but not the most efficient.
 
 ## Benchmarks
 
-Simulacra.js is comparable to directly calling `Node.appendChild` in terms of DOM rendering. Based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium. Only loading, scripting, rendering, and aggregate times are shown.
+Simulacra.js is pretty fast in the [DBMonster benchmark](http://simulacra.js.org/dbmonster/). In initial rendering speed based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium.
 
 | Name              | Loading  | Scripting  | Rendering  | Aggregate  |
 |:------------------|:---------|:-----------|:-----------|:-----------|
