@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.0.11 (2016-06-16)
+- Polish: improve runtime safety checks.
+- Polish: try to use symbols for internal private properties.
+
+
 ### 1.0.10 (2016-06-16)
 - Polish: internal code deduplication by extracting copied and pasted code into functions.
 
