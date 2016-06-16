@@ -171,8 +171,6 @@ On initialization, Simulacra.js removes bound elements from the document and rep
 
 When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 
-The performance bottleneck of Simulacra.js is not the DOM interactions, since most high performance view libraries more or less produce the same DOM interactions in the end. Actually it is the `Object.defineProperty` mechanism which is slow, but also provides its rather unique immediate mode of operation. There is also the `simulacra/render` function, which can be more performant in some use cases but also requires changes to be committed explicitly.
-
 
 ## Caveats
 
@@ -184,12 +182,12 @@ The performance bottleneck of Simulacra.js is not the DOM interactions, since mo
 
 ## Under the Hood
 
-This library is written in ES5 syntactically, and makes use of:
+This library is written in ES5 syntactically, and requires:
 
 - **Object.defineProperty** (ES5): used for binding keys on objects.
 - **WeakMap** (ES6): memory efficient mapping of DOM nodes.
 
-It makes use of these DOM API features:
+It also requires these DOM API features:
 
 - **Node.insertBefore** (DOM Level 1): used for inserting document fragments.
 - **Node.appendChild** (DOM Level 1): used for inserting elements in to document fragments.

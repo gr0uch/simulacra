@@ -1,8 +1,7 @@
 # Changelog
 
 
-### 1.1.0 (2016-06-xx)
-- Feature: add deferred rendering mode, which may optionally be used by requiring `simulacra/render`.
+### 1.0.8 (2016-06-16)
 - Fix: edge case in array index setter which would not insert a new node if needed.
 
 

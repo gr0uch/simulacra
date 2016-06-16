@@ -1,1 +1,1 @@
-window.simulacra = require('../lib/render')
+window.simulacra = require('../lib')
