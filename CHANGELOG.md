@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.10 (2016-06-16)
+- Polish: internal code deduplication by extracting copied and pasted code into functions.
+
+
 ### 1.0.9 (2016-06-16)
 - Polish: add runtime safety checks for re-assigning bound objects and arrays.
 
