@@ -30,7 +30,7 @@
   </table>
 </template>
 <script src="ENV.js"></script>
-<script src="../../dist/simulacra.js"></script>
+<script src="../../dist/simulacra.render.js"></script>
 <script src="http://localvoid.github.io/perf-monitor/0.1/perf-monitor.js"></script>
 <script>
 perfMonitor.startFPSMonitor()
@@ -44,7 +44,7 @@ var data = {
   })
 }
 
-document.getElementById('body').appendChild(simulacra(window.data, [
+document.getElementById('body').appendChild(render(window.data, [
   document.getElementById('table').content, {
     dbs: [ id('dbs'), {
       dbname: id('dbname'),
@@ -72,6 +72,7 @@ document.getElementById('body').appendChild(simulacra(window.data, [
 function redraw () {
   perfMonitor.startProfile('view update')
   ENV.generateData(true)
+  render(data)
   perfMonitor.endProfile('view update')
   setTimeout(redraw, ENV.timeout)
 }

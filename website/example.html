@@ -28,13 +28,13 @@ void function () {
   var simulacra = window.simulacra
   var data = window.data = {
     name: 'Pumpkin Spice Latte',
-    details: {
+    details: [ {
       meta: {
         date: new Date()
       },
       size: [ 'Tall', 'Grande', 'Venti' ],
       vendor: 'Starbucks'
-    }
+    }, {size:1,vendor:'a'} ]
   }
 
   var fragment = document.getElementById('product').content
