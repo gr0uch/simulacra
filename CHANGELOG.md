@@ -1,6 +1,12 @@
 # Changelog
 
 
+### 1.0.13 (2016-06-18)
+- Fix: array mutators on arrays of objects should work.
+- Fix: remove checks for already bound objects.
+- Polish: freeze bindings after they are used.
+
+
 ### 1.0.12 (2016-06-18)
 - Fix: remove runtime safety checks, they were causing other problems and weren't performant.
 - Fix: remove redundant setter call in array mutators.
