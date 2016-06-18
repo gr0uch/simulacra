@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.0.14 (2016-06-18)
+- Polish: freeze all bindings.
+- Polish: use internal WeakMap for markers instead of hidden property.
+
+
 ### 1.0.13 (2016-06-18)
 - Fix: array mutators on arrays of objects should work.
 - Fix: remove checks for already bound objects.
