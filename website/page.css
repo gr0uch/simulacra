@@ -132,10 +132,11 @@ header :--button {
 }
 
 .example {
-  background-color: var(--color-background-subheader);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  padding: calc(var(--line-height) * 3 / 4);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: var(--border-radius);
-  padding: calc(var(--line-height) * 1) 0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  margin: calc(var(--line-height) * 3 / 2) calc(var(--line-height) * -3 / 4);
 }
 
 .example p,
@@ -200,7 +201,7 @@ header :--button {
 
 .product-container {
   border-radius: var(--border-radius);
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: #E0D2BF;
   border: 1px rgba(0, 0, 0, 0.15) solid;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
   height: calc(var(--line-height) * 5);
@@ -216,7 +217,7 @@ header :--button {
   margin: 0;
   font-size: calc(1em * 5 / 4);
   font-weight: normal;
-  color: var(--color-alt);
+  color: #806746;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
@@ -271,9 +272,9 @@ header :--button {
   position: relative;
   top: calc(var(--line-height) * -2 / 3);
   border-radius: var(--border-radius);
-  background-color: var(--color-background);
+  background-color: #F0E9E1;
   border: 1px rgba(0, 0, 0, 0.15) solid;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .product-container .details > div > span {
@@ -296,12 +297,6 @@ header :--button {
 
 .product-container .details > div > span:last-of-type:after {
   display: none;
-}
-
-.container {
-  padding: 0 var(--line-height);
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 
 .container:after {

@@ -59,8 +59,11 @@ void function () {
   input.addEventListener('keyup', function (event) {
     if (event.keyCode === 13) {
       var x = input.value
-      input.value = ''
-      eval(x)
+      try {
+        eval(x)
+        input.value = ''
+      }
+      catch (error) { alert(error) }
     }
   })
 }()
