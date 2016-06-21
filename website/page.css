@@ -201,7 +201,7 @@ header :--button {
 
 .product-container {
   border-radius: var(--border-radius);
-  background-color: #E0D2BF;
+  background-color: #EBE4DA;
   border: 1px rgba(0, 0, 0, 0.15) solid;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
   height: calc(var(--line-height) * 5);
@@ -217,7 +217,7 @@ header :--button {
   margin: 0;
   font-size: calc(1em * 5 / 4);
   font-weight: normal;
-  color: #806746;
+  color: #7D7366;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
@@ -272,7 +272,7 @@ header :--button {
   position: relative;
   top: calc(var(--line-height) * -2 / 3);
   border-radius: var(--border-radius);
-  background-color: #F0E9E1;
+  background-color: #F5F1EB;
   border: 1px rgba(0, 0, 0, 0.15) solid;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }

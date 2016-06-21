@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.15 (2016-06-21)
+- Fix: bug in `splice` which mutated internal state incorrectly.
+
+
 ### 1.0.14 (2016-06-18)
 - Polish: freeze all bindings.
 - Polish: use internal WeakMap for markers instead of hidden property.
