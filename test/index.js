@@ -33,6 +33,7 @@ run(function () {
 
 run(function () {
   var template, fragment, data, bindings, outlet, i = 0
+  var isRebinding = false
 
   comment('test main use case')
 
@@ -59,8 +60,11 @@ run(function () {
   bindings = [ fragment, {
     name: [ '.name', function (node, value, previousValue, path) {
       ok(path.length === 1, 'path length is correct')
-      ok(path.root === data, 'root is correct')
-      ok(path.target === data, 'target is correct')
+      if (!isRebinding) {
+        isRebinding = true
+        ok(path.root === data, 'root is correct')
+        ok(path.target === data, 'target is correct')
+      }
       ok(path[0] === 'name', 'path is correct')
       return value + '!'
     } ],
@@ -124,6 +128,13 @@ run(function () {
   data.details = [ { size: 'XXL' } ]
   ok(outlet.querySelector('.size').textContent === 'XXL',
     'continues to work after error')
+
+  comment('test rebinding')
+  outlet.innerHTML = ''
+  outlet.appendChild(simulacra({
+    name: 'babby'
+  }, bindings))
+  ok(outlet.textContent === 'babby!', 'rebinding works')
 })
 
 

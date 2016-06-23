@@ -1,6 +1,12 @@
 # Changelog
 
 
+### 1.0.16 (2016-06-22)
+- Polish: avoid checking bindings again if they were already used before.
+- Polish: freeze bindings for change functions.
+- Polish: add test for re-using a binding.
+
+
 ### 1.0.15 (2016-06-21)
 - Fix: bug in `splice` which mutated internal state incorrectly.
 
