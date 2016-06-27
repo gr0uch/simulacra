@@ -319,21 +319,6 @@ article a {
   color: var(--color-code-c);
 }
 
-article h2 {
-  position: relative;
-}
-
-article h2::after {
-  content: ' ';
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  left: 0;
-  bottom: calc(var(--line-height) * -1 / 4);
-  background: var(--color-border);
-}
-
 :--button {
   display: inline-block;
   background-color: var(--color-button);
