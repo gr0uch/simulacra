@@ -70,7 +70,7 @@ pre code {
   color: var(--color-solid);
   font-size: calc(1em * 5 / 4);
   font-weight: 900;
-  margin: calc(var(--line-height) * 3 * 4 / 5) 0 calc(var(--line-height) * 3 / 2 * 4 / 5);
+  margin: calc(var(--line-height) * 3 * 4 / 5) 0 calc(var(--line-height) * 1 * 4 / 5);
 }
 
 :--header a {
