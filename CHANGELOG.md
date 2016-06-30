@@ -1,7 +1,7 @@
 # Changelog
 
 
-### 1.0.17 (2016-06-30)
+### 1.0.18 (2016-06-30)
 - Polish: improve feature detection.
 
 
