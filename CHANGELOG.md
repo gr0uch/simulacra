@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.0.17 (2016-06-30)
+- Polish: improve feature detection.
+
+
 ### 1.0.16 (2016-06-22)
 - Polish: avoid checking bindings again if they were already used before.
 - Polish: freeze bindings for change functions.

@@ -31,7 +31,7 @@ Simulacra.js uses plain HTML for templating, and it does not require meta-inform
 </template>
 ```
 
-Using the `<template>` tag is optional but optimal since its contents are not rendered by default, but any DOM element will suffice. The shape of the data is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample data:
+Using the `<template>` tag is optional, but any DOM element will suffice. The shape of the data is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample data:
 
 ```js
 var data = {
@@ -46,8 +46,8 @@ var data = {
 Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a single value or an array with at most three elements:
 
 - **Index 0**: either a DOM element or a CSS selector string.
-- **Index 1**: either a nested definition array, or a *change* function.
-- **Index 2**: if index 1 is a nested definition, this should be an optional *mount* function.
+- **Index 1**: either a definition object, or a *change* function.
+- **Index 2**: if index 1 is a definition object, this should be an optional *mount* function.
 
 ```js
 var simulacra = require('simulacra') // or `window.simulacra`
@@ -177,13 +177,13 @@ This library is written in ES5 syntactically, and requires:
 
 It also requires these DOM API features:
 
-- **Node.insertBefore** (DOM Level 1): used for inserting document fragments.
+- **Document.createDocumentFragment** (DOM Level 2): used for bulk insertions.
 - **Node.appendChild** (DOM Level 1): used for inserting elements in to document fragments.
+- **Node.contains** (DOM Living Standard): used for checking if bound elements are valid.
+- **Node.insertBefore** (DOM Level 1): used for inserting document fragments.
+- **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
 - **Node.removeChild** (DOM Level 1): used for removing elements.
 - **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
-- **Document.createDocumentFragment** (DOM Level 2): used for bulk insertions.
-- **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
-- **Node.contains** (DOM Living Standard): used for checking if bound elements are valid.
 
 No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
 
