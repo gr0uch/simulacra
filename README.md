@@ -47,7 +47,7 @@ Simulacra.js exports only a single function, which binds an object to the DOM. T
 
 - **Index 0**: either a DOM element or a CSS selector string.
 - **Index 1**: either a definition object, or a *change* function.
-- **Index 2**: if index 1 is a definition object, this should be an optional *mount* function.
+- **Index 2**: if index 1 is a definition object, this may be a *change* function.
 
 ```js
 var simulacra = require('simulacra') // or `window.simulacra`
@@ -69,7 +69,7 @@ The DOM will update if any of the bound keys are assigned a different value, or 
 
 ## Change Function
 
-By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs). A user-defined *change* function may be passed for arbitrary element manipulation, and its return value may affect the value used in the default behavior. The *change* function may be passed as the second position, it has the signature (`element`, `value`, `previousValue`, `path`):
+By default, the value will be assigned to the element's `textContent` property (or `value` or `checked` for inputs). A user-defined *change* function may be passed for arbitrary element manipulation, and its return value determines the new `textContent`, `value`, or `checked` attribute if it is not applied on a definition object. The *change* function may be passed as the second or third position, it has the signature (`element`, `value`, `previousValue`, `path`):
 
 - **`element`**: the local DOM element.
 - **`value`**: the value assigned to the key of the bound object.
@@ -94,25 +94,7 @@ There are some special cases for the *change* function:
 
 - If the bound element is the same as its parent, its value will not be iterated over if it is an array, and its return value will have no effect.
 - If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
-
-
-## Mount Function
-
-A *mount* function can be defined as the third position. Its signature is similar to the *change* function, except that it does not provide `previousValue`. Instead, it can be determined if there was a mount or unmount based on whether `value` is an object or `null`.
-
-```js
-[ element || selector, { ... }, function mount (element, value) {
-  if (value !== null) {
-    // Mounting an element, maybe attach event listeners here.
-  }
-  else {
-    // Unmounting an element, may return `simulacra.retainElement`
-    // to skip removal from the DOM.
-  }
-} ]
-```
-
-If the *mount* function returns `simulacra.retainElement` for an unmount, it will skip removing the element from the DOM. This is useful for implementing animations.
+- If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert.
 
 
 ## State Management
