@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "One-way data binding for web applications.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
@@ -37,7 +37,7 @@
     "eslint-config-boss": "^1.0.4",
     "fs-extra": "^0.30.0",
     "highlight.js": "^9.5.0",
-    "html-minifier": "^2.1.6",
+    "html-minifier": "^2.1.7",
     "istanbul": "^0.4.4",
     "marked": "^0.3.5",
     "mkdirp": "^0.5.1",
@@ -45,10 +45,10 @@
     "postcss": "^5.0.21",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.1.2",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.3",
     "tapdance": "^4.1.2",
     "tape-run": "^2.1.4",
-    "uglify-js": "^2.6.4"
+    "uglify-js": "^2.7.0"
   },
   "main": "lib/index.js",
   "files": [

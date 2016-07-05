@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.1.1 (2016-07-05)
+- Fix: error messaging in feature detection.
+
+
 ### 1.1.0 (2016-07-02)
 - Feature: no more mention of *mount* function, it now has the same signature as *change* functions.
 
