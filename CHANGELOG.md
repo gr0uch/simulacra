@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.1.2 (2016-07-09)
+- Fix: disallow re-use of bindings, it doesn't work anyways.
+
+
 ### 1.1.1 (2016-07-05)
 - Fix: error messaging in feature detection.
 

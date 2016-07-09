@@ -3,6 +3,8 @@
 var tapdance = require('tapdance')
 var comment = tapdance.comment
 var ok = tapdance.ok
+var pass = tapdance.pass
+var fail = tapdance.fail
 var run = tapdance.run
 
 var simulacra = require('../lib')
@@ -129,12 +131,14 @@ run(function () {
   ok(outlet.querySelector('.size').textContent === 'XXL',
     'continues to work after error')
 
-  comment('test rebinding')
-  outlet.innerHTML = ''
-  outlet.appendChild(simulacra({
-    name: 'babby'
-  }, bindings))
-  ok(outlet.textContent === 'babby!', 'rebinding works')
+  comment('rebinding should fail')
+  try {
+    simulacra({}, bindings)
+    fail('should have failed')
+  }
+  catch (error) {
+    pass('rebinding does not work')
+  }
 })
 
 
