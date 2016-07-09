@@ -117,7 +117,7 @@ var node = simulacra(data, bindings)
 var initialData = clone(data)
 
 // Do some mutations, and then reset to initial state.
-node = simulacra(initialData, clone(bindings))
+node = simulacra(initialData, bindings)
 ```
 
 This is just one way to implement time travel, but not the most efficient.
