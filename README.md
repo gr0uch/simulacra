@@ -43,7 +43,7 @@ var data = {
 }
 ```
 
-Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a single value or an array with at most three elements:
+Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a CSS selector string, DOM Node, *change* function or definition object (parent binding only), or an array with at most three elements:
 
 - **Index 0**: either a DOM element or a CSS selector string.
 - **Index 1**: either a definition object, or a *change* function.
@@ -79,7 +79,13 @@ By default, the value will be assigned to the element's `textContent` property (
 To manipulate an element in a custom way, one may define a *change* function like so:
 
 ```js
-[ element || selector, function change (element, value) {
+[ selector, function (element, value, previousValue) {
+  // Attach listeners before inserting a DOM Node.
+  if (previousValue === null)
+    element.addEventListener('click', function () {
+      alert('clicked')
+    })
+
   return 'Hi ' + value + '!'
 } ]
 ```
@@ -92,7 +98,7 @@ A *change* function can be determined to be an insert, mutate, or remove operati
 
 There are some special cases for the *change* function:
 
-- If the bound element is the same as its parent, its value will not be iterated over if it is an array, and its return value will have no effect.
+- If the bound element is the same as its parent, its value will not be iterated over if it is an array, and its return value will have no effect. This is implicit if only a *change* function or definition object is defined.
 - If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
 - If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert.
 
@@ -111,7 +117,7 @@ var node = simulacra(data, bindings)
 var initialData = clone(data)
 
 // Do some mutations, and then reset to initial state.
-node = simulacra(initialData, bindings)
+node = simulacra(initialData, clone(bindings))
 ```
 
 This is just one way to implement time travel, but not the most efficient.
@@ -136,7 +142,7 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 ## How it Works
 
-On initialization, Simulacra.js removes bound elements from the document and replaces them with an empty text node (marker) for memoizing its position. Based on a value in the bound data object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
+On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound data object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
 
 When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 

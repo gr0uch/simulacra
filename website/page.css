@@ -48,6 +48,7 @@ pre {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   line-height: var(--mono-height);
   margin: calc(var(--line-height) * 3 / 2) calc(var(--line-height) * -3 / 4);
+  overflow: auto;
 }
 
 code {

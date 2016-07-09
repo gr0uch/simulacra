@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.2.0 (2016-07-10)
+- Feature: shorthand for binding to parent node is now just defining a change function or definition object, no CSS selector string or DOM Node required.
+
+
 ### 1.1.2 (2016-07-09)
 - Fix: disallow re-use of bindings, it doesn't work anyways.
 

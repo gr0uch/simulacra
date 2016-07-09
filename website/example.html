@@ -46,11 +46,11 @@ void function () {
     simulacra(data, [ fragment, {
       name: '.name',
       details: [ '.details', {
-        meta: [ '.details', {
-          date: [ '.details', function (node, value) {
+        meta: {
+          date: function (node, value) {
             node.dataset.timestamp = value.getTime()
-          } ]
-        } ],
+          }
+        },
         size: '.size',
         vendor: '.vendor'
       } ]
