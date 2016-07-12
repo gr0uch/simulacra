@@ -107,16 +107,15 @@ header h2 {
   font-size: 1em;
   font-weight: normal;
   margin: 0 0 calc(var(--line-height) * 3 / 2);
-  color: var(--color-background);
-  opacity: calc(3 / 4);
+  color: var(--color-header-alt);
 }
 
 header code {
   display: inline-block;
-  background-color: var(--color-background-subheader);
+  background-color: var(--color-ultralight);
   border-radius: var(--border-radius);
   line-height: var(--mono-height);
-  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 0 var(--color-light);
   padding: calc(var(--mono-height) / 2) 1em;
   color: var(--color-header-alt);
 }
