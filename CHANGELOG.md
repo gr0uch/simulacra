@@ -1,7 +1,7 @@
 # Changelog
 
 
-### 1.2.1 (2016-07-14)
+### 1.2.2 (2016-07-14)
 - Optimization: remove unnecessary closure, improving performance.
 
 
