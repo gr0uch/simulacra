@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.2.1 (2016-07-14)
+- Optimization: remove unnecessary closure, improving performance.
+
+
 ### 1.2.1 (2016-07-10)
 - Fix: allow re-use of bindings again, by internally cloning binding before re-use.
 
