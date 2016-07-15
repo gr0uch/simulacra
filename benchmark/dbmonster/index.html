@@ -30,8 +30,7 @@
   </table>
 </template>
 <script src="ENV.js"></script>
-<!--<script src="../../dist/simulacra.js"></script>-->
-<script src="http://simulacra.js.org/simulacra.min.js"></script>
+<script src="../simulacra.js"></script>
 <script src="http://localvoid.github.io/perf-monitor/0.1/perf-monitor.js"></script>
 <script>
 perfMonitor.startFPSMonitor()
@@ -50,20 +49,20 @@ document.getElementById('body').appendChild(simulacra(window.data, [
     dbs: [ id('dbs'), {
       dbname: id('dbname'),
       lastSample: [ id('lastSample'), {
-        countClassName: [ id('lastSample'), function (node, value) {
+        countClassName: function (node, value) {
           node.className = value
-        } ],
-        nbQueries: [ id('lastSample'), function (node, value) {
+        },
+        nbQueries: function (node, value) {
           node.textContent = value
-        } ]
+        }
       } ],
       topFiveQueries: [ id('topFiveQueries'), {
-        elapsedClassName: [ id('topFiveQueries'), function (node, value) {
+        elapsedClassName: function (node, value) {
           node.className = value
-        } ],
-        formatElapsed: [ id('topFiveQueries'), function (node, value) {
+        },
+        formatElapsed: function (node, value) {
           node.childNodes[0].textContent = value
-        } ],
+        },
         query: id('query')
       } ]
     } ]

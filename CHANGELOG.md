@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.2.3 (2016-07-16)
+- Optimization: remove unnecessary check in setter function.
+- Polish: return value when parent is bound should now be consistent.
+
+
 ### 1.2.2 (2016-07-14)
 - Optimization: remove unnecessary closure, improving performance.
 
