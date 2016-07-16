@@ -45,9 +45,9 @@ pre {
   padding: calc(var(--line-height) * 1 / 2) calc(var(--line-height) * 3 / 4);
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: var(--border-radius);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
   line-height: var(--mono-height);
-  margin: calc(var(--line-height) * 3 / 2) calc(var(--line-height) * -3 / 4);
+  margin: calc(var(--line-height) * 3 / 2) 0;
   overflow: auto;
 }
 
@@ -138,8 +138,8 @@ header :--button {
   padding: calc(var(--line-height) * 3 / 4);
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: var(--border-radius);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  margin: calc(var(--line-height) * 3 / 2) calc(var(--line-height) * -3 / 4);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  margin: calc(var(--line-height) * 3 / 2) 0;
 }
 
 .example p,
