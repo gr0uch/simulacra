@@ -24,10 +24,10 @@
   --font-mono: monospace;
 
   /* measurements */
-  --max-width: 47em;
-  --size-body: 17px;
-  --size-mono: calc(1em * 16 / 17);
-  --line-height: calc(1em * 5 / 3);
+  --max-width: 48em;
+  --size-body: 16px;
+  --size-mono: calc(1em * 15 / 16);
+  --line-height: calc(1em * 13 / 8);
   --mono-height: calc(1em * 4 / 3);
   --border-radius: calc(1em / 3);
 
