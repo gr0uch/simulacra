@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides one-way data binding from plain JavaScript objects to the DOM. Get it from `npm`:
+Simulacra.js provides reactive data binding from JavaScript objects to the DOM. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -12,7 +12,7 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js makes the DOM react to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
+Simulacra.js handles the DOM interactions in reaction to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
 
 It emphasizes [performance](#benchmarks) and terseness, and it has no dependencies. The approximate size of this library is ~4 KB (minified and gzipped).
 
