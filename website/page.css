@@ -70,7 +70,8 @@ pre code {
 :--header {
   color: var(--color-solid);
   font-size: calc(1em * 5 / 4);
-  font-weight: 900;
+  font-family: var(--font-alt);
+  font-weight: inherit;
   margin: calc(var(--line-height) * 3 * 4 / 5) 0 calc(var(--line-height) * 1 * 4 / 5);
 }
 
@@ -85,9 +86,8 @@ header {
     var(--color-background-header),
     color(var(--color-background-header) h(+ 42%) s(+ 14%) b(+ 8%)));
   padding:
-    calc(var(--line-height) * 5)
-    var(--line-height)
-    calc(var(--line-height) * 4);
+    calc(var(--line-height) * 4)
+    var(--line-height);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -97,6 +97,7 @@ header h1 {
   font-size: 2.25em;
   font-family: var(--font-alt);
   font-style: italic;
+  font-weight: 900;
   letter-spacing: calc(1em / -50);
   line-height: calc(var(--line-height) / (2.25 / 2));
   margin: 0;
@@ -106,6 +107,7 @@ header h1 {
 header h2 {
   font-size: 1em;
   font-weight: normal;
+  font-family: inherit;
   margin: 0 0 calc(var(--line-height) * 3 / 2);
   color: var(--color-header-alt);
 }
@@ -228,6 +230,7 @@ header :--button {
   display: inline-block;
   margin: 0;
   font-size: inherit;
+  font-family: inherit;
   font-weight: normal;
   color: var(--color-fade);
   position: relative;

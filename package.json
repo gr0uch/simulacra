@@ -33,7 +33,7 @@
     "browserify-istanbul": "^2.0.0",
     "cssnano": "^3.7.3",
     "domino": "^1.0.25",
-    "eslint": "^3.0.1",
+    "eslint": "^3.1.1",
     "eslint-config-boss": "^1.0.4",
     "fs-extra": "^0.30.0",
     "highlight.js": "^9.5.0",
@@ -45,7 +45,7 @@
     "postcss": "^5.1.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.1.2",
-    "rimraf": "^2.5.3",
+    "rimraf": "^2.5.4",
     "tapdance": "^4.1.2",
     "tape-run": "^2.1.4",
     "uglify-js": "^2.7.0"

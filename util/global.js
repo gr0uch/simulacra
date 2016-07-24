@@ -1,1 +1,1 @@
-window.simulacra = require('../lib')
+window.simulacra = require('../lib/index')
