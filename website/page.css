@@ -86,7 +86,7 @@ header {
     var(--color-background-header),
     color(var(--color-background-header) h(+ 42%) s(+ 14%) b(+ 8%)));
   padding:
-    calc(var(--line-height) * 4)
+    calc(var(--line-height) * 5)
     var(--line-height);
   text-align: center;
   overflow: hidden;
