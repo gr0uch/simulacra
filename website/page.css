@@ -69,10 +69,10 @@ pre code {
 
 :--header {
   color: var(--color-solid);
-  font-size: calc(1em * 5 / 4);
+  font-size: calc(1em * 4 / 3);
   font-family: var(--font-alt);
   font-weight: inherit;
-  margin: calc(var(--line-height) * 3 * 4 / 5) 0 calc(var(--line-height) * 1 * 4 / 5);
+  margin: calc(var(--line-height) * 3 * 3 / 4) 0 calc(var(--line-height) * 1 * 3 / 4);
 }
 
 :--header a {
