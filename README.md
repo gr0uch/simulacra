@@ -19,6 +19,15 @@ It emphasizes [performance](#benchmarks) and terseness, and it has no dependenci
 
 ## Usage
 
+The way to use it is by setting and mutating values on objects. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
+
+What is most unique about it is that it works recursively on objects, which provides a simple way to build complex user interfaces. For example, assigning `data.details = { size: [1, 2, 3], vendor: 'X' }` will create the element and the child elements corresponding to its fields (`size`, `vendor`, etc), and remove the previous element if it existed. The new object also has bindings, so `data.details.size.push(4)` will create a new element corresponding to that value.
+
+All bound values are arrays internally, which will be mapped to elements. For example, a list of things may be modelled as an array of objects: `[ {...}, {...}, {...} ]`. The arrays which are bound also have instance-specific methods for efficient DOM manipulation, i.e. `array.splice(2, 0, { ... })` will insert a new element at index `2` without touching the other elements.
+
+
+## Setup
+
 Simulacra.js uses plain HTML for templating, and it does not require meta-information in the template at all. Here's a sample template:
 
 ```html
@@ -105,7 +114,7 @@ There are some special cases for the *change* function:
 
 ## State Management
 
-Since Simulacra.js is intended to be deterministic, the bound object can be cloned at any point in time and bound again to reset to that state. For example, using the `clone` module:
+If the bound object is serializable, it can be cloned at any point in time and bound again to reset to that state. For example, using the `clone` module:
 
 ```js
 var clone = require('clone')
@@ -120,7 +129,7 @@ var initialData = clone(data)
 node = simulacra(initialData, bindings)
 ```
 
-This is just one way to implement time travel, but not the most efficient.
+This is just one way to implement time travel, but not the most efficient. Consider using the [*event sourcing* pattern](http://martinfowler.com/eaaDev/EventSourcing.html) for a more flexible approach.
 
 
 ## Benchmarks
