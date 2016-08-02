@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.2.4 (2016-08-02)
+- Polish: value should not be internally set if there was an error in the change function.
+
+
 ### 1.2.3 (2016-07-16)
 - Optimization: remove unnecessary check in setter function.
 - Polish: return value when parent is bound should now be consistent.

@@ -77,7 +77,7 @@ run(function () {
           }
           ok(path.length === 3, 'path length is correct')
           ok(path.root === data, 'root is correct')
-          ok(path.target === data.details[0], 'target is correct')
+          ok(path.target.size === 'XXL', 'target is correct')
           ok(path[0] === 'details', 'path value is correct')
           ok(path[1] === 0, 'path value is correct')
           ok(path[2] === 'size', 'path value is correct')
@@ -121,8 +121,7 @@ run(function () {
   }
   catch (error) {
     ok(error.message === 'BOOM!', 'error message is correct')
-    ok(data.details.size[0] === 'S' && data.details.size[1] === 'L',
-      'value has changed')
+    ok(data.details.size === 'Large', 'value has not changed')
   }
 
   data.details = [ { size: 'XXL' } ]
