@@ -51,9 +51,7 @@ pre {
 }
 
 code {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: calc(var(--border-radius) / 2);
-  padding: 0.2em 0.3em 0.1em;
+  text-shadow: 0 0 3px var(--color-code-b);
 }
 
 li pre {
@@ -64,6 +62,7 @@ pre code {
   font-size: 1em;
   background: none;
   padding: 0;
+  text-shadow: none;
 }
 
 :--header {
@@ -148,6 +147,7 @@ header :--button {
 
 .example code {
   background-color: transparent;
+  text-shadow: none;
 }
 
 .example ul {
