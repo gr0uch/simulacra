@@ -14,7 +14,7 @@ table td, table th {
 table th {
   hyphens: none;
   white-space: nowrap;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--color-ultralight);
   font-family: var(--font-header);
 }
 
@@ -24,10 +24,10 @@ tbody code {
 }
 
 tbody tr:nth-of-type(2n) {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--color-ultralight);
 }
 
 .table-wrapper {
   overflow: auto;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 var(--color-light);
 }

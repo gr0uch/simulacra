@@ -30,7 +30,7 @@ What Simulacra.js does is capture the intent of the state change, so it is impor
 
 ## Setup
 
-Simulacra.js uses plain HTML for templating, and it does not require meta-information in the template at all. Here's a sample template:
+Simulacra.js uses plain HTML for templating, and it does not require meta-information in the template. This makes it straightforward to start with a static HTML page and add interactive parts. Here's a sample template:
 
 ```html
 <template id="product">
