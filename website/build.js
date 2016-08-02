@@ -57,7 +57,7 @@ const document = window.document
 const node = document.createElement('div')
 node.innerHTML = example
 
-const marker = document.querySelectorAll('h2')[2]
+const marker = document.querySelectorAll('h2')[1].nextSibling
 marker.parentNode.insertBefore(node, marker)
 
 content = document.body.innerHTML

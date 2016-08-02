@@ -12,18 +12,20 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js handles the DOM interactions in reaction to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
+Simulacra.js handles DOM interactions in reaction to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
 
 It emphasizes [performance](#benchmarks) and terseness, and it has no dependencies. The approximate size of this library is ~4 KB (minified and gzipped).
 
 
 ## Usage
 
-The way to use it is by setting and mutating values on objects. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
+The main use case is setting and mutating values on objects which will be mapped to the user interface. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
 
-What is most unique about it is that it works recursively on objects, which provides a simple way to build complex user interfaces. For example, assigning `data.details = { size: [1, 2, 3], vendor: 'X' }` will create the element and the child elements corresponding to its fields (`size`, `vendor`, etc), and remove the previous element if it existed. The new object also has bindings, so `data.details.size.push(4)` will create a new element corresponding to that value.
+The bindings work recursively on objects, which provides a simple way to build complex user interfaces. For example, assigning `data.details = { size: [1, 2, 3], vendor: 'X' }` will create the element for `details` and the child elements corresponding to its fields (`size`, `vendor`, etc), and remove the previous element if it existed. The new object also has bindings, so `data.details.size.push(4)` will create a new element corresponding to that value.
 
 All bound values are arrays internally, which will be mapped to elements. For example, a list of things may be modelled as an array of objects: `[ {...}, {...}, {...} ]`. The arrays which are bound also have instance-specific methods for efficient DOM manipulation, i.e. `array.splice(2, 0, { ... })` will insert a new element at index `2` without touching the other elements.
+
+What Simulacra.js does is capture the intent of the state change, so it is important to use the correct semantics. Using `data.details = { ... }` is different from `Object.assign(data.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
 
 
 ## Setup
