@@ -1,22 +1,24 @@
 :root {
 
   /* colors */
-  --color-background: #FFFFFF;
-  --color-background-header: #357F94;
-  --color-background-subheader: rgba(0, 0, 0, 0.05);
-  --color-header-alt: rgba(255, 255, 255, 0.6);
-  --color-header-fade: rgba(255, 255, 255, 0.4);
-  --color-header-light: rgba(255, 255, 255, 0.2);
-  --color-solid: rgba(0, 0, 0, 1);
-  --color-body: rgba(0, 0, 0, 0.6666);
-  --color-alt: rgba(0, 0, 0, 0.5);
-  --color-fade: rgba(0, 0, 0, 0.3333);
+  --color-background: #584A5E;
+  --color-background-header: #6C5B73;
+  --color-background-subheader: rgba(0, 0, 0, 0.0555);
+  --color-header-solid: rgba(255, 255, 255, 1);
+  --color-header-alt: rgba(255, 255, 255, 0.6666);
+  --color-header-fade: rgba(255, 255, 255, 0.4444);
+  --color-header-light: rgba(255, 255, 255, 0.2222);
+  --color-solid: rgba(255, 255, 255, 1);
+  --color-body: rgba(255, 255, 255, 0.6666);
+  --color-alt: rgba(255, 255, 255, 0.4444);
+  --color-fade: rgba(255, 255, 255, 0.3333);
   --color-light: rgba(0, 0, 0, 0.2222);
   --color-ultralight: rgba(0, 0, 0, 0.1111);
-  --color-code-a: #B56041;
-  --color-code-b: #8F4AA8;
-  --color-code-c: #357F94;
-  --color-button: #B56041;
+  --color-code-a: #EB9575;
+  --color-code-b: #BC8FCC;
+  --color-code-c: #76B1C2;
+  --color-button: #9E614A;
+  --color-example: #545D69;
 
   /* fonts */
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -24,7 +26,7 @@
   --font-mono: monospace;
 
   /* measurements */
-  --max-width: 50em;
+  --max-width: 48em;
   --size-body: 16px;
   --size-mono: calc(1em * 15 / 16);
   --line-height: calc(1em * 5 / 3);

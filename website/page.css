@@ -41,11 +41,10 @@ pre, code {
 }
 
 pre {
-  color: var(--color-alt);
   padding: calc(var(--line-height) * 1 / 2) calc(var(--line-height) * 3 / 4);
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--color-ultralight);
   border-radius: var(--border-radius);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 var(--color-light);
   line-height: var(--mono-height);
   margin: calc(var(--line-height) * 3 / 2) 0;
   overflow: auto;
@@ -76,17 +75,15 @@ pre code {
 }
 
 :--header a {
-  color: var(--color-light) !important;
+  color: var(--color-header-light) !important;
   margin-left: 0.5em;
   text-decoration: none !important;
 }
 
 header {
-  background: linear-gradient(to right,
-    var(--color-background-header),
-    color(var(--color-background-header) h(+ 42%) s(+ 14%) b(+ 8%)));
+  background: var(--color-background-header);
   padding:
-    calc(var(--line-height) * 5)
+    calc(var(--line-height) * 4)
     var(--line-height);
   text-align: center;
   overflow: hidden;
@@ -101,7 +98,7 @@ header h1 {
   letter-spacing: calc(1em / -50);
   line-height: calc(var(--line-height) / (2.25 / 2));
   margin: 0;
-  color: var(--color-background);
+  color: var(--color-header-solid);
 }
 
 header h2 {
@@ -133,14 +130,14 @@ header :--button {
 }
 
 header :--button {
-  color: var(--color-background);
+  color: var(--color-header-solid);
 }
 
 .example {
   padding: calc(var(--line-height) * 3 / 4);
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--color-ultralight);
   border-radius: var(--border-radius);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 var(--color-light);
   margin: calc(var(--line-height) * 3 / 2) 0;
 }
 
@@ -193,9 +190,9 @@ header :--button {
 .example input {
   color: var(--color-body);
   padding: 0 calc(var(--mono-height) * 3 / 4);
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: var(--color-ultralight);
   border-radius: var(--border-radius);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 var(--color-light);
   height: calc(var(--mono-height) * 7 / 4);
   margin: calc(var(--line-height) * 1 / 2) 0 0;
   font-size: var(--size-mono);
@@ -206,9 +203,9 @@ header :--button {
 
 .product-container {
   border-radius: var(--border-radius);
-  background-color: #EBE4DA;
-  border: 1px rgba(0, 0, 0, 0.15) solid;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  background-color: var(--color-example);
+  border: 1px rgba(0, 0, 0, 0.45) solid;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
   height: calc(var(--line-height) * 5);
   overflow: hidden;
   white-space: nowrap;
@@ -222,8 +219,8 @@ header :--button {
   margin: 0;
   font-size: calc(1em * 5 / 4);
   font-weight: normal;
-  color: #7D7366;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+  color: var(--color-body);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .product-container h4 {
@@ -233,6 +230,7 @@ header :--button {
   font-family: inherit;
   font-weight: normal;
   color: var(--color-fade);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   position: relative;
   top: calc(1em * 1 / 4);
 }
@@ -265,12 +263,12 @@ header :--button {
   bottom: 0;
   left: 0;
   width: 100%;
-  border-top: 1px rgba(255, 255, 255, 0.5) solid;
-  background-color: rgba(0, 0, 0, 0.05);
+  border-top: 1px rgba(255, 255, 255, 0.15) solid;
+  background-color: rgba(0, 0, 0, 0.1);
   font-size: calc(1em * 4 / 5);
   line-height: var(--line-height);
   height: calc(var(--line-height) * 2);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .product-container .details > div {
@@ -278,16 +276,17 @@ header :--button {
   position: relative;
   top: calc(var(--line-height) * -2 / 3);
   border-radius: var(--border-radius);
-  background-color: #F5F1EB;
-  border: 1px rgba(0, 0, 0, 0.15) solid;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: var(--color-example);
+  border: 1px rgba(0, 0, 0, 0.3) solid;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .product-container .details > div > span {
   display: inline-block;
   padding: calc(var(--line-height) * 1 / 6 - 2px) 0.8em;
   position: relative;
-  color: var(--color-fade);
+  color: var(--color-alt);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .product-container .details > div > span:after {
