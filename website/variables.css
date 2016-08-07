@@ -4,12 +4,12 @@
   --color-background: #584A5E;
   --color-background-header: #6C5B73;
   --color-solid: rgba(255, 255, 255, 1);
-  --color-body: rgba(255, 255, 255, 0.6666);
-  --color-alt: rgba(255, 255, 255, 0.4444);
-  --color-fade: rgba(255, 255, 255, 0.3333);
-  --color-light: rgba(0, 0, 0, 0.2222);
-  --color-ultralight: rgba(0, 0, 0, 0.1111);
-  --color-code: rgba(255, 255, 255, 0.0555);
+  --color-body: rgba(255, 255, 255, 0.75);
+  --color-alt: rgba(255, 255, 255, 0.5);
+  --color-fade: rgba(255, 255, 255, 0.25);
+  --color-light: rgba(0, 0, 0, 0.25);
+  --color-ultralight: rgba(0, 0, 0, 0.125);
+  --color-code: rgba(255, 255, 255, 0.0625);
   --color-code-a: #EB9575;
   --color-code-b: #BC8FCC;
   --color-code-c: #76B1C2;
