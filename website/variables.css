@@ -1,8 +1,8 @@
 :root {
 
   /* colors */
-  --color-background: #584A5E;
-  --color-background-header: #6C5B73;
+  --color-background: #4A3D4F;
+  --color-background-header: #56485C;
   --color-solid: rgba(255, 255, 255, 1);
   --color-body: rgba(255, 255, 255, 0.75);
   --color-alt: rgba(255, 255, 255, 0.5);
@@ -14,7 +14,7 @@
   --color-code-b: #BC8FCC;
   --color-code-c: #76B1C2;
   --color-button: #A6634B;
-  --color-example: #575169;
+  --color-example: #514B63;
 
   /* fonts */
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
