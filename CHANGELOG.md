@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.2.5 (2016-08-11)
+- Fix: bug in adjacent node safety check.
+- Optimization: prefer `for..in` instead of `Object.keys`.
+
+
 ### 1.2.4 (2016-08-02)
 - Polish: value should not be internally set if there was an error in the change function.
 

@@ -1,8 +1,8 @@
 :root {
 
   /* colors */
-  --color-background: #4A3D4F;
-  --color-background-header: #56485C;
+  --color-background: #56485C;
+  --color-background-header: #605066;
   --color-solid: rgba(255, 255, 255, 1);
   --color-body: rgba(255, 255, 255, 0.75);
   --color-alt: rgba(255, 255, 255, 0.5);
