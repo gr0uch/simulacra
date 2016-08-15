@@ -1,7 +1,7 @@
 # Changelog
 
 
-### 1.2.6 (2016-08-15)
+### 1.2.7 (2016-08-15)
 - Polish: simplify handling of `undefined` values by casting them all to `null`.
 - Polish: allow return value in change function that is bound to parent.
 
