@@ -19,18 +19,7 @@ It emphasizes [performance](#benchmarks) and terseness, and it has no dependenci
 
 ## Usage
 
-The main use case is setting and mutating values on objects which will be mapped to the user interface. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
-
-The bindings work recursively on objects, which provides a simple way to build complex user interfaces. For example, assigning `data.details = { size: [1, 2, 3], vendor: 'X' }` will create the element for `details` and the child elements corresponding to its fields (`size`, `vendor`, etc), and remove the previous element if it existed. The new object also has bindings, so `data.details.size.push(4)` will create a new element corresponding to that value.
-
-All values that are bound to non-parent elements are arrays internally, which will be mapped to elements. For example, a list of things may be modelled as an array of objects: `[ {...}, {...}, {...} ]`. The arrays which are bound also have instance-specific methods for efficient DOM manipulation, i.e. `array.splice(2, 0, { ... })` will insert a new element at index `2` without touching the other elements.
-
-What Simulacra.js does is capture the intent of the state change, so it is important to use the correct semantics. Using `data.details = { ... }` is different from `Object.assign(data.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
-
-
-## Setup
-
-Simulacra.js uses plain HTML for templating, and it does not require meta-information in the template. This makes it straightforward to start with a static HTML page and add interactive parts. Here's a sample template:
+Simulacra.js uses plain HTML for templating, and it does not require any meta-information in the template. This makes it straightforward to start with a static HTML page and add interactive parts. Here's a sample template:
 
 ```html
 <template id="product">
@@ -112,6 +101,17 @@ There are some special cases for the *change* function:
 - If the bound element is the same as its parent, its value will not be iterated over if it is an array.
 - If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
 - If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert in case of setting a new object over an existing object.
+
+
+## Data Binding
+
+The idea is that once the bindings have been set up, one does not call Simulacra.js again. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
+
+The bindings work recursively on objects, which provides a simple way to build complex user interfaces. For example, assigning `data.details = { size: [1, 2, 3], vendor: 'X' }` will create the element for `details` and the child elements corresponding to its fields (`size`, `vendor`, etc), and remove the previous element if it existed. The new object also has bindings, so `data.details.size.push(4)` will create a new element corresponding to that value.
+
+All values that are bound to non-parent elements are arrays internally, which will be mapped to elements. For example, a list of things may be modelled as an array of objects: `[ {...}, {...}, {...} ]`. The arrays which are bound also have instance-specific methods for efficient DOM manipulation, i.e. `array.splice(2, 0, { ... })` will insert a new element at index `2` without touching the other elements.
+
+What Simulacra.js does is capture the intent of the state change, so it is important to use the correct semantics. Using `data.details = { ... }` is different from `Object.assign(data.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
 
 
 ## Benchmarks
