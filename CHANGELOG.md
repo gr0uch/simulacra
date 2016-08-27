@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.3.1 (2016-08-27)
+- Polish: use boolean checked attribute.
+
+
 ### 1.3.0 (2016-08-27)
 - Feature: inputs and textareas by default set updated values on change, which is a more useful default. Custom change functions may override this.
 - Fix: edge case bug where `path.target` is undefined.
