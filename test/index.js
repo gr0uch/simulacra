@@ -9,30 +9,67 @@ var simulacra = require('../lib')
 
 
 run(function () {
-  var template, data, bindings, result
+  var template, templateHTML, data, bindings, outlet
 
   comment('test string paths')
 
-  template = document.createElement('div')
-  template.innerHTML = '<h1 class="name"></h1>'
-  document.body.appendChild(template)
+  template = document.createElement('template')
+  templateHTML = '<h1 class="name"></h1>'
+  template.innerHTML = templateHTML
 
   data = { name: 'Babby' }
-  bindings = [ 'div', {
+  bindings = [ template.content, {
     name: '.name'
   } ]
 
-  result = document.body.appendChild(simulacra(data, bindings))
+  outlet = document.body
+  outlet.appendChild(simulacra(data, bindings))
 
-  ok(result.querySelector('.name').textContent === 'Babby',
+  ok(outlet.querySelector('.name').textContent === 'Babby',
     'binding works')
-  ok(!template.querySelector('.name').textContent,
+  ok(template.innerHTML === templateHTML,
     'original template unchanged')
+
+  outlet.innerHTML = ''
 })
 
+run(function () {
+  var template, data, bindings, outlet, inputText, inputCheckbox
+
+  comment('test input change')
+
+  template = document.createElement('template')
+  template.innerHTML = '<input type="text"><input type="checkbox">'
+
+  data = { input: 'x', checker: [ true, false ] }
+  bindings = [ template.content, {
+    input: '[type="text"]',
+    checker: '[type="checkbox"]'
+  } ]
+
+  outlet = document.body
+  outlet.appendChild(simulacra(data, bindings))
+  inputText = outlet.querySelector('[type="text"]')
+  inputCheckbox = outlet.querySelectorAll('[type="checkbox"]')
+
+  ok(inputText.value === 'x', 'binding works')
+  ok(inputCheckbox[0].checked === true, 'binding works')
+  ok(inputCheckbox[1].checked === false, 'binding works')
+
+  inputText.value = 'y'
+  inputText.dispatchEvent(new Event('change'))
+  inputCheckbox[0].checked = false
+  inputCheckbox[0].dispatchEvent(new Event('change'))
+
+  ok(data.input === 'y', 'changes propagated')
+  ok(data.checker[0] === false, 'changes propagated')
+  ok(data.checker[1] === false, 'value unchanged')
+
+  outlet.innerHTML = ''
+})
 
 run(function () {
-  var template, fragment, data, bindings, outlet, i = 0
+  var template, data, bindings, outlet, i = 0
   var isRebinding = false
 
   comment('test main use case')
@@ -42,8 +79,6 @@ run(function () {
     '<ul class="details"><li class="size"></li><li class="color"></li></ul>' +
     '<h3 class="price"><span class="amount"></span>&nbsp;' +
     '<span class="currency"></span></h3>'
-
-  fragment = template.content
 
   data = {
     name: 'Coroham Coron',
@@ -57,7 +92,7 @@ run(function () {
     ]
   }
 
-  bindings = [ fragment, {
+  bindings = [ template.content, {
     name: [ '.name', function (node, value, previousValue, path) {
       ok(path.length === 1, 'path length is correct')
       if (!isRebinding) {
@@ -102,9 +137,7 @@ run(function () {
     } ]
   } ]
 
-  outlet = document.createElement('div')
-  outlet.id = 'outlet'
-  document.body.appendChild(outlet)
+  outlet = document.body
   outlet.appendChild(simulacra(data, bindings))
 
   ok(outlet.querySelector('h1'), 'bound node appended to DOM')
@@ -134,6 +167,8 @@ run(function () {
     name: 'babby'
   }, bindings))
   ok(outlet.textContent === 'babby!', 'rebinding works')
+
+  outlet.innerHTML = ''
 })
 
 

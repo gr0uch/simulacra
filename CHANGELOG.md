@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.3.0 (2016-08-27)
+- Feature: inputs and textareas by default set updated values on change, which is a more useful default. Custom change functions may override this.
+- Fix: edge case bug where `path.target` is undefined.
+
+
 ### 1.2.7 (2016-08-15)
 - Polish: simplify handling of `undefined` values by casting them all to `null`.
 - Polish: allow return value in change function that is bound to parent.

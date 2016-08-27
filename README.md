@@ -98,6 +98,7 @@ A *change* function can be determined to be an insert, mutate, or remove operati
 
 There are some special cases for the *change* function:
 
+- If the bound element is an `input` or a `textarea`, the default behavior will be to update the data when the input changes. This may be overridden with a custom change function.
 - If the bound element is the same as its parent, its value will not be iterated over if it is an array.
 - If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
 - If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert in case of setting a new object over an existing object.
