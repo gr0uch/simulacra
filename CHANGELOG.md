@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.3.2 (2016-09-09)
+- Polish: prefer `input` event over `change` in default event binding, which is more synchronous.
+
+
 ### 1.3.1 (2016-08-27)
 - Polish: use boolean checked attribute.
 
