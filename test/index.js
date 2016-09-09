@@ -57,9 +57,9 @@ run(function () {
   ok(inputCheckbox[1].checked === false, 'binding works')
 
   inputText.value = 'y'
-  inputText.dispatchEvent(new Event('change'))
+  inputText.dispatchEvent(new Event('input'))
   inputCheckbox[0].checked = false
-  inputCheckbox[0].dispatchEvent(new Event('change'))
+  inputCheckbox[0].dispatchEvent(new Event('input'))
 
   ok(data.input === 'y', 'changes propagated')
   ok(data.checker[0] === false, 'changes propagated')
