@@ -1,6 +1,14 @@
 # Changelog
 
 
+### 1.4.0 (2016-09-15)
+- Feature: add built-in helper functions for common use cases.
+- Feature: add `simulacra.setDefault`, as a basic no-op function.
+- Feature: add `simulacra.bindEvents`, for handling events bound to an element.
+- Feature: add `simulacra.animate`, for handling animations via CSS classes.
+- Feature: add `simulacra.chain`, for chaining helper functions.
+
+
 ### 1.3.2 (2016-09-09)
 - Polish: prefer `input` event over `change` in default event binding, which is more synchronous.
 
