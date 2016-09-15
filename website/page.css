@@ -75,7 +75,8 @@ pre code {
   font-size: calc(1em * 4 / 3);
   font-family: var(--font-alt);
   font-weight: inherit;
-  margin: calc(var(--line-height) * 3 * 3 / 4) 0 calc(var(--line-height) * 1 * 3 / 4);
+  padding-top: calc(var(--line-height) * 1 * 3 / 4);
+  margin: calc(var(--line-height) * 2 * 3 / 4) 0 calc(var(--line-height) * 1 * 3 / 4);
 }
 
 :--header a {
@@ -102,6 +103,7 @@ header h1 {
   letter-spacing: calc(1em / -50);
   line-height: calc(var(--line-height) / (2.25 / 2));
   margin: 0;
+  padding: 0;
   color: var(--color-solid);
 }
 
@@ -109,6 +111,7 @@ header h2 {
   font-size: 1em;
   font-weight: normal;
   font-family: inherit;
+  padding: 0;
   margin: 0 0 calc(var(--line-height) * 3 / 2);
   color: var(--color-body);
 }
