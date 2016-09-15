@@ -104,6 +104,34 @@ There are some special cases for the *change* function:
 - If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert in case of setting a new object over an existing object.
 
 
+## Helper Functions
+
+Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. To use them, one can define a *change* function like so:
+
+```js
+var simulacra = require('simulacra')
+var chain = simulacra.chain
+var setDefault = simulacra.setDefault
+var bindEvents = simulacra.bindEvents
+var animate = simulacra.animate
+
+var change = chain(
+  // Use default behavior for mapping values to the DOM.
+  setDefault,
+
+  // Accepts a hash keyed by event names, using this has the advantage of
+  // automatically removing event listeners, even if the element is still
+  // in the DOM.
+  bindEvents({ click: function (event) { alert('Click!') } }),
+
+  // Accepts class names on insert, mutate, and remove, and a time in ms for
+  // how long to retain an element after removal.
+  animate('fade-in', 'bounce', 'fade-out', 500))
+```
+
+Note that `setDefault` should generally be set first if the default behavior is desired.
+
+
 ## Data Binding
 
 The idea is that once the bindings have been set up, one does not call Simulacra.js again. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.

@@ -145,6 +145,46 @@ header :--button {
   margin: calc(var(--line-height) * 3 / 2) 0;
 }
 
+.example .block {
+  float: left;
+  cursor: pointer;
+  color: var(--color-code-c);
+  font-weight: bold;
+  border: 1px var(--color-code-c) solid;
+  border-radius: var(--border-radius);
+  width: calc(var(--line-height) * 2);
+  text-align: center;
+  padding: var(--border-radius) 0;
+  margin-left: calc(var(--line-height) * -2 + var(--border-radius) * -2);
+  margin-right: calc(var(--border-radius) * 2);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.example .block.fade-in {
+  margin-left: 0;
+  opacity: 1;
+}
+.example .block.bounce {
+  animation-duration: 1s;
+  animation-name: flash;
+}
+@keyframes flash {
+  from {
+    color: var(--color-code-b);
+    border-color: var(--color-code-b);
+  }
+  to {
+    color: var(--color-code-c);
+    border-color: var(--color-code-c);
+  }
+}
+.example .block.fade-out {
+  transition: all 2s ease;
+  transform: rotate(-30deg) translateY(-1em);
+  cursor: default;
+}
+
 .example p,
 .example ul {
   margin: 0;

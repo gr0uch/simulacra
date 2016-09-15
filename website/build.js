@@ -27,8 +27,10 @@ const head = fs.readFileSync(
   path.join(__dirname, 'head.html')).toString()
 const body = fs.readFileSync(
   path.join(__dirname, 'body.html')).toString()
-const example = fs.readFileSync(
+const exampleHTML = fs.readFileSync(
   path.join(__dirname, 'example.html')).toString()
+const helperHTML = fs.readFileSync(
+  path.join(__dirname, 'helper.html')).toString()
 const readme = fs.readFileSync(
   path.join(__dirname, '../README.md')).toString()
 
@@ -49,16 +51,20 @@ renderer.heading = (text, level) => {
 
 const text = (/(##(?:[\s\S]+)(?=))/g).exec(readme)[1]
 let content = marked(text, {
-  renderer, highlight: code => hjs.highlightAuto(code).value
+  renderer, highlight: (code, lang) => hjs.highlight(lang, code).value
 })
 const window = domino.createWindow(content)
 const document = window.document
 
-const node = document.createElement('div')
-node.innerHTML = example
+const exampleNode = document.createElement('div')
+exampleNode.innerHTML = exampleHTML
+const helperNode = document.createElement('div')
+helperNode.innerHTML = helperHTML
 
-const marker = document.querySelectorAll('h2')[1].nextSibling
-marker.parentNode.insertBefore(node, marker)
+const exampleMarker = document.querySelectorAll('h2')[1].nextSibling
+exampleMarker.parentNode.insertBefore(exampleNode, exampleMarker)
+const helperMarker = document.querySelectorAll('h2')[3].nextSibling
+helperMarker.parentNode.insertBefore(helperNode, helperMarker)
 
 content = document.body.innerHTML
 

@@ -1,0 +1,51 @@
+<p>Here is an example of using the built-in helper functions to control animations and events:</p>
+<div class="example">
+  <div class="helper container">
+  </div>
+</div>
+<template id="helper">
+  <div class="block"></block>
+</template>
+<script>
+void function () {
+  var simulacra = window.simulacra
+  var count = 6
+  var data = {
+    numbers: Array(count)
+  }
+
+  var fragment = document.getElementById('helper').content
+
+  var chain = simulacra.chain
+  var setDefault = simulacra.setDefault
+  var bindEvents = simulacra.bindEvents
+  var animate = simulacra.animate
+
+  var change = chain(
+    setDefault,
+    bindEvents({ click: function (event) { alert('Click!') } }),
+    animate('fade-in', 'bounce', 'fade-out', 2000))
+
+  simulacra.useCommentNode = true
+
+  document.querySelector('.helper').appendChild(
+    simulacra(data, [ fragment, {
+      numbers: [ '.block', change ]
+    } ]))
+
+  setInterval(setData, 250)
+  setData()
+
+  function setData () {
+    var i, number
+
+    for (i = 0; i < count; i++) {
+      if (Math.random() < 0.5) {
+        number = Math.ceil(Math.random() * 12)
+        if (number > 9) number = null
+        data.numbers[i] = number
+      }
+    }
+  }
+}()
+</script>

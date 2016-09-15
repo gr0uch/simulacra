@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "Reactive data binding for web applications.",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
@@ -33,7 +33,7 @@
     "browserify-istanbul": "^2.0.0",
     "cssnano": "^3.7.4",
     "domino": "^1.0.25",
-    "eslint": "^3.4.0",
+    "eslint": "^3.5.0",
     "eslint-config-boss": "^1.0.4",
     "fs-extra": "^0.30.0",
     "highlight.js": "^9.6.0",
@@ -42,8 +42,8 @@
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",
     "normalize.css": "^4.2.0",
-    "postcss": "^5.1.2",
-    "postcss-cssnext": "^2.7.0",
+    "postcss": "^5.2.0",
+    "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.1.2",
     "rimraf": "^2.5.4",
     "tapdance": "^4.1.2",
