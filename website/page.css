@@ -263,6 +263,7 @@ header :--button {
 
 .product-container h1 {
   display: inline-block;
+  padding: 0;
   margin: 0;
   font-size: calc(1em * 5 / 4);
   font-weight: normal;
@@ -272,6 +273,7 @@ header :--button {
 
 .product-container h4 {
   display: inline-block;
+  padding: 0;
   margin: 0;
   font-size: inherit;
   font-family: inherit;
