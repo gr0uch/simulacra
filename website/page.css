@@ -155,7 +155,7 @@ header :--button {
   font-weight: bold;
   border: 1px var(--color-code-c) solid;
   border-radius: var(--border-radius);
-  width: calc(var(--line-height) * 2);
+  width: calc(var(--line-height) * 3 / 2);
   text-align: center;
   padding: var(--border-radius) 0;
   margin-left: calc(var(--line-height) * -2 + var(--border-radius) * -2);
