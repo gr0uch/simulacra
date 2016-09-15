@@ -14,7 +14,7 @@ $ npm i simulacra --save
 
 Simulacra.js handles DOM interactions in reaction to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
 
-It emphasizes [performance](#benchmarks) and terseness, and it has no dependencies. The approximate size of this library is ~4 KB (minified and gzipped).
+It emphasizes [performance](#benchmarks) and terseness, and it has no dependencies. The approximate size of this library is ~5 KB (minified and gzipped).
 
 
 ## Usage
