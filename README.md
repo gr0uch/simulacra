@@ -121,7 +121,7 @@ var change = chain(
 
   // Accepts a hash keyed by event names, using this has the advantage of
   // automatically removing event listeners, even if the element is still
-  // in the DOM.
+  // in the DOM. The optional second argument is `useCapture`.
   bindEvents({ click: function (event) { alert('Click!') } }),
 
   // Accepts class names on insert, mutate, and remove, and a time in ms for

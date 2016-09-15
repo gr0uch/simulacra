@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.4.1 (2016-09-15)
+- Polish: add some compatibility checks in the helper functions.
+
+
 ### 1.4.0 (2016-09-15)
 - Feature: add built-in helper functions for common use cases.
 - Feature: add `simulacra.setDefault`, as a basic no-op function.
