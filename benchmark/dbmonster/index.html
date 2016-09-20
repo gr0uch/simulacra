@@ -5,39 +5,17 @@
 <link rel="stylesheet" href="style.css">
 <div id="body">
 </div>
-<template id="table">
-  <table class="table table-striped latest-data">
-    <tbody>
-      <tr data-id="dbs">
-        <td class="dbname" data-id="dbname"></td>
-        <td class="query-count">
-          <span data-id="lastSample"></span>
-        </td>
-        <td data-id="topFiveQueries">
-          &nbsp;
-          <div class="popover left">
-            <div class="popover-content" data-id="query"></div>
-            <div class="arrow"></div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</template>
+<template id="table"><table class="table table-striped latest-data"><tbody><tr data-id="dbs"><td class="dbname" data-id="dbname"></td><td class="query-count"><span data-id="lastSample"></span></td><td data-id="topFiveQueries">&nbsp;<div class="popover left"><div class="popover-content" data-id="query"></div><div class="arrow"></div></div></td></tr></tbody></table></template>
 <script src="ENV.js"></script>
 <script src="../simulacra.js"></script>
 <script src="http://localvoid.github.io/perf-monitor/0.1/perf-monitor.js"></script>
 <script>
+simulacra.useCommentNode = true
 perfMonitor.startFPSMonitor()
 perfMonitor.startMemMonitor()
 perfMonitor.initProfiler('view update')
 
-var data = {
-  dbs: ENV.generateData().toArray().map(function (db) {
-    db.topFiveQueries = db.lastSample.topFiveQueries
-    return db
-  })
-}
+var data = { dbs: ENV.generateData().toArray() }
 
 document.getElementById('body').appendChild(simulacra(window.data, [
   document.getElementById('table').content, {
@@ -56,9 +34,11 @@ document.getElementById('body').appendChild(simulacra(window.data, [
           node.className = value
         },
         formatElapsed: function (node, value) {
-          node.childNodes[0].textContent = value
+          node.firstChild.textContent = value
         },
-        query: id('query')
+        query: function (node, value) {
+          node.childNodes[1].firstChild.textContent = value
+        }
       } ]
     } ]
   }
