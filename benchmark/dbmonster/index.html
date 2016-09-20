@@ -36,9 +36,7 @@ document.getElementById('body').appendChild(simulacra(window.data, [
         formatElapsed: function (node, value) {
           node.firstChild.textContent = value
         },
-        query: function (node, value) {
-          node.childNodes[1].firstChild.textContent = value
-        }
+        query: id('query')
       } ]
     } ]
   }
