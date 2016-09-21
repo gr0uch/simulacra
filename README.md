@@ -181,13 +181,13 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 ## Under the Hood
 
-This library is written in ES5 syntactically, and requires:
+This library makes use of these JavaScript features:
 
 - **Object.defineProperty** (ES5): used for binding keys on objects.
 - **Object.freeze** (ES5.1): used to prevent internal state from being mutated.
 - **WeakMap** (ES6): memory efficient mapping of DOM nodes.
 
-It also requires these DOM API features:
+It also makes use of these DOM API features:
 
 - **Document.createDocumentFragment** (DOM Level 2): used for bulk insertions.
 - **Node.appendChild** (DOM Level 1): used for inserting elements in to document fragments.
@@ -196,6 +196,7 @@ It also requires these DOM API features:
 - **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
 - **Node.removeChild** (DOM Level 1): used for removing elements.
 - **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
+- **MutationObserver** (DOM Level 4): used for the `animate` helper.
 
 No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
 

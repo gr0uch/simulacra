@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.4.2 (2016-09-21)
+- Fix: `animate` helper should use MutationObserver to detect DOM insertion. This fixes insert animations in Firefox.
+
+
 ### 1.4.1 (2016-09-15)
 - Polish: add some compatibility checks in the helper functions.
 
