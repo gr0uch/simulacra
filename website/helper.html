@@ -23,7 +23,11 @@ void function () {
 
   var change = chain(
     setDefault,
-    bindEvents({ click: function (event) { alert('Click!') } }),
+    bindEvents({
+      click: function (event) {
+        event.target.classList.toggle('alternate')
+      }
+    }),
     animate('fade-in', 'bounce', 'fade-out', 2000))
 
   simulacra.useCommentNode = true
@@ -33,7 +37,6 @@ void function () {
       numbers: [ '.block', change ]
     } ]))
 
-  setInterval(setData, 250)
   setData()
 
   function setData () {
@@ -46,6 +49,8 @@ void function () {
         data.numbers[i] = number
       }
     }
+
+    setTimeout(setData, Math.random() * 400 + 100)
   }
 }()
 </script>

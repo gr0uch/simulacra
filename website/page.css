@@ -168,10 +168,17 @@ header :--button {
   margin-left: 0;
   opacity: 1;
 }
-.example .block.bounce {
+
+.example .block.alternate {
+  color: var(--color-code-a);
+  border-color: var(--color-code-a);
+}
+
+.example .block:not(.alternate).bounce {
   animation-duration: 1s;
   animation-name: flash;
 }
+
 @keyframes flash {
   from {
     color: var(--color-code-b);
@@ -182,6 +189,7 @@ header :--button {
     border-color: var(--color-code-c);
   }
 }
+
 .example .block.fade-out {
   transition: all 2s ease;
   transform: rotate(-30deg) translateY(-1em);
