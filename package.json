@@ -24,7 +24,7 @@
     "lint": "eslint lib test",
     "tag": "git tag `npm v simulacra version` && git push origin --tags",
     "test": "npm run lint && npm run test:browser",
-    "test:browser": "node test/server & browserify -t browserify-istanbul test | tape-run",
+    "test:browser": "node test/server & browserify -t browserify-istanbul test | tape-run | tap-spec",
     "report": "./node_modules/.bin/istanbul report lcov text-summary"
   },
   "dependencies": {},
@@ -46,6 +46,7 @@
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.1.2",
     "rimraf": "^2.5.4",
+    "tap-spec": "^4.1.1",
     "tapdance": "^4.1.2",
     "tape-run": "^2.1.4",
     "uglify-js": "^2.7.3"
