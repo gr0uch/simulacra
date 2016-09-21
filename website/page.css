@@ -149,6 +149,8 @@ header :--button {
 }
 
 .example .block {
+  position: relative;
+  z-index: 100;
   float: left;
   cursor: pointer;
   color: var(--color-code-c);
@@ -191,9 +193,10 @@ header :--button {
 }
 
 .example .block.fade-out {
-  transition: all 2s ease;
+  transition: all 1.5s ease;
   transform: rotate(-30deg) translateY(-1em);
   cursor: default;
+  z-index: 0;
 }
 
 .example p,

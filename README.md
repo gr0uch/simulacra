@@ -130,7 +130,7 @@ var change = chain(
 
   // Accepts class names on insert, mutate, and remove, and a time in ms for
   // how long to retain an element after removal.
-  animate('fade-in', 'bounce', 'fade-out', 500))
+  animate('fade-in', 'bounce', 'fade-out', 1500))
 ```
 
 Note that `setDefault` should generally be set first if the default behavior is desired.
