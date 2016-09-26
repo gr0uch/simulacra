@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.4.3 (2016-09-26)
+- Polish: add second argument to `bindEvents` event listener functions.
+
+
 ### 1.4.2 (2016-09-21)
 - Fix: `animate` helper should use MutationObserver to detect DOM insertion. This fixes insert animations in Firefox.
 

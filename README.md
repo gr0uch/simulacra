@@ -123,7 +123,8 @@ var change = chain(
   // automatically removing event listeners, even if the element is still
   // in the DOM. The optional second argument is `useCapture`.
   bindEvents({
-    click: function (event) {
+    // The first argument is the DOM event, second is the path to the data.
+    click: function (event, path) {
       event.target.classList.toggle('alternate')
     }
   }),
