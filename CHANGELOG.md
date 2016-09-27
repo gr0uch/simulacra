@@ -2,7 +2,7 @@
 
 
 ### 1.4.3 (2016-09-26)
-- Polish: add second argument to `bindEvents` event listener functions.
+- Polish: add second argument `path` to `bindEvents` event listener functions, useful for changing data within the event listener without a reference to the bound data object.
 
 
 ### 1.4.2 (2016-09-21)
