@@ -72,11 +72,12 @@ pre code {
 
 :--header {
   color: var(--color-solid);
-  font-size: calc(1em * 4 / 3);
+  font-size: calc(1em * 5 / 4);
   font-family: var(--font-alt);
   font-weight: inherit;
-  padding-top: calc(var(--line-height) * 1 * 3 / 4);
-  margin: calc(var(--line-height) * 2 * 3 / 4) 0 calc(var(--line-height) * 1 * 3 / 4);
+  padding-top: calc(var(--line-height) * 1 * 4 / 5);
+  margin: calc(var(--line-height) * 2 * 4 / 5) 0 calc(var(--line-height) * 1 * 4 / 5);
+  letter-spacing: 0.05em;
 }
 
 :--header a {
@@ -88,7 +89,7 @@ pre code {
 header {
   background: var(--color-background-header);
   padding:
-    calc(var(--line-height) * 4)
+    calc(var(--line-height) * 9 / 2)
     var(--line-height);
   text-align: center;
   overflow: hidden;
@@ -96,15 +97,19 @@ header {
 }
 
 header h1 {
-  font-size: 2.25em;
+  font-size: 2.5em;
   font-family: var(--font-alt);
   font-style: italic;
-  font-weight: 900;
-  letter-spacing: calc(1em / -50);
+  font-weight: normal;
+  letter-spacing: calc(1em / -40);
   line-height: calc(var(--line-height) / (2.25 / 2));
   margin: 0;
   padding: 0;
   color: var(--color-solid);
+}
+
+header h1 span {
+  font-weight: bold;
 }
 
 header h2 {
@@ -114,6 +119,7 @@ header h2 {
   padding: 0;
   margin: 0 0 calc(var(--line-height) * 3 / 2);
   color: var(--color-body);
+  letter-spacing: 0;
 }
 
 header code {

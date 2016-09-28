@@ -78,8 +78,14 @@ fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
     name: pkg.name,
     description: pkg.description
   }, [ 'body', {
-    name: [ 'header h1', (node, value) =>
-      value.charAt(0).toUpperCase() + value.slice(1) + '.js' ],
+    name: [ 'header h1', (node, value) => {
+      node.innerHTML = [
+        '<span>',
+        value.charAt(0).toUpperCase(),
+        value.slice(1),
+        '</span>.js'
+      ].join('')
+    } ],
     description: 'header h2',
     version: '.version',
     content: [ 'article', (node, value) => { node.innerHTML = value } ]
