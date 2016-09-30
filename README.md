@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js provides reactive data binding from JavaScript objects to the DOM. Get it from `npm`:
+Simulacra.js binds JavaScript objects to the DOM. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -12,14 +12,14 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js handles DOM interactions in reaction to changes in data. When data changes, it maps those changes to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values.
+Simulacra.js maps changes on objects to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values. In fact, that is all it does, and its entire API surface area is a single function. It also does not introduce any new syntax or a template language, and is designed to work well with current and future web platform features, such as [Web Components](http://webcomponents.org/).
 
-It emphasizes [performance](#benchmarks) and terseness, and it has no dependencies. The approximate size of this library is ~5 KB (minified and gzipped).
+It emphasizes [performance](#benchmarks) and economy of expression. The approximate size of this library is ~5 KB (minified and gzipped).
 
 
 ## Usage
 
-Simulacra.js uses plain HTML for templating, and it does not require any meta-information in the template. This makes it straightforward to start with a static HTML page and add interactive parts. Here's a sample template:
+Simulacra.js uses plain HTML for templating, and it does not introduce its own template language. This makes it straightforward to start with a static HTML page and add interactive parts. Here's a sample template:
 
 ```html
 <template id="product">
@@ -31,7 +31,7 @@ Simulacra.js uses plain HTML for templating, and it does not require any meta-in
 </template>
 ```
 
-Using the `<template>` tag is optional, but any DOM element will suffice. The shape of the data is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample data:
+Using the `<template>` tag is optional, any DOM element will suffice. The shape of the data is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample data:
 
 ```js
 var data = {
@@ -51,9 +51,9 @@ Simulacra.js exports only a single function, which binds an object to the DOM. T
 
 ```js
 var simulacra = require('simulacra') // or `window.simulacra`
-var fragment = document.getElementById('product').content
+var template = document.getElementById('product')
 
-var node = simulacra(data, [ fragment, {
+var node = simulacra(data, [ template, {
   name: '.name',
   details: [ '.details', {
     size: '.size',
@@ -139,7 +139,7 @@ Note that `setDefault` should generally be set first if the default behavior is 
 
 ## Data Binding
 
-The idea is that once the bindings have been set up, one does not call Simulacra.js again. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
+Once the bindings have been set up, one does not need to call Simulacra.js again. For example, assigning `data.name = 'Simulacra'`  by default will set the text of the element to that value and append it to the DOM if it doesn't exist, and `data.name = null` will remove all elements corresponding to that field. Assigning `data.name = ['John', 'Doe']` will create missing elements and assign the text of both elements, and append them if necessary.
 
 The bindings work recursively on objects, which provides a simple way to build complex user interfaces. For example, assigning `data.details = { size: [1, 2, 3], vendor: 'X' }` will create the element for `details` and the child elements corresponding to its fields (`size`, `vendor`, etc), and remove the previous element if it existed. The new object also has bindings, so `data.details.size.push(4)` will create a new element corresponding to that value.
 

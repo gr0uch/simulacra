@@ -37,13 +37,13 @@ void function () {
     }
   }
 
-  var fragment = document.getElementById('product').content
+  var template = document.getElementById('product')
   var input = document.querySelector('input[name="eval"]')
 
   simulacra.useCommentNode = true
 
   document.querySelector('.product-container').appendChild(
-    simulacra(data, [ fragment, {
+    simulacra(data, [ template, {
       name: '.name',
       details: [ '.details', {
         meta: {

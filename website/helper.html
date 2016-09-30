@@ -14,7 +14,7 @@ void function () {
     numbers: Array(count)
   }
 
-  var fragment = document.getElementById('helper').content
+  var template = document.getElementById('helper')
 
   var chain = simulacra.chain
   var setDefault = simulacra.setDefault
@@ -33,7 +33,7 @@ void function () {
   simulacra.useCommentNode = true
 
   document.querySelector('.helper').appendChild(
-    simulacra(data, [ fragment, {
+    simulacra(data, [ template, {
       numbers: [ '.block', change ]
     } ]))
 

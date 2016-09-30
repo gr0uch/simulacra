@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.4.4 (2016-09-30)
+- Polish: auto-detect presence of `content` attribute, useful for selecting template tags.
+
+
 ### 1.4.3 (2016-09-26)
 - Polish: add second argument `path` to `bindEvents` event listener functions, useful for changing data within the event listener without a reference to the bound data object.
 

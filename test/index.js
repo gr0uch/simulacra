@@ -18,7 +18,7 @@ run(function () {
   template.innerHTML = templateHTML
 
   data = { name: 'Babby' }
-  bindings = [ template.content, {
+  bindings = [ template, {
     name: '.name'
   } ]
 
@@ -42,7 +42,7 @@ run(function () {
   template.innerHTML = '<input type="text"><input type="checkbox">'
 
   data = { input: 'x', checker: [ true, false ] }
-  bindings = [ template.content, {
+  bindings = [ template, {
     input: '[type="text"]',
     checker: '[type="checkbox"]'
   } ]
@@ -92,7 +92,7 @@ run(function () {
     ]
   }
 
-  bindings = [ template.content, {
+  bindings = [ template, {
     name: [ '.name', function (node, value, previousValue, path) {
       ok(path.length === 1, 'path length is correct')
       if (!isRebinding) {
