@@ -110,12 +110,12 @@ Simulacra.js includes some built-in helper functions for common use cases, such 
 
 ```js
 var simulacra = require('simulacra')
-var chain = simulacra.chain
+var flow = simulacra.flow
 var setDefault = simulacra.setDefault
 var bindEvents = simulacra.bindEvents
 var animate = simulacra.animate
 
-var change = chain(
+var change = flow(
   // Use default behavior for mapping values to the DOM.
   setDefault,
 

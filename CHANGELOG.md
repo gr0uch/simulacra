@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.4.5 (2016-10-07)
+- Polish: rename `chain` to `flow`, add alias for `chain`. This naming is more consistent in behavior from other libraries such as Lodash.
+
+
 ### 1.4.4 (2016-09-30)
 - Polish: auto-detect presence of `content` attribute, useful for selecting template tags.
 

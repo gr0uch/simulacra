@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "Reactive data binding for web-based user interfaces.",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "license": "MIT",
   "author": {
     "email": "0x8890@airmail.cc",
