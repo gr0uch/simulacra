@@ -106,7 +106,7 @@ There are some special cases for the *change* function:
 
 ## Helper Functions
 
-Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. To use them, one can define a *change* function like so:
+Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are completely optional and not part of the core functionality, but included for convenience. To use them, one can define a *change* function like so:
 
 ```js
 var simulacra = require('simulacra')
