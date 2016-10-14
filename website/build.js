@@ -74,7 +74,7 @@ mkdirp.sync(outputPath)
 fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
   [ head, $({
     content,
-    version: pkg.version,
+    version: `#v${pkg.version}`,
     name: pkg.name,
     description: pkg.description
   }, [ 'body', {

@@ -50,10 +50,10 @@ Simulacra.js exports only a single function, which binds an object to the DOM. T
 - **Index 2**: if index 1 is a definition object, this may be a *change* function.
 
 ```js
-var simulacra = require('simulacra') // or `window.simulacra`
+var bindObject = require('simulacra') // or `window.simulacra`
 var template = document.getElementById('product')
 
-var node = simulacra(data, [ template, {
+var node = bindObject(data, [ template, {
   name: '.name',
   details: [ '.details', {
     size: '.size',
@@ -109,11 +109,11 @@ There are some special cases for the *change* function:
 Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are completely optional and not part of the core functionality, but included for convenience. To use them, one can define a *change* function like so:
 
 ```js
-var simulacra = require('simulacra')
-var flow = simulacra.flow
-var setDefault = simulacra.setDefault
-var bindEvents = simulacra.bindEvents
-var animate = simulacra.animate
+var bindObject = require('simulacra')
+var flow = bindObject.flow
+var setDefault = bindObject.setDefault
+var bindEvents = bindObject.bindEvents
+var animate = bindObject.animate
 
 var change = flow(
   // Use default behavior for mapping values to the DOM.
@@ -208,10 +208,10 @@ Simulacra.js works in Node.js (it's isomorphic!), with one thing to keep in mind
 
 ```js
 const domino = require('domino')
-const simulacra = require('simulacra')
+const bindObject = require('simulacra')
 
 const window = domino.createWindow('<h1></h1>')
-const $ = simulacra.bind(window)
+const $ = bindObject.bind(window)
 const data = { message: 'Hello world!' }
 const binding = [ 'body', {
   message: 'h1'

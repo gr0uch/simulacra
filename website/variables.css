@@ -3,6 +3,7 @@
   /* colors */
   --color-background: #56485C;
   --color-background-header: #605066;
+  --color-background-header-alt: #89677d;
   --color-solid: rgba(255, 255, 255, 1);
   --color-body: rgba(255, 255, 255, 0.75);
   --color-alt: rgba(255, 255, 255, 0.5);
@@ -13,7 +14,6 @@
   --color-code-a: #EB9575;
   --color-code-b: #BC8FCC;
   --color-code-c: #76B1C2;
-  --color-button: #A6634B;
   --color-example: #514B63;
 
   /* fonts */

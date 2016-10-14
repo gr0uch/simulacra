@@ -4,24 +4,6 @@
     padding-bottom: calc(var(--line-height) * 1);
   }
 
-  :--header {
-    margin: calc(var(--line-height) * 2 * 4 / 5) 0 calc(var(--line-height) * 4 / 5);
-  }
-
-  header {
-    padding-top: calc(var(--line-height) * 3);
-    padding-bottom: calc(var(--line-height) * 2);
-  }
-
-  header h1 {
-    font-size: calc(1em * 5 / 2);
-  }
-
-  header code,
-  header .button {
-    margin-bottom: calc(var(--line-height) * 1);
-  }
-
   .example .left,
   .example .right {
     width: 100%;
@@ -40,6 +22,30 @@
   }
 
   #corner span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  header > div {
+    display: block;
+  }
+
+  header > div::before {
+    display: none;
+  }
+
+  header aside {
+    border: none;
+    padding-bottom: calc(var(--line-height) * 1 / 2);
+  }
+
+  header code .save,
+  header code .version {
+    display: none;
+  }
+
+  :--button label {
     display: none;
   }
 }
