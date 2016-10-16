@@ -223,6 +223,25 @@ console.log($(data, binding).innerHTML)
 This will print the string `<h1>Hello world!</h1>` to `stdout`.
 
 
+## Rehydrating from Server Rendered Page
+
+Simulacra.js also allows server-rendered DOM to be re-used or *rehydrated*. The main function accepts an optional third argument for this purpose:
+
+```js
+const bindObject = require('simulacra')
+
+const data = { /* the data must be populated beforehand */ }
+const binding = [ ... ]
+
+// Rehydrate from existing DOM Node.
+const node = document.querySelector(...)
+
+bindObject(data, binding, node)
+```
+
+Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* and *mount* functions will be run. If the Node could not be rehydrated properly, it will throw an error.
+
+
 ## License
 
 This software is licensed under the [MIT license](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE).

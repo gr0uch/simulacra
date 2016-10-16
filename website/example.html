@@ -26,11 +26,27 @@
 <script>
 void function () {
   var simulacra = window.simulacra
+  simulacra.useCommentNode = true
+
+  var date = new Date()
+
   var data = window.data = {
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
-        date: new Date()
+        date: date
+      },
+      size: [ 'Tall', 'Grande', 'Venti' ],
+      vendor: 'Starbucks'
+    }
+  }
+
+  // Copypaste from above.
+  var rehydratedData = window.rehydratedData = {
+    name: 'Pumpkin Spice Latte',
+    details: {
+      meta: {
+        date: date
       },
       size: [ 'Tall', 'Grande', 'Venti' ],
       vendor: 'Starbucks'
@@ -38,24 +54,26 @@ void function () {
   }
 
   var template = document.getElementById('product')
+  var binding = [ template, {
+    name: '.name',
+    details: [ '.details', {
+      meta: {
+        date: function (node, value) {
+          node.dataset.timestamp = value.getTime()
+        }
+      },
+      size: '.size',
+      vendor: '.vendor'
+    } ]
+  } ]
+
+  var container = document.querySelector('.product-container')
+  container.appendChild(simulacra(data, binding))
+
+  // Demo rehydrated data.
+  simulacra(rehydratedData, binding, container)
+
   var input = document.querySelector('input[name="eval"]')
-
-  simulacra.useCommentNode = true
-
-  document.querySelector('.product-container').appendChild(
-    simulacra(data, [ template, {
-      name: '.name',
-      details: [ '.details', {
-        meta: {
-          date: function (node, value) {
-            node.dataset.timestamp = value.getTime()
-          }
-        },
-        size: '.size',
-        vendor: '.vendor'
-      } ]
-    } ]))
-
   input.addEventListener('keyup', function (event) {
     if (event.keyCode === 13) {
       var x = input.value

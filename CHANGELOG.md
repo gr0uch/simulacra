@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.5.0 (2016-10-16)
+- Feature: add optional third argument `node` to main function, which allows for rehydrating from existing DOM.
+- Polish: animate helper checks if node is already appended to DOM before initializing `MutationObserver`.
+
+
 ### 1.4.5 (2016-10-07)
 - Polish: rename `chain` to `flow`, add alias for `chain`. This naming is more consistent in behavior from other libraries such as Lodash.
 
