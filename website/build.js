@@ -68,28 +68,34 @@ helperMarker.parentNode.insertBefore(helperNode, helperMarker)
 
 content = document.body.innerHTML
 
-const $ = simulacra.bind(domino.createWindow(body))
+function $ () {
+  return simulacra.apply(domino.createWindow(body), arguments)
+}
+
+const t0 = Date.now()
+const documentBody = $({
+  content,
+  version: `#v${pkg.version}`,
+  name: pkg.name,
+  description: pkg.description
+}, [ 'body', {
+  name: [ 'header h1', (node, value) => {
+    node.innerHTML = [
+      '<span>',
+      value.charAt(0).toUpperCase(),
+      value.slice(1),
+      '</span>.js'
+    ].join('')
+  } ],
+  description: 'header h2',
+  version: '.version',
+  content: [ 'article', (node, value) => { node.innerHTML = value } ]
+} ]).innerHTML
+console.info(`HTML rendered in ${Date.now() - t0} ms.`)
 
 mkdirp.sync(outputPath)
 fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
-  [ head, $({
-    content,
-    version: `#v${pkg.version}`,
-    name: pkg.name,
-    description: pkg.description
-  }, [ 'body', {
-    name: [ 'header h1', (node, value) => {
-      node.innerHTML = [
-        '<span>',
-        value.charAt(0).toUpperCase(),
-        value.slice(1),
-        '</span>.js'
-      ].join('')
-    } ],
-    description: 'header h2',
-    version: '.version',
-    content: [ 'article', (node, value) => { node.innerHTML = value } ]
-  } ]).innerHTML ].join(''),
+  [ head, documentBody ].join(''),
   { collapseWhitespace: true }
 ))
 
@@ -123,4 +129,4 @@ fs.copySync(
 // Done!
 // =====
 
-process.stdout.write(`Build completed in ${(Date.now() - start) / 1000} s.\n`)
+console.info(`Build completed in ${Date.now() - start} ms.`)
