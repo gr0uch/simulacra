@@ -150,7 +150,9 @@ What Simulacra.js does is capture the intent of the state change, so it is impor
 
 ## Benchmarks
 
-Simulacra.js is pretty fast in the [DBMonster benchmark](http://simulacra.js.org/dbmonster/). In initial rendering speed based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium.
+The overhead of using Simulacra.js versus hand-optimized, vanilla JS is roughly a **25%** decrease in performance.
+
+Its render performance is demonstrated in the [DBMonster benchmark](http://simulacra.js.org/dbmonster/). In initial rendering speed based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium.
 
 | Name              | Loading  | Scripting  | Rendering  | Aggregate  |
 |:------------------|:---------|:-----------|:-----------|:-----------|
