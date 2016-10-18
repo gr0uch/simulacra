@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
 
-Simulacra.js binds JavaScript objects to the DOM. Get it from `npm`:
+Simulacra.js binds a JavaScript object to a DOM Node, which makes the DOM Node react to changes in the object. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -12,9 +12,11 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js maps changes on objects to the DOM by adding and removing elements and invoking *change* functions, which by default, assign plain text and form input values. In fact, that is all it does, and its entire API surface area is a single function. It also does not introduce any new syntax or a template language, and is designed to work well with current and future web platform features, such as [Web Components](http://webcomponents.org/).
+Simulacra.js returns a DOM Node that updates when its data source changes. Its entire API surface area is a single function (with some optional helpers and symbols), it does not introduce any new syntax or a template language, and it is designed to complement current and future web platform features, such as [Web Components](http://webcomponents.org/).
 
-It emphasizes [performance](#benchmarks) and economy of expression. The approximate size of this library is ~5 KB (minified and gzipped).
+It is a fairly [low cost](#benchmarks) abstraction, though it is not quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
+
+The approximate size of this library is ~5 KB (minified and gzipped).
 
 
 ## Usage
