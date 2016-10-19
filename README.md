@@ -14,7 +14,7 @@ $ npm i simulacra --save
 
 Simulacra.js returns a DOM Node that updates when its data source changes. Its entire API surface area is a single function (with some optional helpers and symbols), it does not introduce any new syntax or a template language, and it is designed to complement current and future web platform features, such as [Web Components](http://webcomponents.org/).
 
-It is a fairly [low cost](#benchmarks) abstraction, though it is not quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
+It is a fairly [low cost](#benchmarks) abstraction, though it may not be quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
 
 The approximate size of this library is ~5 KB (minified and gzipped).
 
@@ -152,7 +152,7 @@ What Simulacra.js does is capture the intent of the state change, so it is impor
 
 ## Benchmarks
 
-The overhead of using Simulacra.js versus hand-optimized, vanilla JS is roughly a **25%** decrease in performance.
+The overhead of using Simulacra.js versus hand-optimized, vanilla JS is roughly between zero and a **25%** decrease in performance.
 
 Its render performance is demonstrated in the [DBMonster benchmark](http://simulacra.js.org/dbmonster/). In initial rendering speed based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium.
 
