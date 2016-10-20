@@ -4,15 +4,16 @@
   "version": "1.5.0",
   "license": "MIT",
   "author": {
-    "email": "0x8890@airmail.cc",
-    "url": "http://0x8890.com"
+    "name": "sapeien",
+    "email": "sapeien@airmail.cc",
+    "url": "http://sapeien.com"
   },
   "homepage": "http://simulacra.js.org/",
   "repository": {
     "type": "git",
-    "url": "git@github.com:0x8890/simulacra.git"
+    "url": "git@github.com:sapeien/simulacra.git"
   },
-  "bugs": "https://github.com/0x8890/simulacra/issues",
+  "bugs": "https://github.com/sapeien/simulacra/issues",
   "scripts": {
     "clean": "rimraf coverage.json coverage dist",
     "deploy": "npm run build && ./website/deploy.sh",

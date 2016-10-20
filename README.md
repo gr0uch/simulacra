@@ -1,7 +1,7 @@
 # [Simulacra.js](http://simulacra.js.org/)
-[![Build Status](https://img.shields.io/travis/0x8890/simulacra/master.svg?style=flat-square)](https://travis-ci.org/0x8890/simulacra)
+[![Build Status](https://img.shields.io/travis/sapeien/simulacra/master.svg?style=flat-square)](https://travis-ci.org/sapeien/simulacra)
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
-[![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE)
+[![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/sapeien/simulacra/master/LICENSE)
 
 Simulacra.js makes a DOM Node update automatically in reaction to mutations in a JavaScript object. Get it from `npm`:
 
@@ -166,7 +166,7 @@ Its render performance is demonstrated in the [DBMonster benchmark](http://simul
 | jQuery            | 20 ms    | 119 ms     | 24 ms      | 211 ms     |
 | Angular.js        | 17 ms    | 159 ms     | 24 ms      | 295 ms     |
 
-To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/0x8890/simulacra/tree/master/benchmark).
+To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/sapeien/simulacra/tree/master/benchmark).
 
 
 ## How it Works
@@ -246,4 +246,4 @@ Instead of returning a new Node, it will return the Node that was passed in, so 
 
 ## License
 
-This software is licensed under the [MIT license](https://raw.githubusercontent.com/0x8890/simulacra/master/LICENSE).
+This software is licensed under the [MIT license](https://raw.githubusercontent.com/sapeien/simulacra/master/LICENSE).
