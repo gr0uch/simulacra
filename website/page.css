@@ -241,11 +241,24 @@ header code .version {
 .example .block.alternate {
   color: var(--color-code-a);
   border-color: var(--color-code-a);
+  animation-duration: 0.5s;
+  animation-name: alternate;
 }
 
 .example .block:not(.alternate).bounce {
   animation-duration: 1s;
   animation-name: flash;
+}
+
+@keyframes alternate {
+  from {
+    color: var(--color-solid);
+    border-color: var(--color-solid);
+  }
+  to {
+    color: var(--color-code-a);
+    border-color: var(--color-code-a);
+  }
 }
 
 @keyframes flash {

@@ -1,14 +1,10 @@
 'use strict'
 
-var tapdance = require('tapdance')
-var comment = tapdance.comment
-var ok = tapdance.ok
-var run = tapdance.run
-
+var runTest = require('tapdance')
 var simulacra = require('../lib')
 
 
-run(function () {
+runTest(function (assert, comment) {
   var template, templateHTML, data, bindings, outlet
 
   comment('test string paths')
@@ -25,15 +21,16 @@ run(function () {
   outlet = document.body
   outlet.appendChild(simulacra(data, bindings))
 
-  ok(outlet.querySelector('.name').textContent === 'Babby',
+  assert(outlet.querySelector('.name').textContent === 'Babby',
     'binding works')
-  ok(template.innerHTML === templateHTML,
+  assert(template.innerHTML === templateHTML,
     'original template unchanged')
 
   outlet.innerHTML = ''
 })
 
-run(function () {
+
+runTest(function (assert, comment) {
   var template, data, bindings, outlet, inputText, inputCheckbox
 
   comment('test input change')
@@ -52,23 +49,24 @@ run(function () {
   inputText = outlet.querySelector('[type="text"]')
   inputCheckbox = outlet.querySelectorAll('[type="checkbox"]')
 
-  ok(inputText.value === 'x', 'binding works')
-  ok(inputCheckbox[0].checked === true, 'binding works')
-  ok(inputCheckbox[1].checked === false, 'binding works')
+  assert(inputText.value === 'x', 'binding works')
+  assert(inputCheckbox[0].checked === true, 'binding works')
+  assert(inputCheckbox[1].checked === false, 'binding works')
 
   inputText.value = 'y'
   inputText.dispatchEvent(new Event('input'))
   inputCheckbox[0].checked = false
   inputCheckbox[0].dispatchEvent(new Event('input'))
 
-  ok(data.input === 'y', 'changes propagated')
-  ok(data.checker[0] === false, 'changes propagated')
-  ok(data.checker[1] === false, 'value unchanged')
+  assert(data.input === 'y', 'changes propagated')
+  assert(data.checker[0] === false, 'changes propagated')
+  assert(data.checker[1] === false, 'value unchanged')
 
   outlet.innerHTML = ''
 })
 
-run(function () {
+
+runTest(function (assert, comment) {
   var template, data, bindings, outlet, i = 0
   var isRebinding = false
 
@@ -94,13 +92,13 @@ run(function () {
 
   bindings = [ template, {
     name: [ '.name', function (node, value, previousValue, path) {
-      ok(path.length === 1, 'path length is correct')
+      assert(path.length === 1, 'path length is correct')
       if (!isRebinding) {
         isRebinding = true
-        ok(path.root === data, 'root is correct')
-        ok(path.target === data, 'target is correct')
+        assert(path.root === data, 'root is correct')
+        assert(path.target === data, 'target is correct')
       }
-      ok(path[0] === 'name', 'path is correct')
+      assert(path[0] === 'name', 'path is correct')
       return value + '!'
     } ],
     details: [ '.details', {
@@ -110,23 +108,23 @@ run(function () {
             i++
             throw new Error('BOOM!')
           }
-          ok(path.length === 3, 'path length is correct')
-          ok(path.root === data, 'root is correct')
-          ok(path.target.size === 'XXL', 'target is correct')
-          ok(path[0] === 'details', 'path value is correct')
-          ok(path[1] === 0, 'path value is correct')
-          ok(path[2] === 'size', 'path value is correct')
+          assert(path.length === 3, 'path length is correct')
+          assert(path.root === data, 'root is correct')
+          assert(path.target.size === 'XXL', 'target is correct')
+          assert(path[0] === 'details', 'path value is correct')
+          assert(path[1] === 0, 'path value is correct')
+          assert(path[2] === 'size', 'path value is correct')
         }
         return value
       } ],
       color: [ '.color',
         function (node, value, previousValue, path) {
-          ok(path.length === 3, 'path length is correct')
-          ok(path.root === data, 'root is correct')
-          ok(path.target === data.details, 'target is correct')
-          ok(path[0] === 'details', 'path value is correct')
-          ok(path[1] === 'color', 'path value is correct')
-          ok(typeof path[2] === 'number', 'array path is a number')
+          assert(path.length === 3, 'path length is correct')
+          assert(path.root === data, 'root is correct')
+          assert(path.target === data.details, 'target is correct')
+          assert(path[0] === 'details', 'path value is correct')
+          assert(path[1] === 'color', 'path value is correct')
+          assert(typeof path[2] === 'number', 'array path is a number')
         } ]
     } ],
     prices: [ '.price', {
@@ -140,25 +138,25 @@ run(function () {
   outlet = document.body
   outlet.appendChild(simulacra(data, bindings))
 
-  ok(outlet.querySelector('h1'), 'bound node appended to DOM')
-  ok(outlet.querySelector('.name').textContent === 'Coroham Coron!',
+  assert(outlet.querySelector('h1'), 'bound node appended to DOM')
+  assert(outlet.querySelector('.name').textContent === 'Coroham Coron!',
     'binding works')
-  ok(outlet.querySelector('.size').textContent === 'Large',
+  assert(outlet.querySelector('.size').textContent === 'Large',
     'nesting works')
-  ok(outlet.querySelectorAll('.currency').length === 2,
+  assert(outlet.querySelectorAll('.currency').length === 2,
     'iteration works')
 
   try {
     data.details.size = [ 'S', 'L' ]
-    ok(null, 'should have failed')
+    assert(null, 'should have failed')
   }
   catch (error) {
-    ok(error.message === 'BOOM!', 'error message is correct')
-    ok(data.details.size === 'Large', 'value has not changed')
+    assert(error.message === 'BOOM!', 'error message is correct')
+    assert(data.details.size === 'Large', 'value has not changed')
   }
 
   data.details = [ { size: 'XXL' } ]
-  ok(outlet.querySelector('.size').textContent === 'XXL',
+  assert(outlet.querySelector('.size').textContent === 'XXL',
     'continues to work after error')
 
   comment('test rebinding')
@@ -166,13 +164,13 @@ run(function () {
   outlet.appendChild(simulacra({
     name: 'babby'
   }, bindings))
-  ok(outlet.textContent === 'babby!', 'rebinding works')
+  assert(outlet.textContent === 'babby!', 'rebinding works')
 
   outlet.innerHTML = ''
 })
 
 
-run(function () {
+runTest(function () {
   return fetch('http://localhost:8890', {
     method: 'post',
     body: JSON.stringify(window['__coverage__'], null, 2)

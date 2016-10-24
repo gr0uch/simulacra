@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.5.1 (2016-10-24)
+- Polish: when using selector strings, match all elements and remove all but the first one. This makes it more feasible to take a full static page and use it as a template.
+
+
 ### 1.5.0 (2016-10-16)
 - Feature: add optional third argument `node` to main function, which allows for rehydrating from existing DOM.
 - Polish: animate helper checks if node is already appended to DOM before initializing `MutationObserver`.
