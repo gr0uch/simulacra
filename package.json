@@ -34,7 +34,7 @@
     "browserify-istanbul": "^2.0.0",
     "cssnano": "^3.8.0",
     "domino": "^1.0.27",
-    "eslint": "^3.8.1",
+    "eslint": "^3.9.0",
     "eslint-config-boss": "^1.0.5",
     "fs-extra": "^0.30.0",
     "highlight.js": "^9.7.0",
@@ -48,7 +48,7 @@
     "postcss-import": "^8.1.2",
     "rimraf": "^2.5.4",
     "tap-spec": "^4.1.1",
-    "tapdance": "^5.0.1",
+    "tapdance": "^5.0.2",
     "tape-run": "^2.1.4",
     "uglify-js": "^2.7.4"
   },

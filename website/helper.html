@@ -10,7 +10,7 @@
 void function () {
   var simulacra = window.simulacra
   var count = 6
-  var data = {
+  var state = {
     numbers: Array(count)
   }
 
@@ -33,24 +33,24 @@ void function () {
   simulacra.useCommentNode = true
 
   document.querySelector('.helper').appendChild(
-    simulacra(data, [ template, {
+    simulacra(state, [ template, {
       numbers: [ '.block', change ]
     } ]))
 
-  setData()
+  setState()
 
-  function setData () {
+  function setState () {
     var i, number
 
     for (i = 0; i < count; i++) {
       if (Math.random() < 0.5) {
         number = Math.ceil(Math.random() * 12)
         if (number > 9) number = null
-        data.numbers[i] = number
+        state.numbers[i] = number
       }
     }
 
-    setTimeout(setData, Math.random() * 250 + 250)
+    setTimeout(setState, Math.random() * 250 + 250)
   }
 }()
 </script>

@@ -12,7 +12,7 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js returns a DOM Node that updates when its data source changes. Its entire API surface area is a single function (with some optional helpers and symbols), it does not introduce any new syntax or a template language, and it is designed to complement current and future web platform features, such as [Web Components](http://webcomponents.org/).
+Simulacra.js returns a DOM Node that updates when its state object changes. Its entire API surface area is a single function (with some optional helpers and symbols), it does not introduce any new syntax or a template language, and it is designed to complement current and future web platform features, such as [Web Components](http://webcomponents.org/).
 
 It is a fairly [low cost](#benchmarks) abstraction, though it may not be quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
 
@@ -33,10 +33,10 @@ Simulacra.js uses plain HTML for templating, and it does not introduce its own t
 </template>
 ```
 
-Using the `<template>` tag is optional, any DOM element will suffice. The shape of the data is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample data:
+Using the `<template>` tag is optional, any DOM element will suffice. The shape of the state is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample state:
 
 ```js
-var data = {
+var state = {
   name: 'Pumpkin Spice Latte',
   details: {
     size: [ 'Tall', 'Grande', 'Venti' ],
@@ -55,7 +55,7 @@ Simulacra.js exports only a single function, which binds an object to the DOM. T
 var bindObject = require('simulacra') // or `window.simulacra`
 var template = document.getElementById('product')
 
-var node = bindObject(data, [ template, {
+var node = bindObject(state, [ template, {
   name: '.name',
   details: [ '.details', {
     size: '.size',
@@ -100,7 +100,7 @@ A *change* function can be determined to be an insert, mutate, or remove operati
 
 There are some special cases for the *change* function:
 
-- If the bound element is an `input` or a `textarea`, the default behavior will be to update the data when the input changes. This may be overridden with a custom change function.
+- If the bound element is an `input` or a `textarea`, the default behavior will be to update the state when the input changes. This may be overridden with a custom change function.
 - If the bound element is the same as its parent, its value will not be iterated over if it is an array.
 - If the *change* function returns `simulacra.retainElement` for a remove operation, then `Node.removeChild` will not be called. This is useful for implementing animations when removing an element from the DOM.
 - If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert in case of setting a new object over an existing object.
@@ -125,7 +125,7 @@ var change = flow(
   // automatically removing event listeners, even if the element is still
   // in the DOM. The optional second argument is `useCapture`.
   bindEvents({
-    // The first argument is the DOM event, second is the path to the data.
+    // The first argument is the DOM event, second is the path to the state.
     click: function (event, path) {
       event.target.classList.toggle('alternate')
     }
@@ -144,12 +144,12 @@ Note that `setDefault` should generally be set first if the default behavior is 
 Simulacra.js works differently than almost all data binding libraries:
 
 - Rather than having much of a public API, it tries to be as opaque as possible.
-- Every built-in way to mutate data is overridden, and becomes an integral part of how it works.
+- Every built-in way to mutate state is overridden, and becomes an integral part of how it works.
 - There is no templating syntax at all. Instead, the binding structure determines how to render an element.
 - It does not force any component architecture, this is best deferred to Web Components.
 - All changes are atomic and run synchronously.
 
-What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using `data.details = { ... }` is different from `Object.assign(data.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
+What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using `state.details = { ... }` is different from `Object.assign(state.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
 
 
 ## Benchmarks
@@ -173,7 +173,7 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 ## How it Works
 
-On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound data object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
+On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound state object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
 
 When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
 
@@ -216,12 +216,12 @@ const bindObject = require('simulacra')
 
 const window = domino.createWindow('<h1></h1>')
 const $ = bindObject.bind(window)
-const data = { message: 'Hello world!' }
+const state = { message: 'Hello world!' }
 const binding = [ 'body', {
   message: 'h1'
 } ]
 
-console.log($(data, binding).innerHTML)
+console.log($(state, binding).innerHTML)
 ```
 
 This will print the string `<h1>Hello world!</h1>` to `stdout`.
@@ -234,13 +234,13 @@ Simulacra.js also allows server-rendered DOM to be re-used or *rehydrated*. The 
 ```js
 const bindObject = require('simulacra')
 
-const data = { /* the data must be populated beforehand */ }
+const state = { /* the state must be populated beforehand */ }
 const binding = [ ... ]
 
 // Rehydrate from existing DOM Node.
 const node = document.querySelector(...)
 
-bindObject(data, binding, node)
+bindObject(state, binding, node)
 ```
 
 Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* and *mount* functions will be run. If the Node could not be rehydrated properly, it will throw an error.

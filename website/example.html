@@ -8,11 +8,11 @@
     <div class="right">
       <p>Live demo, try it out:</p>
       <ul>
-        <li><code>data.name = "Caramel Latte"</code></li>
-        <li><code>data.details.size.push("Trenta")</code></li>
-        <li><code>data.details.size = [ 'Tall' ]</code></li>
+        <li><code>state.name = "Caramel Latte"</code></li>
+        <li><code>state.details.size.push("Trenta")</code></li>
+        <li><code>state.details.size = [ 'Tall' ]</code></li>
       </ul>
-      <input type="text" name="eval" placeholder="Change data...">
+      <input type="text" name="eval" placeholder="Change state...">
     </div>
   </div>
 </div>
@@ -30,7 +30,7 @@ void function () {
 
   var date = new Date()
 
-  var data = window.data = {
+  var state = window.state = {
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
@@ -42,7 +42,7 @@ void function () {
   }
 
   // Copypaste from above.
-  var rehydratedData = window.rehydratedData = {
+  var rehydratedState = window.rehydratedState = {
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
@@ -68,10 +68,10 @@ void function () {
   } ]
 
   var container = document.querySelector('.product-container')
-  container.appendChild(simulacra(data, binding))
+  container.appendChild(simulacra(state, binding))
 
-  // Demo rehydrated data.
-  simulacra(rehydratedData, binding, container)
+  // Demo rehydrated state.
+  simulacra(rehydratedState, binding, container)
 
   var input = document.querySelector('input[name="eval"]')
   input.addEventListener('keyup', function (event) {
