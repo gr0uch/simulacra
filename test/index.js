@@ -1,10 +1,10 @@
 'use strict'
 
-var runTest = require('tapdance')
+var run = require('tapdance')
 var simulacra = require('../lib')
 
 
-runTest(function (assert, comment) {
+run(function (assert, comment) {
   var template, templateHTML, data, bindings, outlet
 
   comment('test string paths')
@@ -30,7 +30,7 @@ runTest(function (assert, comment) {
 })
 
 
-runTest(function (assert, comment) {
+run(function (assert, comment) {
   var template, data, bindings, outlet, inputText, inputCheckbox
 
   comment('test input change')
@@ -66,7 +66,7 @@ runTest(function (assert, comment) {
 })
 
 
-runTest(function (assert, comment) {
+run(function (assert, comment) {
   var template, data, bindings, outlet, i = 0
   var isRebinding = false
 
@@ -170,7 +170,7 @@ runTest(function (assert, comment) {
 })
 
 
-runTest(function () {
+run(function () {
   return fetch('http://localhost:8890', {
     method: 'post',
     body: JSON.stringify(window['__coverage__'], null, 2)

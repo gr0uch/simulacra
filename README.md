@@ -243,7 +243,7 @@ const node = document.querySelector(...)
 bindObject(state, binding, node)
 ```
 
-Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* and *mount* functions will be run. If the Node could not be rehydrated properly, it will throw an error.
+Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* functions will be run so that event binding can happen, but return values will be ignored. If the Node could not be rehydrated properly, it will throw an error.
 
 
 ## License
