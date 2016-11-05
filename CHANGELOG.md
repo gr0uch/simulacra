@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.5.3 (2016-11-06)
+- Optimization: the default behavior for setting text should be significantly faster.
+- Revert: insertion optimizations, they were too fragile.
+
+
 ### 1.5.2 (2016-11-05)
 - Fix: edge case bug when removing objects from an array.
 - Optimization: slightly improved insertion performance.
