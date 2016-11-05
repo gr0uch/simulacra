@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.5.2 (2016-11-05)
+- Fix: edge case bug when removing objects from an array.
+- Optimization: slightly improved insertion performance.
+
+
 ### 1.5.1 (2016-10-24)
 - Polish: when using selector strings, match all elements and remove all but the first one. This makes it more feasible to take a full static page and use it as a template.
 
