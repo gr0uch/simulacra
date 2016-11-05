@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.5.4 (2016-11-06)
+- Optimization: removed document fragment implementation, it was actually slower.
+
+
 ### 1.5.3 (2016-11-06)
 - Optimization: the default behavior for setting text should be significantly faster.
 - Revert: insertion optimizations, they were too fragile.
