@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.5.5 (2016-11-06)
+- Optimization: re-introduce insertion optimization, there was previously a bug that is now fixed.
+
+
 ### 1.5.4 (2016-11-06)
 - Optimization: removed document fragment implementation, it was actually slower.
 
