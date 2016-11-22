@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 1.5.6 (2016-11-22)
+- Polish: slightly improve safety of default behavior by checking around the text node.
+
+
 ### 1.5.5 (2016-11-06)
 - Optimization: re-introduce insertion optimization, there was previously a bug that is now fixed.
 
