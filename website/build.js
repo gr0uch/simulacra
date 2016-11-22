@@ -77,7 +77,7 @@ const documentBody = $({
   content,
   version: `#v${pkg.version}`,
   name: pkg.name,
-  description: pkg.description
+  description: pkg.description,
 }, [ 'body', {
   name: [ 'header h1', (node, value) => {
     node.innerHTML = [

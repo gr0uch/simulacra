@@ -108,7 +108,7 @@ There are some special cases for the *change* function:
 
 ## Helper Functions
 
-Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are completely optional and not part of the core functionality, but included for convenience. To use them, one can define a *change* function like so:
+Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are optional, and included for convenience. To use them, one can define a *change* function like so:
 
 ```js
 var bindObject = require('simulacra')
@@ -174,7 +174,7 @@ To run the benchmarks, you will have to clone the repository and build it by run
 
 On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound state object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
 
-When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. This is faster and simpler than diffing changes between DOM trees.
+When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. Array mutator methods are overridden with optimized implementations, which are faster and simpler than diffing changes between DOM trees.
 
 
 ## Caveats

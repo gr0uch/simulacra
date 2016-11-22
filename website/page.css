@@ -93,7 +93,7 @@ header {
     var(--color-background-header) 80%);
   background-color: var(--color-background-header);
   padding:
-    calc(var(--line-height) * 4)
+    calc(var(--line-height) * 3)
     var(--line-height)
     calc(var(--line-height) * 3 / 2);
   text-align: center;
@@ -131,6 +131,7 @@ header aside {
   border-right: 1px var(--color-fade) solid;
   border-top: none;
   border-bottom: none;
+  color: var(--color-alt);
 }
 
 header aside:last-of-type {
@@ -157,12 +158,12 @@ header h3 {
 }
 
 header h1 {
-  font-size: 2.5em;
+  font-size: 1.5em;
   font-family: var(--font-alt);
   font-style: italic;
   font-weight: normal;
   letter-spacing: calc(1em / -40);
-  line-height: calc(var(--line-height) / (2.5 / 2));
+  line-height: calc(var(--line-height) / 1.5);
   margin: 0;
   padding: 0;
   color: var(--color-solid);
@@ -173,14 +174,12 @@ header h1 span {
 }
 
 header h2 {
-  font-size: calc(1em * 7 / 8);
-  line-height: calc(var(--line-height) / (7 / 8));
+  font-size: calc(1em * 7 / 4);
+  line-height: calc(var(--line-height) * 2 / (7 / 4));
   font-weight: normal;
-  font-family: inherit;
   padding: 0;
-  margin: 0 0 calc(var(--line-height) * (3 / 2) / (7 / 8));
-  color: var(--color-body);
-  letter-spacing: 0;
+  margin: calc(var(--line-height) * 2 / (7 / 4)) 0 calc(var(--line-height) * 1 / (7 / 4));
+  color: var(--color-solid);
 }
 
 header code {
