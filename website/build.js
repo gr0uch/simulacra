@@ -76,8 +76,7 @@ const t0 = Date.now()
 const documentBody = $({
   content,
   version: `#v${pkg.version}`,
-  name: pkg.name,
-  description: pkg.description
+  name: pkg.name
 }, [ 'body', {
   name: [ 'header h1', (node, value) => {
     node.innerHTML = [
@@ -87,7 +86,6 @@ const documentBody = $({
       '</span>.js'
     ].join('')
   } ],
-  description: 'header h2',
   version: '.version',
   content: [ 'article', (node, value) => { node.innerHTML = value } ]
 } ]).innerHTML
