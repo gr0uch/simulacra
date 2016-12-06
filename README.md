@@ -193,10 +193,11 @@ This library makes use of these JavaScript features:
 
 It also makes use of these DOM API features:
 
-- **Node.contains** (DOM Living Standard): used for checking if bound elements are valid.
+- **Node.contains** (DOM Living Standard): used for checking if bound nodes are valid.
 - **Node.insertBefore** (DOM Level 1): used for inserting nodes.
+- **Node.removeChild** (DOM Level 1): used for removing nodes.
+- **Node.cloneNode** (DOM Level 2): used for creating nodes.
 - **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
-- **Node.removeChild** (DOM Level 1): used for removing elements.
 - **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
 - **MutationObserver** (DOM Level 4): used for the `animate` helper.
 
