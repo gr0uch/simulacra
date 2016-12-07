@@ -103,20 +103,22 @@ header {
 
 header > div {
   max-width: calc(var(--max-width) - var(--line-height) * 2);
-  margin: calc(var(--line-height) * 4) auto 0;
+  margin: calc(var(--line-height) * 4 - 1px) auto 0;
   position: relative;
   display: flex;
   flex-flow: row;
+  border-top: 1px var(--color-fade) solid;
 }
 
 header > div::before {
   content: ' ';
   display: block;
   background: var(--color-fade);
-  height: 1px;
+  opacity: 0.25;
+  height: 2px;
   width: 100%;
   left: 0;
-  bottom: 100%;
+  top: -5px;
   position: absolute;
 }
 
