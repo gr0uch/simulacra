@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 1.5.7 (2016-12-14)
+- Fix: default input event binding did not work in some cases.
+- Fix: typo in internal function `findTarget`.
+
+
 ### 1.5.6 (2016-11-22)
 - Polish: slightly improve safety of default behavior by checking around the text node.
 

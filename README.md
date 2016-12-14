@@ -76,7 +76,7 @@ By default, the value will be assigned to the element's `textContent` property (
 - **`element`**: the local DOM element.
 - **`value`**: the value assigned to the key of the bound object.
 - **`previousValue`**: the previous value assigned to the key of the bound object.
-- **`path`**: an array containing the full path to the value. For example: `[ 'users', 2, 'email' ]`. Integer values indicate array indices. The root object is accessible at the `root` property of the path array, i.e. `path.root`, and the deepest bound object is accessible at the `target` property, i.e. `path.target`.
+- **`path`**: an array containing the full path to the value. For example: `[ 'users', 2, 'email' ]`. Integer values indicate array indices. The root object is accessible at the `root` property of the path array, i.e. `path.root`, and the deepest bound object is accessible at the `target` property, i.e. `path.target`. *Note that the path is fixed and does not update when state changes.*
 
 To manipulate an element in a custom way, one may define a *change* function like so:
 
