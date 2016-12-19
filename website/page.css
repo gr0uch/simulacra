@@ -114,12 +114,12 @@ header > div::before {
   content: ' ';
   display: block;
   background: var(--color-fade);
-  opacity: 0.25;
-  height: 2px;
+  height: 3px;
   width: 100%;
   left: 0;
-  top: -5px;
+  top: -6px;
   position: absolute;
+  opacity: calc(1 / 4);
 }
 
 header > div::after {
@@ -178,6 +178,7 @@ header h1 span {
 header h2 {
   font-size: calc(1em * 7 / 4);
   line-height: calc(var(--line-height) * 2 / (7 / 4));
+  letter-spacing: 0.02em;
   font-weight: normal;
   padding: 0;
   margin: calc(var(--line-height) * 2 / (7 / 4)) 0 calc(var(--line-height) * 1 / (7 / 4));
