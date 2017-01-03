@@ -244,6 +244,12 @@ bindObject(state, binding, node)
 Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* functions will be run so that event binding can happen, but return values will be ignored. If the Node could not be rehydrated properly, it will throw an error.
 
 
+## Similar Projects
+
+- [Plates](https://github.com/flatiron/plates/) has a similar concept, but uses string templating instead of the DOM API.
+- [Bind.js](https://github.com/remy/bind.js/) has a similar API, but only works on simple key-value pairs and is unoptimized for arrays.
+
+
 ## License
 
 This software is licensed under the [MIT license](https://raw.githubusercontent.com/sapeien/simulacra/master/LICENSE).
