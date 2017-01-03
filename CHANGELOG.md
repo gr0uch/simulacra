@@ -1,6 +1,12 @@
 # Changelog
 
 
+### 2.0.0 (2017-01-03)
+- **Breaking change**: removed `flow` helper.
+- **Breaking change**: removed `setDefault` helper.
+- **Breaking change**: removed array indices from `path` argument.
+
+
 ### 1.5.7 (2016-12-14)
 - Fix: default input event binding did not work in some cases.
 - Fix: typo in internal function `findTarget`.

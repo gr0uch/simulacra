@@ -114,10 +114,10 @@ header > div::before {
   content: ' ';
   display: block;
   background: var(--color-fade);
-  height: 3px;
+  height: 2px;
   width: 100%;
   left: 0;
-  top: -6px;
+  top: -4px;
   position: absolute;
   opacity: calc(1 / 4);
 }

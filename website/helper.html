@@ -16,19 +16,23 @@ void function () {
 
   var template = document.getElementById('helper')
 
-  var flow = simulacra.flow
-  var setDefault = simulacra.setDefault
   var bindEvents = simulacra.bindEvents
   var animate = simulacra.animate
+  var retainElement = simulacra.retainElement
 
-  var change = flow(
-    setDefault,
-    bindEvents({
-      click: function (event) {
-        event.target.classList.toggle('alternate')
-      }
-    }),
-    animate('fade-in', 'bounce', 'fade-out', 1500))
+  var bindFn = bindEvents({
+    click: function (event) {
+      event.target.classList.toggle('alternate')
+    }
+  })
+
+  var animateFn = animate('fade-in', 'bounce', 'fade-out', 1500)
+
+  function change (node, value) {
+    animateFn.apply(null, arguments)
+    bindFn.apply(null, arguments)
+    return value || retainElement
+  }
 
   simulacra.useCommentNode = true
 

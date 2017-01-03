@@ -76,7 +76,7 @@ By default, the value will be assigned to the element's `textContent` property (
 - **`element`**: the local DOM element.
 - **`value`**: the value assigned to the key of the bound object.
 - **`previousValue`**: the previous value assigned to the key of the bound object.
-- **`path`**: an array containing the full path to the value. For example: `[ 'users', 2, 'email' ]`. Integer values indicate array indices. The root object is accessible at the `root` property of the path array, i.e. `path.root`, and the deepest bound object is accessible at the `target` property, i.e. `path.target`. *Note that the path is fixed and does not update when state changes.*
+- **`path`**: an object containing info on where the change occurred.
 
 To manipulate an element in a custom way, one may define a *change* function like so:
 
@@ -112,31 +112,30 @@ Simulacra.js includes some built-in helper functions for common use cases, such 
 
 ```js
 var bindObject = require('simulacra')
-var flow = bindObject.flow
-var setDefault = bindObject.setDefault
 var bindEvents = bindObject.bindEvents
 var animate = bindObject.animate
+var retainElement = bindObject.retainElement
 
-var change = flow(
-  // Use default behavior for mapping values to the DOM.
-  setDefault,
+// Accepts a hash keyed by event names, using this has the advantage of
+// automatically removing event listeners, even if the element is still
+// in the DOM. The optional second argument is `useCapture`.
+var bindFn = bindEvents({
+  // The first argument is the DOM event, second is the path.
+  click: function (event, path) {
+    event.target.classList.toggle('alternate')
+  }
+})
 
-  // Accepts a hash keyed by event names, using this has the advantage of
-  // automatically removing event listeners, even if the element is still
-  // in the DOM. The optional second argument is `useCapture`.
-  bindEvents({
-    // The first argument is the DOM event, second is the path to the state.
-    click: function (event, path) {
-      event.target.classList.toggle('alternate')
-    }
-  }),
+// Accepts class names on insert, mutate, and remove, and a time in ms for
+// how long to retain an element after removal.
+var animateFn = animate('fade-in', 'bounce', 'fade-out', 1500)
 
-  // Accepts class names on insert, mutate, and remove, and a time in ms for
-  // how long to retain an element after removal.
-  animate('fade-in', 'bounce', 'fade-out', 1500))
+function change (node, value) {
+  animateFn.apply(null, arguments)
+  bindFn.apply(null, arguments)
+  return value || retainElement
+}
 ```
-
-Note that `setDefault` should generally be set first if the default behavior is desired.
 
 
 ## Philosophy

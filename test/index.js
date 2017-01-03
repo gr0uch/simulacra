@@ -92,13 +92,12 @@ run(function (assert, comment) {
 
   bindings = [ template, {
     name: [ '.name', function (node, value, previousValue, path) {
-      assert(path.length === 1, 'path length is correct')
       if (!isRebinding) {
         isRebinding = true
         assert(path.root === data, 'root is correct')
         assert(path.target === data, 'target is correct')
       }
-      assert(path[0] === 'name', 'path is correct')
+      assert(path.key === 'name', 'path is correct')
       return value + '!'
     } ],
     details: [ '.details', {
@@ -108,23 +107,15 @@ run(function (assert, comment) {
             i++
             throw new Error('BOOM!')
           }
-          assert(path.length === 3, 'path length is correct')
           assert(path.root === data, 'root is correct')
           assert(path.target.size === 'XXL', 'target is correct')
-          assert(path[0] === 'details', 'path value is correct')
-          assert(path[1] === 0, 'path value is correct')
-          assert(path[2] === 'size', 'path value is correct')
         }
         return value
       } ],
       color: [ '.color',
         function (node, value, previousValue, path) {
-          assert(path.length === 3, 'path length is correct')
           assert(path.root === data, 'root is correct')
           assert(path.target === data.details, 'target is correct')
-          assert(path[0] === 'details', 'path value is correct')
-          assert(path[1] === 'color', 'path value is correct')
-          assert(typeof path[2] === 'number', 'array path is a number')
         } ]
     } ],
     prices: [ '.price', {
