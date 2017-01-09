@@ -16,7 +16,7 @@
   "bugs": "https://github.com/sapeien/simulacra/issues",
   "scripts": {
     "clean": "rimraf coverage.json coverage dist",
-    "deploy": "npm run build && ./website/deploy.sh",
+    "deploy": "./website/deploy.sh",
     "build": "mkdirp dist && npm run build:dist && npm run build:min && npm run build:web",
     "build:dist": "(node util/header; browserify util/global.js) > dist/simulacra.js",
     "build:min": "(node util/header; uglifyjs -cm -- dist/simulacra.js) > dist/simulacra.min.js",

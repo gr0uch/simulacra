@@ -117,9 +117,9 @@ header > div::before {
   height: 2px;
   width: 100%;
   left: 0;
-  top: -4px;
+  top: -3px;
   position: absolute;
-  opacity: calc(1 / 4);
+  opacity: calc(1 / 5);
 }
 
 header > div::after {
