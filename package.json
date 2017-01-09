@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "Reactive data binding for the web.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "author": {
     "name": "sapeien",
@@ -22,6 +22,7 @@
     "build:min": "(node util/header; uglifyjs -cm -- dist/simulacra.js) > dist/simulacra.min.js",
     "build:web": "node website/build",
     "postpublish": "npm run deploy && npm run tag",
+    "prepublish": "npm run build",
     "lint": "eslint lib test",
     "tag": "git tag `npm v simulacra version` && git push origin --tags",
     "test": "npm run lint && npm run test:browser",
@@ -55,7 +56,7 @@
   "main": "lib/index.js",
   "files": [
     "lib/",
-    "/*.js",
+    "dist/*.js",
     "LICENSE"
   ],
   "eslintConfig": {

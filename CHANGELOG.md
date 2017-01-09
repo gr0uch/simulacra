@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.0.1 (2017-01-09)
+- Polish: include `dist/*.js` in package.
+
+
 ### 2.0.0 (2017-01-03)
 - **Breaking change**: removed `flow` helper.
 - **Breaking change**: removed `setDefault` helper.
