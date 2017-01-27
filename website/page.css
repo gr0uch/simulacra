@@ -110,18 +110,6 @@ header > div {
   border-top: 1px var(--color-fade) solid;
 }
 
-header > div::before {
-  content: ' ';
-  display: block;
-  background: var(--color-fade);
-  height: 2px;
-  width: 100%;
-  left: 0;
-  top: -3px;
-  position: absolute;
-  opacity: calc(1 / 5);
-}
-
 header > div::after {
   content: ' ';
   display: block;
