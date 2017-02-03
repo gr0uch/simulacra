@@ -4,16 +4,16 @@
   "version": "2.0.1",
   "license": "MIT",
   "author": {
-    "name": "sapeien",
-    "email": "sapeien@airmail.cc",
-    "url": "http://sapeien.com"
+    "name": "daliwali",
+    "email": "daliwali@airmail.cc",
+    "url": "http://daliwali.com"
   },
   "homepage": "http://simulacra.js.org/",
   "repository": {
     "type": "git",
-    "url": "git@github.com:sapeien/simulacra.git"
+    "url": "git@github.com:daliwali/simulacra.git"
   },
-  "bugs": "https://github.com/sapeien/simulacra/issues",
+  "bugs": "https://github.com/daliwali/simulacra/issues",
   "scripts": {
     "clean": "rimraf coverage.json coverage dist",
     "deploy": "./website/deploy.sh",
@@ -31,25 +31,25 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browserify": "^13.1.1",
+    "browserify": "^14.0.0",
     "browserify-istanbul": "^2.0.0",
     "cssnano": "^3.10.0",
-    "domino": "^1.0.27",
-    "eslint": "^3.12.2",
+    "domino": "^1.0.28",
+    "eslint": "^3.14.1",
     "eslint-config-boss": "^1.0.5",
-    "fs-extra": "^1.0.0",
+    "fs-extra": "^2.0.0",
     "highlight.js": "^9.9.0",
-    "html-minifier": "^3.2.3",
+    "html-minifier": "^3.3.0",
     "istanbul": "^0.4.5",
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",
     "normalize.css": "^5.0.0",
-    "postcss": "^5.2.8",
+    "postcss": "^5.2.11",
     "postcss-cssnext": "^2.9.0",
-    "postcss-import": "^9.0.0",
+    "postcss-import": "^9.1.0",
     "rimraf": "^2.5.4",
     "tap-spec": "^4.1.1",
-    "tapdance": "^5.0.2",
+    "tapdance": "^5.0.3",
     "tape-run": "^2.1.5",
     "uglify-js": "^2.7.5"
   },

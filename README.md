@@ -1,7 +1,7 @@
 # [Simulacra.js](http://simulacra.js.org/)
-[![Build Status](https://img.shields.io/travis/sapeien/simulacra/master.svg?style=flat-square)](https://travis-ci.org/sapeien/simulacra)
+[![Build Status](https://img.shields.io/travis/daliwali/simulacra/master.svg?style=flat-square)](https://travis-ci.org/daliwali/simulacra)
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
-[![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/sapeien/simulacra/master/LICENSE)
+[![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/daliwali/simulacra/master/LICENSE)
 
 Simulacra.js makes a DOM Node update automatically in reaction to mutations in a JavaScript object. Get it from `npm`:
 
@@ -166,7 +166,7 @@ Its re-render performance is demonstrated in the [DBMonster benchmark](http://si
 | jQuery            | 20 ms    | 119 ms     | 24 ms      | 211 ms     |
 | Angular.js        | 17 ms    | 159 ms     | 24 ms      | 295 ms     |
 
-To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/sapeien/simulacra/tree/master/benchmark).
+To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/daliwali/simulacra/tree/master/benchmark).
 
 
 ## How it Works
@@ -245,10 +245,10 @@ Instead of returning a new Node, it will return the Node that was passed in, so 
 
 ## Similar Projects
 
-- [Plates](https://github.com/flatiron/plates/) has a similar concept, but uses string templating instead of the DOM API.
+- [Binding.scala](https://github.com/ThoughtWorksInc/Binding.scala) also binds objects to the DOM, but uses a templating language and is written in Scala.
 - [Bind.js](https://github.com/remy/bind.js/) has a similar API, but only works on simple key-value pairs and is unoptimized for arrays.
-
+- [Plates](https://github.com/flatiron/plates/) has a similar concept, but uses string templating instead of the DOM API.
 
 ## License
 
-This software is licensed under the [MIT license](https://raw.githubusercontent.com/sapeien/simulacra/master/LICENSE).
+This software is licensed under the [MIT license](https://raw.githubusercontent.com/daliwali/simulacra/master/LICENSE).
