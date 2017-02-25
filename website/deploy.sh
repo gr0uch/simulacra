@@ -1,6 +1,6 @@
 #!/bin/sh
 
-REPO_GIT=git@github.com:sapeien/simulacra.git
+REPO_GIT=git@github.com:daliwali/simulacra.git
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # Deploying to GitHub pages.
