@@ -187,7 +187,6 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 This library makes use of these JavaScript features:
 
 - **Object.defineProperty** (ES5): used for binding keys on objects.
-- **Object.freeze** (ES5.1): used to prevent internal state from being mutated.
 - **WeakMap** (ES6): memory efficient mapping of DOM nodes.
 
 It also makes use of these DOM API features:

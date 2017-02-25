@@ -1,12 +1,12 @@
 {
   "name": "simulacra",
   "description": "Reactive data binding for the web.",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "author": {
     "name": "daliwali",
-    "email": "daliwali@airmail.cc",
-    "url": "http://daliwali.com"
+    "email": "d@liwa.li",
+    "url": "http://daliwa.li"
   },
   "homepage": "http://simulacra.js.org/",
   "repository": {
@@ -18,8 +18,8 @@
     "clean": "rimraf coverage.json coverage dist",
     "deploy": "./website/deploy.sh",
     "build": "mkdirp dist && npm run build:dist && npm run build:min && npm run build:web",
-    "build:dist": "(node util/header; browserify util/global.js) > dist/simulacra.js",
-    "build:min": "(node util/header; uglifyjs -cm -- dist/simulacra.js) > dist/simulacra.min.js",
+    "build:dist": "(node util/header.js && browserify util/global.js) > dist/simulacra.js",
+    "build:min": "(node util/header.js && uglifyjs -cm -- dist/simulacra.js) > dist/simulacra.min.js",
     "build:web": "node website/build",
     "postpublish": "npm run deploy && npm run tag",
     "prepublish": "npm run build",

@@ -1,11 +1,11 @@
 <p>Here is an example of using the built-in helper functions to control animations and events:</p>
 <div class="example">
-  <div class="helper container">
+  <div class="container helper">
   </div>
 </div>
-<template id="helper">
+<div class="template helper">
   <div class="block"></block>
-</template>
+</div>
 <script>
 void function () {
   var simulacra = window.simulacra
@@ -14,7 +14,7 @@ void function () {
     numbers: Array(count)
   }
 
-  var template = document.getElementById('helper')
+  var template = document.querySelector('.template.helper')
 
   var bindEvents = simulacra.bindEvents
   var animate = simulacra.animate
@@ -36,10 +36,11 @@ void function () {
 
   simulacra.useCommentNode = true
 
-  document.querySelector('.helper').appendChild(
-    simulacra(state, [ template, {
-      numbers: [ '.block', change ]
-    } ]))
+  var element = simulacra(state, [ template, {
+    numbers: [ '.block', change ]
+  } ])
+  element.classList.remove('template')
+  document.querySelector('.container.helper').appendChild(element)
 
   setState()
 
