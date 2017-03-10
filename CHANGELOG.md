@@ -1,5 +1,8 @@
 # Changelog
 
+### 2.0.3 (2017-03-10)
+- Improvement: stricter check for adjacent nodes so that they are not allowed.
+
 
 ### 2.0.2 (2017-02-25)
 - Fix: IE11 compatibility problems.
