@@ -7,8 +7,8 @@
   <div class="block"></block>
 </div>
 <script>
-void function () {
-  var simulacra = window.simulacra
+void function (root) {
+  var simulacra = root.simulacra
   var count = 6
   var state = {
     numbers: Array(count)
@@ -57,5 +57,5 @@ void function () {
 
     setTimeout(setState, Math.random() * 250 + 250)
   }
-}()
+}(this)
 </script>

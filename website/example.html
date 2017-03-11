@@ -24,13 +24,13 @@
   </div>
 </div>
 <script>
-void function () {
-  var simulacra = window.simulacra
+void function (root) {
+  var simulacra = root.simulacra
   simulacra.useCommentNode = true
 
   var date = new Date()
 
-  var state = window.state = {
+  var state = root.state = {
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
@@ -42,7 +42,7 @@ void function () {
   }
 
   // Copypaste from above.
-  var rehydratedState = window.rehydratedState = {
+  var rehydratedState = root.rehydratedState = {
     name: 'Pumpkin Spice Latte',
     details: {
       meta: {
@@ -86,5 +86,5 @@ void function () {
       catch (error) { alert(error) }
     }
   })
-}()
+}(this)
 </script>
