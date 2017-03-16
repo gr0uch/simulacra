@@ -12,7 +12,7 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js returns a DOM Node that updates when its state object changes. Its entire API surface area is a single function (with some optional helpers and symbols), it does not introduce any new syntax or a template language, and it is designed to complement current and future web platform features, such as [Web Components](http://webcomponents.org/).
+Simulacra.js returns a DOM Node that updates when its state object changes. Its entire API surface area is a single function (with some optional helpers and symbols), and it does not introduce any new syntax or a template language.
 
 It is a fairly [low cost](#benchmarks) abstraction, though it may not be quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
 
@@ -147,7 +147,7 @@ Simulacra.js does data binding differently:
 - Rather than having much of a public API, it tries to be as opaque as possible. Every built-in way to mutate state is overridden, and becomes an integral part of how it works.
 - There is no templating syntax at all. Instead, the binding structure determines how to render an element. This also means that the state has a one-to-one mapping to the DOM.
 - All changes are atomic and run synchronously, there is no internal usage of timers or event loops and no need to wait for changes to occur.
-- It does not force any component architecture, this is best deferred to Web Components.
+- It does not force any component architecture, use a single bound object or as many as desired.
 
 What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using `state.details = { ... }` is different from `Object.assign(state.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
 
