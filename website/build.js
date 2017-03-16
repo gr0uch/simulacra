@@ -53,8 +53,7 @@ const text = (/(##(?:[\s\S]+)(?=))/g).exec(readme)[1]
 let content = marked(text, {
   renderer, highlight: (code, lang) => hjs.highlight(lang, code).value
 })
-const window = domino.createWindow(content)
-const document = window.document
+const document = domino.createWindow(content).document
 
 const exampleNode = document.createElement('div')
 exampleNode.innerHTML = exampleHTML
@@ -68,17 +67,14 @@ helperMarker.parentNode.insertBefore(helperNode, helperMarker)
 
 content = document.body.innerHTML
 
-function $ () {
-  return simulacra.apply(domino.createWindow(body), arguments)
+const page = domino.createWindow(body)
+
+function $ (a, b) {
+  return simulacra.call(page, a, b)
 }
 
-const t0 = Date.now()
-const documentBody = $({
-  content,
-  version: `#v${pkg.version}`,
-  name: pkg.name,
-  description: pkg.description,
-}, [ 'body', {
+const state = {}
+const binding = [ 'body', {
   name: [ 'header h1', (node, value) => {
     node.innerHTML = [
       '<span>',
@@ -90,12 +86,23 @@ const documentBody = $({
   description: 'header h2',
   version: '.version',
   content: [ 'article', (node, value) => { node.innerHTML = value } ]
-} ]).innerHTML
+} ]
+
+const documentBody = $(state, binding)
+const t0 = Date.now()
+
+state.content = content
+state.version = `#v${pkg.version}`
+state.name = pkg.name
+state.description = pkg.description
+
+const bodyHTML = documentBody.innerHTML
+
 console.info(`HTML rendered in ${Date.now() - t0} ms.`)
 
 mkdirp.sync(outputPath)
 fs.writeFileSync(path.join(outputPath, 'index.html'), minify(
-  [ head, documentBody ].join(''),
+  [ head, bodyHTML ].join(''),
   { collapseWhitespace: true }
 ))
 
