@@ -111,7 +111,7 @@ header > div {
   border-top: 1px var(--color-fade) solid;
 }
 
-header > div::after {
+header > div::after, header aside::after {
   content: ' ';
   display: block;
   clear: both;

@@ -29,6 +29,7 @@
 @media screen and (max-width: 640px) {
   header {
     padding-top: var(--line-height);
+    padding-bottom: calc(var(--line-height) * 1 / 2);
   }
 
   header h1 {
@@ -36,7 +37,7 @@
   }
 
   header h2 {
-    line-height: calc(var(--line-height) * 3 / 2 / (7 / 4));
+    line-height: calc(var(--line-height) * 3 / 2 / (9 / 5));
   }
 
   header .button label {
@@ -46,18 +47,34 @@
   header > div {
     display: block;
     border-top: none;
+    margin-top: calc(var(--line-height) * 7 / 2);
+    text-align: left;
   }
 
   header aside {
     border: none;
     border-top: 1px var(--color-fade) solid;
-    padding-bottom: calc(var(--line-height) * 1 / 2);
-    text-align: right;
     padding: calc(var(--line-height) * 1 / 2) 0 calc(var(--line-height) * 1);
   }
 
+  header ul {
+    margin: 0;
+  }
+
+  header li {
+    display: inline;
+  }
+
+  header li::after {
+    content: ',';
+    margin-right: 0.5em;
+  }
+
+  header li:last-of-type::after {
+    display: none;
+  }
+
   header aside h3 {
-    float: left;
     margin: 0;
   }
 
