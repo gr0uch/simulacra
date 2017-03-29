@@ -23,6 +23,7 @@ body {
   font-size: var(--size-body);
   color: var(--color-body);
   line-height: var(--line-height);
+  margin: 0;
   padding-bottom: calc(var(--line-height) * 2);
 }
 
@@ -164,12 +165,12 @@ header h1 span {
 }
 
 header h2 {
-  font-size: calc(1em * 7 / 4);
-  line-height: calc(var(--line-height) * 2 / (7 / 4));
+  font-size: calc(1em * 9 / 5);
+  line-height: calc(var(--line-height) * 2 / (9 / 5));
   letter-spacing: 0.01em;
   font-weight: normal;
   padding: 0;
-  margin: calc(var(--line-height) * (5 / 2) / (7 / 4)) 0 calc(var(--line-height) * 1 / (7 / 4));
+  margin: calc(var(--line-height) * (5 / 2) / (9 / 5)) 0 calc(var(--line-height) * 1 / (9 / 5));
   color: var(--color-solid);
 }
 

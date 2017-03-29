@@ -27,12 +27,25 @@
 }
 
 @media screen and (max-width: 640px) {
-  header > div {
-    display: block;
+  header {
+    padding-top: var(--line-height);
   }
 
-  header > div::before {
+  header h1 {
+    text-align: left;
+  }
+
+  header h2 {
+    line-height: calc(var(--line-height) * 3 / 2 / (7 / 4));
+  }
+
+  header .button label {
     display: none;
+  }
+
+  header > div {
+    display: block;
+    border-top: none;
   }
 
   header aside {
