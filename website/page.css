@@ -78,7 +78,7 @@ pre code {
   font-weight: inherit;
   padding-top: calc(var(--line-height) * 1 * 4 / 5);
   margin: calc(var(--line-height) * 2 * 4 / 5) 0 calc(var(--line-height) * 1 * 4 / 5);
-  letter-spacing: 0.03em;
+  letter-spacing: 1px;
 }
 
 :--header a {
@@ -145,7 +145,7 @@ header h3 {
   font-size: calc(1em * 7 / 8);
   line-height: calc(var(--line-height) * 8 / 7);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 1px;
 }
 
 header h1 {
@@ -153,7 +153,7 @@ header h1 {
   font-family: var(--font-alt);
   font-style: italic;
   font-weight: normal;
-  letter-spacing: calc(1em / -40);
+  letter-spacing: -1px;
   line-height: calc(var(--line-height) / 1.5);
   margin: 0;
   padding: 0;
@@ -167,7 +167,7 @@ header h1 span {
 header h2 {
   font-size: calc(1em * 9 / 5);
   line-height: calc(var(--line-height) * 2 / (9 / 5));
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   font-weight: normal;
   padding: 0;
   margin: calc(var(--line-height) * (5 / 2) / (9 / 5)) 0 calc(var(--line-height) * 1 / (9 / 5));

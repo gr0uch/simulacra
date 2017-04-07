@@ -1,6 +1,6 @@
 {
   "name": "simulacra",
-  "description": "Reactive data binding for the web.",
+  "description": "A function for binding data to the DOM.",
   "version": "2.0.3",
   "license": "MIT",
   "author": {
@@ -31,11 +31,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browserify": "^14.1.0",
+    "browserify": "^14.3.0",
     "browserify-istanbul": "^2.0.0",
     "cssnano": "^3.10.0",
     "domino": "^1.0.28",
-    "eslint": "^3.18.0",
+    "eslint": "^3.19.0",
     "eslint-config-boss": "^1.0.5",
     "fs-extra": "^2.1.2",
     "highlight.js": "^9.10.0",
@@ -51,7 +51,7 @@
     "tap-spec": "^4.1.1",
     "tapdance": "^5.0.4",
     "tape-run": "^3.0.0",
-    "uglify-js": "^2.8.18"
+    "uglify-js": "^2.8.21"
   },
   "main": "lib/index.js",
   "files": [
