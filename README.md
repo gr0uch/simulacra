@@ -192,6 +192,9 @@ This library makes use of these JavaScript features:
 It also makes use of these DOM API features:
 
 - **Node.contains** (DOM Living Standard): used for checking if bound nodes are valid.
+- **Node.nextElementSibling** (DOM Living Standard): used for checking if a node is the last child or not.
+- **Node.nextSibling** (DOM Level 1): used for performance optimizations.
+- **Node.appendChild** (DOM Level 1): used for appending nodes.
 - **Node.insertBefore** (DOM Level 1): used for inserting nodes.
 - **Node.removeChild** (DOM Level 1): used for removing nodes.
 - **Node.cloneNode** (DOM Level 2): used for creating nodes.

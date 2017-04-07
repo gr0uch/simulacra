@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "A function for binding data to the DOM.",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "MIT",
   "author": {
     "name": "daliwali",

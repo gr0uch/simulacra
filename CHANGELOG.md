@@ -1,5 +1,11 @@
 # Changelog
 
+
+### 2.0.4 (2017-04-07)
+- Optimization: prefer `appendChild` over `insertBefore` if possible.
+- Polish: re-use of rehydrated comment nodes.
+
+
 ### 2.0.3 (2017-03-10)
 - Improvement: stricter check for adjacent nodes so that they are not allowed.
 
