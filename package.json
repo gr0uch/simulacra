@@ -1,6 +1,6 @@
 {
   "name": "simulacra",
-  "description": "A function for binding data to the DOM.",
+  "description": "A function that binds data to the DOM.",
   "version": "2.0.4",
   "license": "MIT",
   "author": {
