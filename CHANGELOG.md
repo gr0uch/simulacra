@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 2.0.5 (2017-04-20)
+- Refactor: remove dependency on `WeakMap`.
+- Polish: ignore events on child nodes after the parent has been retained.
+
+
 ### 2.0.4 (2017-04-07)
 - Optimization: prefer `appendChild` over `insertBefore` if possible.
 - Polish: re-use of rehydrated comment nodes.

@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "A function that binds data to the DOM.",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "license": "MIT",
   "author": {
     "name": "daliwali",
@@ -38,20 +38,20 @@
     "eslint": "^3.19.0",
     "eslint-config-boss": "^1.0.5",
     "fs-extra": "^2.1.2",
-    "highlight.js": "^9.10.0",
-    "html-minifier": "^3.4.2",
+    "highlight.js": "^9.11.0",
+    "html-minifier": "^3.4.3",
     "istanbul": "^0.4.5",
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",
     "normalize.css": "^6.0.0",
-    "postcss": "^5.2.16",
+    "postcss": "^5.2.17",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
     "rimraf": "^2.6.1",
     "tap-spec": "^4.1.1",
     "tapdance": "^5.0.4",
     "tape-run": "^3.0.0",
-    "uglify-js": "^2.8.21"
+    "uglify-js": "^2.8.22"
   },
   "main": "lib/index.js",
   "files": [

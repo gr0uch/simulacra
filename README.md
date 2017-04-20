@@ -184,10 +184,9 @@ When a bound key is assigned, it gets internally casted into an array if it is n
 
 ## Under the Hood
 
-This library makes use of these JavaScript features:
+This library requires these JavaScript features:
 
 - **Object.defineProperty** (ES5): used for binding keys on objects.
-- **WeakMap** (ES6): memory efficient mapping of DOM nodes.
 
 It also makes use of these DOM API features:
 
@@ -202,7 +201,7 @@ It also makes use of these DOM API features:
 - **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
 - **MutationObserver** (DOM Level 4): used for the `animate` helper.
 
-No shims are included. At the bare minimum, it works in IE9+ with a WeakMap polyfill, but otherwise it should work in IE11+.
+No shims are included. The bare minimum should be IE9, which has object property support.
 
 
 ## Server-Side Rendering
