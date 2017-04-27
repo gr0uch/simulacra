@@ -154,19 +154,12 @@ What Simulacra.js does is capture the intent of state changes, so it is importan
 
 ## Benchmarks
 
-Its re-render performance is demonstrated in the [DBMonster benchmark](http://simulacra.js.org/dbmonster/). In initial rendering speed based on the [benchmarks](https://lhorie.github.io/mithril/benchmarks.html) from Mithril.js, here's how it compares. Tests ran on a Linux desktop using Chromium.
+There are a few benchmarks implemented with Simulacra.js:
 
-| Name              | Loading  | Scripting  | Rendering  | Aggregate  |
-|:------------------|:---------|:-----------|:-----------|:-----------|
-| *appendChild*     | 10 ms    | 3 ms       | 13 ms      | 38 ms      |
-| Simulacra.js      | 9 ms     | 9 ms       | 13 ms      | 39 ms      |
-| React.js          | 23 ms    | 76 ms      | 13 ms      | 129 ms     |
-| Mithril.js        | 16 ms    | 77 ms      | 23 ms      | 165 ms     |
-| Backbone          | 20 ms    | 106 ms     | 23 ms      | 191 ms     |
-| jQuery            | 20 ms    | 119 ms     | 24 ms      | 211 ms     |
-| Angular.js        | 17 ms    | 159 ms     | 24 ms      | 295 ms     |
-
-To run the benchmarks, you will have to clone the repository and build it by running `npm run build`. The benchmarks are located [here](https://github.com/daliwali/simulacra/tree/master/benchmark).
+- [JS Framework benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html): testing most common DOM operations.
+- [DBMonster benchmark](http://simulacra.js.org/dbmonster/): mainly re-render performance.
+- [Browser render benchmark](https://github.com/daliwali/simulacra/blob/master/benchmark/simulacra.html) ([control](https://github.com/daliwali/simulacra/blob/master/benchmark/native.html)): this is a custom benchmark adapted from Mithril.js, used for comparing Simulacra.js against the native DOM API.
+- [Node.js render benchmark](https://github.com/daliwali/simulacra/blob/master/benchmark/render.js): this is a custom benchmark used for comparing Simulacra.js against raw string building.
 
 
 ## How it Works
