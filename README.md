@@ -138,68 +138,9 @@ function change (node, value) {
 ```
 
 
-## Philosophy
-
-The namesake of this library comes from Jean Baudrillard's *[Simulacra and Simulation](https://en.wikipedia.org/wiki/Simulacra_and_Simulation)*. The mental model it provides is that the user interface is a first order simulacrum, or a faithful representation of state.
-
-Simulacra.js does data binding differently:
-
-- Rather than having much of a public API, it tries to be as opaque as possible. Every built-in way to mutate state is overridden, and becomes an integral part of how it works.
-- There is no templating syntax at all. Instead, the binding structure determines how to render an element. This also means that the state has a one-to-one mapping to the DOM.
-- All changes are atomic and run synchronously, there is no internal usage of timers or event loops and no need to wait for changes to occur.
-- It does not force any component architecture, use a single bound object or as many as desired.
-
-What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using `state.details = { ... }` is different from `Object.assign(state.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
-
-
-## Benchmarks
-
-There are a few benchmarks implemented with Simulacra.js:
-
-- [JS Framework benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html): testing most common DOM operations.
-- [DBMonster benchmark](http://simulacra.js.org/dbmonster/): mainly re-render performance.
-- [Browser render benchmark](https://github.com/daliwali/simulacra/blob/master/benchmark/simulacra.html) ([control](https://github.com/daliwali/simulacra/blob/master/benchmark/native.html)): this is a custom benchmark adapted from Mithril.js, used for comparing Simulacra.js against the native DOM API.
-- [Node.js render benchmark](https://github.com/daliwali/simulacra/blob/master/benchmark/render.js): this is a custom benchmark used for comparing Simulacra.js against raw string building.
-
-
-## How it Works
-
-On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound state object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
-
-When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. Array mutator methods are overridden with optimized implementations, which are faster and simpler than diffing changes between DOM trees.
-
-
-## Caveats
-
-- The `delete` keyword will not trigger a DOM update. Although ES6 `Proxy` has a trap for this keyword, its browser support is lacking and it can not be polyfilled. Also, it would break the API of Simulacra.js for this one feature, so the recommended practice is to set the value to `null` rather than trying to `delete` the key.
-- Out-of-bounds array index assignment will not work, because the number of setters is equal to the length of the array. Similarly, setting the length of an array will not work because a setter can't be defined on the `length` property.
-
-
-## Under the Hood
-
-This library requires these JavaScript features:
-
-- **Object.defineProperty** (ES5): used for binding keys on objects.
-
-It also makes use of these DOM API features:
-
-- **Node.contains** (DOM Living Standard): used for checking if bound nodes are valid.
-- **Node.nextElementSibling** (DOM Living Standard): used for checking if a node is the last child or not.
-- **Node.nextSibling** (DOM Level 1): used for performance optimizations.
-- **Node.appendChild** (DOM Level 1): used for appending nodes.
-- **Node.insertBefore** (DOM Level 1): used for inserting nodes.
-- **Node.removeChild** (DOM Level 1): used for removing nodes.
-- **Node.cloneNode** (DOM Level 2): used for creating nodes.
-- **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
-- **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
-- **MutationObserver** (DOM Level 4): used for the `animate` helper.
-
-No shims are included. The bare minimum should be IE9, which has object property support.
-
-
 ## Server-Side Rendering
 
-Simulacra.js includes an optimized string rendering function, though it implements a subset of Simulacra.js and the DOM, however it should work for most common use cases.
+Simulacra.js includes an optimized string rendering function. It implements a subset of Simulacra.js and the DOM, but it should work for most common use cases.
 
 ```js
 const render = require('simulacra/render')
@@ -251,6 +192,133 @@ bindObject(state, binding, node)
 ```
 
 Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* functions will be run so that event binding can happen, but return values will be ignored. If the Node could not be rehydrated properly, it will throw an error.
+
+
+## Dependent Values
+
+Nodes are updated *if and only if* their values change, that is each value has a 1:1 correspondence to the DOM. To implement changes due to external values, it can be handled externally. For example, given this setup:
+
+```js
+var state = {
+  products: [
+    { name: 'Foo', basePrice: 1.21 },
+    { name: 'Bar', basePrice: 2.35 }
+  ]
+}
+var binding = [ '.product', {
+  name: '.name',
+  displayPrice: '.price'
+}, initializeProduct ]
+```
+
+The `displayPrice` value can be computed dynamically based on a `conversionRate`:
+
+```js
+var conversionRate
+
+Object.defineProperty(state, 'conversionRate', {
+  get: function () { return conversionRate },
+  set: function (value) {
+    var i, j, product
+
+    if (state.products)
+      for (i = 0, j = state.products.length; i < j; i++) {
+        product = state.products[i]
+        product.displayPrice = calculatePrice(product.basePrice, value)
+      }
+
+    return conversionRate = value
+  }
+})
+```
+
+This will work whenever the `conversionRate` is set, but will not change when the `basePrice` is set. That needs to be handled separately:
+
+```js
+function initializeProduct (node, value) {
+  var basePrice, initialValue
+
+  if (value) {
+    initialValue = value.basePrice
+
+    Object.defineProperty(value, 'basePrice', {
+      get: function () { return basePrice },
+      set: function (price) {
+        value.displayPrice =
+          calculatePrice(value.basePrice, state.conversionRate)
+        return basePrice = price
+      }
+    })
+
+    value.basePrice = initialValue
+  }
+}
+
+function calculatePrice (basePrice, conversionRate) {
+  return basePrice * conversionRate
+}
+```
+
+The above is just an example, it is opaque how this computation is done. More abstractions on top allow state to have a more flexible structure that may not correspond to the DOM.
+
+
+## Benchmarks
+
+There are a few benchmarks implemented with Simulacra.js:
+
+- [JS Framework benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html): testing most common DOM operations.
+- [DBMonster benchmark](http://simulacra.js.org/dbmonster/): mainly re-render performance.
+- [Browser render benchmark](https://github.com/daliwali/simulacra/blob/master/benchmark/simulacra.html) ([control](https://github.com/daliwali/simulacra/blob/master/benchmark/native.html)): this is a custom benchmark adapted from Mithril.js, used for comparing Simulacra.js against the native DOM API.
+- [Node.js render benchmark](https://github.com/daliwali/simulacra/blob/master/benchmark/render.js): this is a custom benchmark used for comparing Simulacra.js against raw string building.
+
+
+## Philosophy
+
+The namesake of this library comes from Jean Baudrillard's *[Simulacra and Simulation](https://en.wikipedia.org/wiki/Simulacra_and_Simulation)*. The mental model it provides is that the user interface is a first order simulacrum, or a faithful representation of state.
+
+Simulacra.js does data binding differently:
+
+- Rather than having much of a public API, it tries to be as opaque as possible. Every built-in way to mutate state is overridden, and becomes an integral part of how it works.
+- There is no templating syntax at all. Instead, the binding structure determines how to render an element. This also means that the state has a one-to-one mapping to the DOM.
+- All changes are atomic and run synchronously, there is no internal usage of timers or event loops and no need to wait for changes to occur.
+- It does not force any component architecture, use a single bound object or as many as desired.
+
+What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using `state.details = { ... }` is different from `Object.assign(state.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
+
+
+## How it Works
+
+On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound state object, it clones template elements and applies the *change* function on the cloned elements, and appends them near the marker or adjacent nodes.
+
+When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. Array mutator methods are overridden with optimized implementations, which are faster and simpler than diffing changes between DOM trees.
+
+
+## Caveats
+
+- The `delete` keyword will not trigger a DOM update. Although ES6 `Proxy` has a trap for this keyword, its browser support is lacking and it can not be polyfilled. Also, it would break the API of Simulacra.js for this one feature, so the recommended practice is to set the value to `null` rather than trying to `delete` the key.
+- Out-of-bounds array index assignment will not work, because the number of setters is equal to the length of the array. Similarly, setting the length of an array will not work because a setter can't be defined on the `length` property.
+
+
+## Under the Hood
+
+This library requires these JavaScript features:
+
+- **Object.defineProperty** (ES5): used for binding keys on objects.
+
+It also makes use of these DOM API features:
+
+- **Node.contains** (DOM Living Standard): used for checking if bound nodes are valid.
+- **Node.nextElementSibling** (DOM Living Standard): used for checking if a node is the last child or not.
+- **Node.nextSibling** (DOM Level 1): used for performance optimizations.
+- **Node.appendChild** (DOM Level 1): used for appending nodes.
+- **Node.insertBefore** (DOM Level 1): used for inserting nodes.
+- **Node.removeChild** (DOM Level 1): used for removing nodes.
+- **Node.cloneNode** (DOM Level 2): used for creating nodes.
+- **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
+- **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
+- **MutationObserver** (DOM Level 4): used for the `animate` helper.
+
+No shims are included. The bare minimum should be IE9, which has object property support.
 
 
 ## Similar Projects
