@@ -3,5 +3,3 @@ coverage/
 dist/
 coverage.json
 *.log
-/*.js
-/*.html

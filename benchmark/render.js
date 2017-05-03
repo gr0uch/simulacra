@@ -2,15 +2,23 @@
 
 var domino = require('domino')
 var simulacra = require('../lib')
+var render = require('../lib/render')
 
-var cases = [ renderString, renderDOM, renderSimulacra ]
+var cases = [ renderString, renderSimulacra, renderDOM, renderSimulacraDOM ]
 var iterations = 1000
+
+var sharedBinding = {
+  items: [ 'input', function (node, value) { node.value = value.name } ]
+}
 
 console.log('number of iterations: ' + iterations)
 
 cases.map(function (testCase) {
   var t0 = Date.now()
   var result, i
+
+  // Do one warm-up iteration.
+  testCase()
 
   for (i = 0; i < iterations; i++) testCase()
   result = Date.now() - t0
@@ -31,8 +39,8 @@ function renderString () {
 }
 
 function renderDOM () {
-  var rawWindow = domino.createWindow()
-  var document = rawWindow.document
+  var window = domino.createWindow()
+  var document = window.document
   var body = document.body
   var items = makeData().items
   var i, j, element
@@ -46,14 +54,18 @@ function renderDOM () {
   return body.innerHTML
 }
 
-function renderSimulacra () {
+function renderSimulacraDOM () {
   var window = domino.createWindow('<input>')
   var state = makeData()
   var binding = [ 'body', {
-    items: [ 'input', function (node, value) { if (value) return value.name } ]
+    items: [ 'input', function (node, value) { return value.name } ]
   } ]
 
   return simulacra.call(window, state, binding).innerHTML
+}
+
+function renderSimulacra () {
+  return render(makeData(), sharedBinding, '<input>')
 }
 
 function makeData () {

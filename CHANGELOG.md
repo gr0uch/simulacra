@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.0 (2017-05-03)
+- Feature: add string rendering function for Node.js, to improve performance.
+
+
 ### 2.0.6 (2017-04-23)
 - Fix: allow internal properties to be configured, fixed a problem with rehydration.
 

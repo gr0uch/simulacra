@@ -199,7 +199,25 @@ No shims are included. The bare minimum should be IE9, which has object property
 
 ## Server-Side Rendering
 
-Simulacra.js works in Node.js (it's isomorphic!), with one thing to keep in mind: it should be called within the context of the `window` global, however this may be optional in some implementations. This is most easily done by using `Function.prototype.bind`, although `Function.prototype.call` is more performant. In the following example, [Domino](https://github.com/fgnass/domino) is used as the DOM implementation.
+Simulacra.js includes an optimized string rendering function, though it implements a subset of Simulacra.js and the DOM, however it should work for most common use cases.
+
+```js
+const render = require('simulacra/render')
+
+const state = { message: 'Hello world!' }
+const binding = { message: 'h1' }
+const template = '<h1></h1>'
+
+// The first call to `render` will process the template.
+render(state, binding, template)
+
+// Subsequent calls do not need the template anymore.
+console.log(render(state, binding))
+```
+
+This will print the string `<h1>Hello world!</h1>` to `stdout`.
+
+The DOM API in Node.js can also work, it should be called within the context of the `window` global, however this may be optional in some implementations. In the following example, [Domino](https://github.com/fgnass/domino) is used as the DOM implementation.
 
 ```js
 const domino = require('domino')
@@ -208,14 +226,12 @@ const bindObject = require('simulacra')
 const window = domino.createWindow('<h1></h1>')
 const $ = bindObject.bind(window)
 const state = { message: 'Hello world!' }
-const binding = [ 'body', {
-  message: 'h1'
-} ]
+const binding = [ 'body', { message: 'h1' } ]
 
 console.log($(state, binding).innerHTML)
 ```
 
-This will print the string `<h1>Hello world!</h1>` to `stdout`.
+This will also print the string `<h1>Hello world!</h1>` to `stdout`.
 
 
 ## Rehydrating from Server Rendered Page
