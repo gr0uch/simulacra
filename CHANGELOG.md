@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 2.1.1 (2017-05-03)
+- Refactor: improve packaging.
+- Refactor: don't make functions in a loop.
+
+
 ### 2.1.0 (2017-05-03)
 - Feature: add string rendering function for Node.js, to improve performance.
 
