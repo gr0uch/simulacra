@@ -25,6 +25,7 @@ body {
   line-height: var(--line-height);
   margin: 0;
   padding-bottom: calc(var(--line-height) * 2);
+  hyphens: auto;
 }
 
 a {
@@ -96,7 +97,7 @@ header {
   padding:
     calc(var(--line-height) * 3)
     var(--line-height)
-    calc(var(--line-height) * 3 / 2);
+    calc(var(--line-height) * 2);
   text-align: center;
   overflow: hidden;
   position: relative;
