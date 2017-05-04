@@ -22,7 +22,8 @@ cases.map(function (testCase) {
 
   for (i = 0; i < iterations; i++) testCase()
   result = Date.now() - t0
-  console.log('test case "' + testCase.name + '" took: ' + result + ' ms')
+  console.log('test case "' + testCase.name + '" took: ' + result +
+    ' ms (avg: ' + (result / iterations) + ' ms)')
   return result
 })
 
