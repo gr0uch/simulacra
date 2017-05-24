@@ -323,6 +323,7 @@ No shims are included. The bare minimum should be IE9, which has object property
 
 ## Similar Projects
 
+- [Vue.js](https://vuejs.org/) uses meta-programming to [a limited extent](https://vuejs.org/v2/guide/reactivity.html). In contrast to Simulacra.js, it uses a templating language and comes with its own notion of *components*.
 - [Binding.scala](https://github.com/ThoughtWorksInc/Binding.scala) also binds objects to the DOM, but uses a templating language and is written in Scala.
 - [Bind.js](https://github.com/remy/bind.js/) has a similar API, but only works on simple key-value pairs and is unoptimized for arrays.
 - [Plates](https://github.com/flatiron/plates/) has a similar concept, but uses string templating instead of the DOM API.
