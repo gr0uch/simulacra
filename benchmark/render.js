@@ -14,12 +14,12 @@ var sharedBinding = {
 console.log('number of iterations: ' + iterations)
 
 cases.map(function (testCase) {
-  var t0 = Date.now()
-  var result, i
+  var t0, result, i
 
   // Do one warm-up iteration.
   testCase()
 
+  t0 = Date.now()
   for (i = 0; i < iterations; i++) testCase()
   result = Date.now() - t0
   console.log('test case "' + testCase.name + '" took: ' + result +

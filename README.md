@@ -194,74 +194,6 @@ bindObject(state, binding, node)
 Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All *change* functions will be run so that event binding can happen, but return values will be ignored. If the Node could not be rehydrated properly, it will throw an error.
 
 
-## Dependent Values
-
-Nodes are updated *if and only if* their values change, that is each value has a 1:1 correspondence to the DOM. To implement changes due to external values, it can be handled externally. For example, given this setup:
-
-```js
-var state = {
-  products: [
-    { name: 'Foo', basePrice: 1.21 },
-    { name: 'Bar', basePrice: 2.35 }
-  ]
-}
-var binding = [ '.product', {
-  name: '.name',
-  displayPrice: '.price'
-}, initializeProduct ]
-```
-
-The `displayPrice` value can be computed dynamically based on a `conversionRate`:
-
-```js
-var conversionRate
-
-Object.defineProperty(state, 'conversionRate', {
-  get: function () { return conversionRate },
-  set: function (value) {
-    var i, j, product
-
-    if (state.products)
-      for (i = 0, j = state.products.length; i < j; i++) {
-        product = state.products[i]
-        product.displayPrice = calculatePrice(product.basePrice, value)
-      }
-
-    return conversionRate = value
-  }
-})
-```
-
-This will work whenever the `conversionRate` is set, but will not change when the `basePrice` is set. That needs to be handled separately:
-
-```js
-function initializeProduct (node, value) {
-  var basePrice, initialValue
-
-  if (value) {
-    initialValue = value.basePrice
-
-    Object.defineProperty(value, 'basePrice', {
-      get: function () { return basePrice },
-      set: function (price) {
-        value.displayPrice =
-          calculatePrice(value.basePrice, state.conversionRate)
-        return basePrice = price
-      }
-    })
-
-    value.basePrice = initialValue
-  }
-}
-
-function calculatePrice (basePrice, conversionRate) {
-  return basePrice * conversionRate
-}
-```
-
-The above is just an example, it is opaque how this computation is done. More abstractions on top allow state to have a more flexible structure that may not correspond to the DOM.
-
-
 ## Benchmarks
 
 There are a few benchmarks implemented with Simulacra.js:
@@ -284,6 +216,8 @@ Simulacra.js does data binding differently:
 - It does not force any component architecture, use a single bound object or as many as desired.
 
 What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using `state.details = { ... }` is different from `Object.assign(state.details, { ... })`, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (`push`, `splice`, `pop`, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.
+
+Nodes are updated *if and only if* their values change, that is each value has a 1:1 correspondence to the DOM. Generally, elements should be rendered based on their value alone, external inputs should be avoided.
 
 
 ## How it Works
