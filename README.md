@@ -40,7 +40,7 @@ var state = {
   name: 'Pumpkin Spice Latte',
   details: {
     size: [ 'Tall', 'Grande', 'Venti' ],
-    vendor: 'Starbucks'
+    vendor: 'Coffee Co.'
   }
 }
 ```

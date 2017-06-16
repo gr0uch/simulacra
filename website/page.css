@@ -105,7 +105,7 @@ header {
 
 header > div {
   max-width: calc(var(--max-width) - var(--line-height) * 2);
-  margin: calc(var(--line-height) * 4 - 1px) auto 0;
+  margin: calc(var(--line-height) * (7 / 2) - 1px) auto 0;
   position: relative;
   display: flex;
   flex-flow: row;
@@ -139,12 +139,13 @@ header ul {
 }
 
 header h3 {
+  font-family: inherit;
   margin: calc(var(--line-height) * 1 / (4 / 5)) 0 calc(var(--line-height) * (1 / 2) / (4 / 5));
   padding: 0;
   font-size: calc(1em * 4 / 5);
   line-height: calc(var(--line-height) / (4 / 5));
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 header h1 {
@@ -155,7 +156,7 @@ header h1 {
   line-height: calc(var(--line-height) / 1.4);
   margin: 0;
   padding: 0;
-  color: var(--color-solid);
+  color: var(--color-body);
 }
 
 header h1 span {
@@ -163,13 +164,12 @@ header h1 span {
 }
 
 header h2 {
-  font-family: inherit;
   font-size: calc(1em * 9 / 5);
   line-height: calc(var(--line-height) * 2 / (9 / 5));
   letter-spacing: 0;
   font-weight: normal;
   padding: 0;
-  margin: calc(var(--line-height) * (5 / 2) / (9 / 5)) 0 calc(var(--line-height) * (3 / 2) / (9 / 5));
+  margin: calc(var(--line-height) * (5 / 2) / (9 / 5)) 0 calc(var(--line-height) * 1 / (9 / 5));
   color: var(--color-solid);
 }
 
