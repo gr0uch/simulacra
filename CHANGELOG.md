@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 2.1.2 (2017-07-05)
+- Polish: add entry point for optional helpers at `simulacra/helpers`.
+- Polish: add `package-lock.json`.
+
+
 ### 2.1.1 (2017-05-03)
 - Refactor: improve packaging.
 - Refactor: don't make functions in a loop.

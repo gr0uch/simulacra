@@ -12,7 +12,7 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js returns a DOM Node that updates when its state object changes. Its entire API surface area is a single function (with some optional helpers and symbols), and it does not introduce any new syntax or a template language.
+Simulacra.js returns a DOM Node that updates when its state object changes. Its entire API surface area is a single function, and it does not introduce any new syntax or a template language.
 
 It is a fairly [low cost](#benchmarks) abstraction, though it may not be quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
 
@@ -108,13 +108,19 @@ There are some special cases for the *change* function:
 
 ## Helper Functions
 
-Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are optional, and included for convenience. To use them, one can define a *change* function like so:
+Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are optionalto use, and are opt-in functionality. To use them, one can define a *change* function like so:
 
 ```js
 var bindObject = require('simulacra')
-var bindEvents = bindObject.bindEvents
-var animate = bindObject.animate
+
+// This is a Symbol used to signal that an element should be retained
+// in the DOM after its value is unset.
 var retainElement = bindObject.retainElement
+
+// Helpers are convenience functions for common features, optional to use.
+var helpers = require('simulacra/helpers')
+var animate = helpers.animate
+var bindEvents = helpers.bindEvents
 
 // Accepts a hash keyed by event names, using this has the advantage of
 // automatically removing event listeners, even if the element is still
