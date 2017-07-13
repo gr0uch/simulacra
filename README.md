@@ -254,6 +254,7 @@ It also makes use of these DOM API features:
 - **Node.insertBefore** (DOM Level 1): used for inserting nodes.
 - **Node.removeChild** (DOM Level 1): used for removing nodes.
 - **Node.cloneNode** (DOM Level 2): used for creating nodes.
+- **Node.normalize** (DOM Level 2): cleaning up DOM nodes.
 - **Node.isEqualNode** (DOM Level 3): used for equality checking after cloning nodes.
 - **TreeWalker** (DOM Level 2): fast iteration through DOM nodes.
 - **MutationObserver** (DOM Level 4): used for the `animate` helper.

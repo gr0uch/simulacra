@@ -1,6 +1,13 @@
 # Changelog
 
 
+### 2.1.3 (2017-07-13)
+- Benchmark: add a realistic server-side rendering example/benchmark.
+- Fix: a few severe bugs fixed in the server-side rendering function.
+- Optimization: improve server-side rendering performance by serializing more static nodes.
+- Optimization: normalize nodes by default.
+
+
 ### 2.1.2 (2017-07-05)
 - Polish: add entry point for optional helpers at `simulacra/helpers`.
 - Polish: add `package-lock.json`.
