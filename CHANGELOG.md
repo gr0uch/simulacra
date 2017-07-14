@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.4 (2017-07-14)
+- Optimization: the browser version now strips empty text nodes from the template before processing.
+
+
 ### 2.1.3 (2017-07-13)
 - Benchmark: add a realistic server-side rendering example/benchmark.
 - Fix: a few severe bugs fixed in the server-side rendering function.

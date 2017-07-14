@@ -14,7 +14,7 @@ var templatePath = path.join(__dirname, 'search-results.html')
 var template = fs.readFileSync(templatePath).toString('utf8')
 var iterations = 1000
 var binding = makeBinding()
-var i, j, record, t0, result
+var i, j, record, t0, result, window
 
 // Massage the data to be 1:1 with the template.
 for (i = 0, j = data.searchRecords.length; i < j; i++) {
@@ -53,8 +53,10 @@ report('DOM Subset', Date.now() - t0)
 
 t0 = Date.now()
 
-for (i = 0; i < iterations; i++)
-  result = simulacra.call(domino.createWindow(template), clone(data), makeBinding()).innerHTML
+for (i = 0; i < iterations; i++) {
+  window = domino.createWindow(template)
+  result = simulacra.call(window, clone(data), makeBinding()).innerHTML
+}
 
 // console.log(result)
 
