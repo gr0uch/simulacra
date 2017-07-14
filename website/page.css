@@ -193,6 +193,11 @@ header :--button {
   margin: 0 0.4em;
 }
 
+header code .save,
+header code .version {
+  margin-left: 0.8em;
+}
+
 header code .version {
   color: var(--color-alt);
 }
@@ -490,4 +495,8 @@ article a {
   display: block;
   background-color: rgba(255, 255, 255, 0.1);
   color: var(--color-body);
+}
+
+#corner span {
+  margin-right: 0.25em;
 }
