@@ -71,13 +71,15 @@ function makeBinding () {
       },
       searchRecords: [ $('searchRecords'), {
         imgUrl: [ $('imgUrl'), function (node, value) {
-          node.setAttribute('src', value)
+          node.src = value
         } ],
         title: [ $('title'), {
           href: function (node, value) {
-            node.setAttribute('href', value)
+            node.href = value
           },
-          text: $('text')
+          text: function (node, value) {
+            node.textContent = value
+          }
         } ],
         description: $('description'),
         featured: [ $('featured'), noop ],

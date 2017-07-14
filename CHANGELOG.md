@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.5 (2017-07-14)
+- Fix: add `textContent` to rendering DOM subset.
+
+
 ### 2.1.4 (2017-07-14)
 - Optimization: the browser version now strips empty text nodes from the template before processing.
 
