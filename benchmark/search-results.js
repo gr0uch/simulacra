@@ -12,7 +12,8 @@ var data = require('./search-results.json')
 
 var templatePath = path.join(__dirname, 'search-results.html')
 var template = fs.readFileSync(templatePath).toString('utf8')
-var iterations = 1000
+
+var iterations = [ 10000, 1000, 100 ]
 var binding = makeBinding()
 var i, j, record, t0, result, window
 
@@ -39,23 +40,21 @@ data.view = {
 
 delete data.searchRecords
 
-
 t0 = Date.now()
 
-for (i = 0; i < iterations; i++)
+for (i = 0, j = iterations[0]; i < j; i++)
   result = renderString(data)
 
 // console.log(result)
 
 report('String Rendering', Date.now() - t0)
 
-
 // Perform one warm-up iteration.
 render({}, binding, template)
 
 t0 = Date.now()
 
-for (i = 0; i < iterations; i++)
+for (i = 0, j = iterations[1]; i < j; i++)
   result = render(data, binding)
 
 // console.log(result)
@@ -64,7 +63,7 @@ report('DOM Subset', Date.now() - t0)
 
 t0 = Date.now()
 
-for (i = 0; i < iterations; i++) {
+for (i = 0, j = iterations[2]; i < j; i++) {
   window = domino.createWindow(template)
   result = simulacra.call(window, clone(data), makeBinding()).innerHTML
 }
@@ -109,6 +108,8 @@ function $ (selector) {
 function noop () {}
 
 function report (title, diff) {
+  var iterations = j
+
   console.log(title)
   console.log('Performed ' + iterations + ' iterations in ' + diff + ' ms')
   console.log('Time per iteration: ' + (diff / iterations) + ' ms')
