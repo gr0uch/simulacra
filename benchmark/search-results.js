@@ -39,6 +39,17 @@ data.view = {
 
 delete data.searchRecords
 
+
+t0 = Date.now()
+
+for (i = 0; i < iterations; i++)
+  result = renderString(data)
+
+// console.log(result)
+
+report('String Rendering', Date.now() - t0)
+
+
 // Perform one warm-up iteration.
 render({}, binding, template)
 
@@ -113,4 +124,39 @@ function clone (obj) {
     else result[key] = obj[key]
 
   return result
+}
+
+function renderString (data) {
+  var _, __, i, j, k, l, parts = []
+  parts.push('<div class="search-results-container"><div class="searching" id="searching"><div class="wait-indicator-icon"></div>Searching...</div><div id="resultsContainer"><div class="hd"><span class="count">')
+  parts.push(data.totalCount)
+  parts.push(' results</span><div class="view-modifiers"><div class="view-select">View:<div class="view-icon view-icon-selected" id="viewIconGallery"><i class="icon-th"/></div><div class="view-icon" id="viewIconList"><i class="icon-th-list"/></div></div></div></div><div id="resultsTarget"><div class="search-results view-')
+  parts.push(data.view.type)
+  for (i = 0, j = data.view.searchRecords.length; i < j; i++) {
+    _ = data.view.searchRecords[i]
+    parts.push('<div class="search-item"><div class="search-item-container drop-shadow"><div class="img-container"><img src="')
+    parts.push(_.imgUrl)
+    parts.push('"></div><h4 class="title"><a href="')
+    parts.push(_.title.href)
+    parts.push('">')
+    parts.push(_.title.text)
+    parts.push('</a></h4><span>')
+    parts.push(_.description)
+    parts.push('</span>')
+    if (_.featured)
+      parts.push('<div>Featured!</div>')
+    if (_.sizes) {
+      parts.push('<div>Sizes available<ul>')
+      for (k = 0, l = _.sizes.size.length; k < l; k++) {
+        __ = _.sizes.size[k]
+        parts.push('<li>')
+        parts.push(__)
+        parts.push('</li>')
+      }
+      parts.push('</ul></div>')
+    }
+    parts.push('</div></div>')
+  }
+  parts.push('</div></div></div></div>')
+  return parts.join('')
 }
