@@ -98,8 +98,8 @@ run(function (assert, comment) {
   assert(output.off === '<input type="checkbox">', 'not checked')
 
   comment('value binding')
-  output.value = render({ text: 'foo' }, bind.value, template.value)
-  assert(output.value === '<textarea value="foo"></textarea>', 'value set')
+  output.value = render({ text: '<foo>' }, bind.value, template.value)
+  assert(output.value === '<textarea>&lt;foo&gt;</textarea>', 'value set')
 
   comment('text binding')
   output.text = render({ text: 'foo' }, bind.text, template.text)

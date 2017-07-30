@@ -1,6 +1,12 @@
 # Changelog
 
 
+### 2.1.6 (2017-07-30)
+- Fix: `textarea` should not have value replaced, but rather set its inner text.
+- Fix: safer escaping in render function.
+- Polish: add more element attributes in render function.
+
+
 ### 2.1.5 (2017-07-14)
 - Fix: add `textContent` to rendering DOM subset.
 
