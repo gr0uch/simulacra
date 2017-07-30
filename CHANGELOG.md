@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.7 (2017-07-30)
+- Fix: safer escaping in render function when setting attributes.
+
+
 ### 2.1.6 (2017-07-30)
 - Fix: `textarea` should not have value replaced, but rather set its inner text.
 - Fix: safer escaping in render function.
