@@ -1,6 +1,6 @@
 {
   "name": "simulacra",
-  "description": "A data-binding function for the DOM.",
+  "description": "Data-binding function for the DOM.",
   "version": "2.1.7",
   "license": "MIT",
   "author": {
@@ -37,9 +37,9 @@
   "devDependencies": {
     "browserify": "^14.4.0",
     "browserify-istanbul": "^2.0.0",
-    "caniuse-db": "^1.0.30000708",
+    "caniuse-db": "^1.0.30000715",
     "cssnano": "^3.10.0",
-    "domino": "^1.0.28",
+    "domino": "^1.0.29",
     "eslint": "^3.19.0",
     "eslint-config-boss": "^1.0.6",
     "fs-extra": "^3.0.1",
@@ -49,7 +49,7 @@
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",
     "normalize.css": "^7.0.0",
-    "postcss": "^6.0.8",
+    "postcss": "^6.0.9",
     "postcss-cssnext": "^2.11.0",
     "postcss-import": "^10.0.0",
     "rimraf": "^2.6.1",
