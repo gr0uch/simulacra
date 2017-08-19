@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.8 (2017-08-19)
+- Polish: check for `undefined` value in parent change function, replace with `null`.
+
+
 ### 2.1.7 (2017-07-30)
 - Fix: safer escaping in render function when setting attributes.
 

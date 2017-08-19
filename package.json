@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "Data-binding function for the DOM.",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "license": "MIT",
   "author": {
     "name": "daliwali",
@@ -56,7 +56,7 @@
     "tap-spec": "^4.1.1",
     "tapdance": "^5.0.4",
     "tape-run": "^3.0.0",
-    "uglify-js": "^3.0.27"
+    "uglify-js": "^3.0.28"
   },
   "main": "lib/index.js",
   "files": [
