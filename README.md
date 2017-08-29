@@ -3,7 +3,7 @@
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
 [![License](https://img.shields.io/npm/l/simulacra.svg?style=flat-square)](https://raw.githubusercontent.com/daliwali/simulacra/master/LICENSE)
 
-Simulacra.js makes a DOM Node update automatically in reaction to mutations in a JavaScript object. Get it from `npm`:
+Simulacra.js returns a DOM Node that updates in reaction to mutations in a JavaScript object. Get it from `npm`:
 
 ```sh
 $ npm i simulacra --save
@@ -12,11 +12,9 @@ $ npm i simulacra --save
 
 ## Synopsis
 
-Simulacra.js returns a DOM Node that updates when its state object changes. Its entire API surface area is a single function, and it does not introduce any new syntax or a template language.
+Simulacra.js returns a DOM Node that updates when an object changes. Its API is a single function, and it does not introduce any new syntax or a template language. It recursively adds metaprogramming features to vanilla data structures to work.
 
-It is a fairly [low cost](#benchmarks) abstraction, though it may not be quite as fast as hand-optimized code. What this library emphasizes is making the naïve approach of mutating objects to update state as performant and opaque as possible.
-
-The approximate size of this library is ~5 KB (minified and gzipped).
+It is a fairly [low cost](#benchmarks) abstraction, though it may not be quite as fast as hand-optimized code. The approximate size of this library is ~5 KB (minified and gzipped).
 
 
 ## Usage
@@ -213,6 +211,10 @@ There are a few benchmarks implemented with Simulacra.js:
 ## Philosophy
 
 The namesake of this library comes from Jean Baudrillard's *[Simulacra and Simulation](https://en.wikipedia.org/wiki/Simulacra_and_Simulation)*. The mental model it provides is that the user interface is a first order simulacrum, or a faithful representation of state.
+
+Its design is motivated by this quote:
+
+>"It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures." —Alan Perlis
 
 Simulacra.js does data binding differently:
 
