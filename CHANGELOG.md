@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.9 (2017-08-30)
+- Fix: optimistically set memoized values everywhere to be consistent.
+
+
 ### 2.1.8 (2017-08-19)
 - Polish: check for `undefined` value in parent change function, replace with `null`.
 

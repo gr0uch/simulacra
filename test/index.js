@@ -138,12 +138,14 @@ run(function (assert, comment) {
     'iteration works')
 
   try {
-    data.details.size = [ 'S', 'L' ]
+    data.details.newSize = [ 'S', 'L' ]
+    data.details.size = data.details.newSize
     assert(null, 'should have failed')
   }
   catch (error) {
     assert(error.message === 'BOOM!', 'error message is correct')
-    assert(data.details.size === 'Large', 'value has not changed')
+    assert(data.details.size === data.details.newSize,
+      'value has changed to new value')
   }
 
   data.details = [ { size: 'XXL' } ]
