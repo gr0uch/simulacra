@@ -43,9 +43,9 @@ var state = {
 }
 ```
 
-Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a CSS selector string, DOM Node, *change* function or definition object (parent binding only), or an array with at most three elements:
+Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a CSS selector string, *change* function or definition object (parent binding only), or an array with at most three elements:
 
-- **Index 0**: either a DOM element or a CSS selector string.
+- **Index 0**: a CSS selector string.
 - **Index 1**: either a definition object, or a *change* function.
 - **Index 2**: if index 1 is a definition object, this may be a *change* function.
 

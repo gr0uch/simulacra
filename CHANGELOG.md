@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.11 (2018-01-21)
+- Fix: remove broken feature to pass in a DOM Node in a binding. The reason why a selector must be used is because passing in a DOM Node by reference won't work due to internal use of cloning nodes, it must be possible to get a reference a node based on a selector.
+
+
 ### 2.1.9 (2017-08-30)
 - Fix: optimistically set memoized values everywhere to be consistent.
 
