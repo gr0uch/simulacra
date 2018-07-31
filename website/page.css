@@ -163,7 +163,7 @@ header h1 {
   line-height: calc(var(--line-height) / 1.4);
   margin: 0;
   padding: 0;
-  color: var(--color-body);
+  color: var(--color-solid);
 }
 
 header h1 span {
@@ -171,12 +171,13 @@ header h1 span {
 }
 
 header h2 {
-  font-size: calc(1em * 9 / 5);
-  line-height: calc(var(--line-height) * 2 / (9 / 5));
+  font-size: calc(1em * 2);
+  font-style: italic;
+  line-height: var(--line-height);
   letter-spacing: 0;
   font-weight: normal;
   padding: 0;
-  margin: calc(var(--line-height) * (5 / 2) / (9 / 5)) 0 calc(var(--line-height) * 1 / (9 / 5));
+  margin: calc(var(--line-height) * (5 / 2) / 2) 0 calc(var(--line-height) * 1 / 2);
   color: var(--color-solid);
 }
 

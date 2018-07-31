@@ -1,6 +1,11 @@
 # Changelog
 
 
+### 2.1.13 (2018-07-31)
+- Fix: edge case in array of objects in which only the last marker in the array would be used.
+- Fix: edge case in validating parent binding.
+
+
 ### 2.1.12 (2018-01-24)
 - Fix: broken edge case for nested parent binding.
 
