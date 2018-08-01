@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.15 (2018-08-01)
+- Fix: edge case in splicing insertion, which would always append values to the end.
+
+
 ### 2.1.14 (2018-07-31)
 - Fix: edge case in array of objects in which only the last marker in the array would be used.
 
