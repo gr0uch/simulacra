@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.16 (2018-08-18)
+- Fix: edge case in which unrelated nodes to a CSS selector would be queried and removed.
+
+
 ### 2.1.15 (2018-08-01)
 - Fix: edge case in splicing insertion, which would always append values to the end.
 
