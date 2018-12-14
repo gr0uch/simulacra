@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Simulacra Demo</title>
+<script src="../dist/simulacra.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var binding = [
+    '#demo', {
+      news: [ '.news', {
+        excerpt: 'p',
+        title: 'h3',
+      } ]
+    }
+  ]
+  var data = {
+    news: [
+      { title: 'title', excerpt: 'excerpt' },
+      { title: 'title', excerpt: 'excerpt' },
+      { title: 'title', excerpt: 'excerpt' },
+      { title: 'title', excerpt: 'excerpt' }
+    ]
+  }
+
+  document.body.appendChild(simulacra(data, binding))
+})
+</script>
+<template id="demo">
+  <div class="news">
+    <div class="image"></div>
+    <h3></h3>
+    <p></p>
+  </div>
+</template>

@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.17 (2018-12-13)
+- Fix: ordering of keys in binding should no longer matter.
+
+
 ### 2.1.16 (2018-08-18)
 - Fix: edge case in which unrelated nodes to a CSS selector would be queried and removed.
 
