@@ -1,0 +1,210 @@
+<!DOCTYPE html><!--
+
+Simulacra.js
+https://github.com/daliwali/simulacra
+
+--><html lang="en"><meta charset="utf-8"><title>Simulacra.js</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="index.css"><link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPGH6FLiRNz/////////////////4kTc/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOQwwP/kPt7///3///79///////////////////iRNz/4kTc/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOIwq//iLMz/5Dze//rm+f/77vv//fP9//71
+/f/++/7/40Lc/+ND3P/jKdH/AAAAAAAAAAAAAAAAAAAAAORRpvzgM5n/4zDD/+Mu1//2vvH/4jLW//fQ9f/52ff/+eL4/+Is0P/jLdb/5C+//+Muw/8AAAAAAAAAAAAAAAAAAAAA3DeM/+Qwtv/jKdH/4irQ/++W6f/xoOv/8qvu/+Mu1//jLcf/4izM/+IwsP/zntmFAAAAAAAAAAAAAAAAAAAAANw3hf/i
+MKb/4yzN/+IrzP/mV+D/52bi/+In0P/jKdH/5C65/+Mwv//jMLn/4DOe/wAAAAAAAAAAAAAAAAAAAADbOH3/4DOe/+Azpv/gM6L/4kTc/+JE3P/iLMz/4yzN/+Mxsf/jMLH/3zWM/980kP8AAAAAAAAAAAAAAAAAAAAA2jh1/981kP/eNY//3zWW/+Mtwv/iLML/4ivG/+Aznv/gM6L/3DeB/9w3iP8AAAAA
+AAAAAAAAAAAAAAAAAAAAANk4cP/cN4X/2zh9/9w3iP/kL7//4y6+/+Qvv//fNZH/2jd4//CVvw3bOH3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2Tht/9k4bf/bOH3/5C+6/+Quuf/cN4X/3DeF/9o4df8AAAAA2DN0/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPGow2nZOGn/2zh9/+Qwtv/kMLb/2zh9
+/9k4bf/ZOHD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANs4ff/bOH3/2zh5/9s4ff/ZOGn/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADROFv/2zh9/9s4ff/YOmP/2Dpj/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAMY6UP/cN33/yzpX/806V/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvDlD/8A6R//DOUr/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgpbUStTg+/wAAAAAAAAAAAAAAAAAAAAAA
+AAAA+B8AAPAHAADgAwAAwAEAAOABAADgAQAA4AEAAOADAADgAwAA8AsAAPAPAAD8HwAA/B8AAP4fAAD/HwAA/58AAA==" rel="icon" type="image/x-icon"><script src="simulacra.min.js"></script><header><h1><span>Simulacra</span>.js</h1><h2>Data-binding function for the DOM.</h2><code><a href="https://npmjs.com/package/simulacra">npm install simulacra<span class="version">#v2.1.17</span></a></code><a href="simulacra.min.js" class="button">⬇<label>Download</label></a><a href="https://github.com/daliwali/simulacra" id="corner"><span>Fork on</span>GitHub</a><div><aside><h3>Minimal</h3><ul><li>One function</li><li>No new syntax</li></ul></aside><aside><h3>Efficient</h3><ul><li>Precise changes</li><li>Immediate updates</li></ul></aside><aside><h3>Isomorphic</h3><ul><li>Run in server and client</li><li>Re-use rendered pages</li></ul></aside></div></header><article><h2 id="synopsis">Synopsis<a class="anchor" href="#synopsis" title="Link to this section “Synopsis”">#</a></h2><p>Simulacra.js returns a DOM Node that updates when an object changes. Its API is a single function, and it does not introduce any new syntax or a template language. It recursively adds metaprogramming features to vanilla data structures to work.</p><p>It is a fairly <a href="#benchmarks">low cost</a> abstraction, though it may not be quite as fast as hand-optimized code. The approximate size of this library is ~5 KB (minified and gzipped).</p><h2 id="usage">Usage<a class="anchor" href="#usage" title="Link to this section “Usage”">#</a></h2><div><p>With Simulacra.js, any changes on bound objects reflect immediately in the DOM, no manual intervention required. Here is an example of Simulacra.js in action:</p><div class="example"><div class="container"><div class="left"><div class="product-container"></div></div><div class="right"><p>Live demo, try it out:</p><ul><li><code>state.name = "Caramel Latte"</code></li><li><code>state.details.size.push("Trenta")</code></li><li><code>state.details.size = ["S", "M", "L"]</code></li></ul><input type="text" name="eval" placeholder="Change state..."></div></div></div><div class="template product"><h1 class="name"></h1><div class="details"><div><span class="size"></span></div><hr><h4 class="vendor"></h4></div></div><script>void function (root) {
+  var simulacra = root.simulacra
+  simulacra.useCommentNode = true
+
+  var date = new Date()
+
+  var state = root.state = {
+    name: 'Pumpkin Spice Latte',
+    details: {
+      meta: {
+        date: date
+      },
+      size: [ 'Tall', 'Grande', 'Venti' ],
+      vendor: 'Coffee Co.'
+    }
+  }
+
+  // Copypaste from above.
+  var rehydratedState = root.rehydratedState = {
+    name: 'Pumpkin Spice Latte',
+    details: {
+      meta: {
+        date: date
+      },
+      size: [ 'Tall', 'Grande', 'Venti' ],
+      vendor: 'Coffee Co.'
+    }
+  }
+
+  var template = document.querySelector('.template.product')
+  var binding = [ template, {
+    name: '.name',
+    details: [ '.details', {
+      meta: {
+        date: function (node, value) {
+          node.dataset.timestamp = value.getTime()
+        }
+      },
+      size: '.size',
+      vendor: '.vendor'
+    } ]
+  } ]
+
+  var container = document.querySelector('.product-container')
+  var element = simulacra(state, binding)
+  element.classList.remove('template')
+  container.appendChild(element)
+
+  // Demo rehydrated state.
+  simulacra(rehydratedState, binding, container)
+
+  var input = document.querySelector('input[name="eval"]')
+  input.addEventListener('keyup', function (event) {
+    if (event.keyCode === 13) {
+      var x = input.value
+      try {
+        eval(x)
+        input.value = ''
+      }
+      catch (error) { alert(error) }
+    }
+  })
+}(this)</script></div><p>Simulacra.js uses plain HTML for templating, and it does not introduce its own template language. This makes it straightforward to start with a static HTML page and add interactive parts. Here's a sample template:</p><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"product"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"details"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"size"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"vendor"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre><p>Using the <code>&lt;template&gt;</code> tag is optional, any DOM element will suffice. The shape of the state is important since it has a straightforward mapping to the DOM, and arrays are iterated over to output multiple DOM elements. Here's some sample state:</p><pre><code class="language-js"><span class="hljs-keyword">var</span> state = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Pumpkin Spice Latte'</span>,
+  <span class="hljs-attr">details</span>: {
+    <span class="hljs-attr">size</span>: [ <span class="hljs-string">'Tall'</span>, <span class="hljs-string">'Grande'</span>, <span class="hljs-string">'Venti'</span> ],
+    <span class="hljs-attr">vendor</span>: <span class="hljs-string">'Coffee Co.'</span>
+  }
+}</code></pre><p>Simulacra.js exports only a single function, which binds an object to the DOM. The first argument must be a singular object, and the second argument is a data structure that defines the bindings. The definition must be a CSS selector string, <em>change</em> function or definition object (parent binding only), or an array with at most three elements:</p><ul><li><strong>Index 0</strong>: a CSS selector string.</li><li><strong>Index 1</strong>: either a definition object, or a <em>change</em> function.</li><li><strong>Index 2</strong>: if index 1 is a definition object, this may be a <em>change</em> function.</li></ul><pre><code class="language-js"><span class="hljs-keyword">var</span> bindObject = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra'</span>) <span class="hljs-comment">// or `window.simulacra`</span>
+<span class="hljs-keyword">var</span> template = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'product'</span>)
+
+<span class="hljs-keyword">var</span> node = bindObject(state, [ template, {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'.name'</span>,
+  <span class="hljs-attr">details</span>: [ <span class="hljs-string">'.details'</span>, {
+    <span class="hljs-attr">size</span>: <span class="hljs-string">'.size'</span>,
+    <span class="hljs-attr">vendor</span>: <span class="hljs-string">'.vendor'</span>
+  } ]
+} ])
+
+<span class="hljs-built_in">document</span>.body.appendChild(node)</code></pre><p>The DOM will update if any of the bound keys are assigned a different value, or if any <code>Array.prototype</code> methods on the value are invoked. Arrays and single values may be used interchangeably, the only difference is that Simulacra.js will iterate over array values.</p><h2 id="change-function">Change Function<a class="anchor" href="#change-function" title="Link to this section “Change Function”">#</a></h2><p>By default, the value will be assigned to the element's <code>textContent</code> property (or <code>value</code> or <code>checked</code> for inputs). A user-defined <em>change</em> function may be passed for arbitrary element manipulation, and its return value determines the new <code>textContent</code>, <code>value</code>, or <code>checked</code> attribute if it is not applied on a definition object. The <em>change</em> function may be passed as the second or third position, it has the signature (<code>element</code>, <code>value</code>, <code>previousValue</code>, <code>path</code>):</p><ul><li><strong><code>element</code></strong>: the local DOM element.</li><li><strong><code>value</code></strong>: the value assigned to the key of the bound object.</li><li><strong><code>previousValue</code></strong>: the previous value assigned to the key of the bound object.</li><li><strong><code>path</code></strong>: an object containing info on where the change occurred.</li></ul><p>To manipulate an element in a custom way, one may define a <em>change</em> function like so:</p><pre><code class="language-js">[ selector, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">element, value, previousValue</span>) </span>{
+  <span class="hljs-comment">// Attach listeners before inserting a DOM Node.</span>
+  <span class="hljs-keyword">if</span> (previousValue === <span class="hljs-literal">null</span>)
+    element.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      alert(<span class="hljs-string">'clicked'</span>)
+    })
+
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'Hi '</span> + value + <span class="hljs-string">'!'</span>
+} ]</code></pre><p>A <em>change</em> function can be determined to be an insert, mutate, or remove operation based on whether the value or previous value is <code>null</code>:</p><ul><li><strong>Value but not previous value</strong>: insert operation.</li><li><strong>Value and previous value</strong>: mutate operation.</li><li><strong>No value</strong>: remove operation.</li></ul><p>There are some special cases for the <em>change</em> function:</p><ul><li>If the bound element is an <code>input</code> or a <code>textarea</code>, the default behavior will be to update the state when the input changes. This may be overridden with a custom change function.</li><li>If the bound element is the same as its parent, its value will not be iterated over if it is an array.</li><li>If the <em>change</em> function returns <code>simulacra.retainElement</code> for a remove operation, then <code>Node.removeChild</code> will not be called. This is useful for implementing animations when removing an element from the DOM.</li><li>If the change function is applied on a definition object, it will never be a mutate operation, it will first remove and then insert in case of setting a new object over an existing object.</li></ul><h2 id="helper-functions">Helper Functions<a class="anchor" href="#helper-functions" title="Link to this section “Helper Functions”">#</a></h2><div><p>Here is an example of using the built-in helper functions to control animations and events:</p><div class="example"><div class="container helper"></div></div><div class="template helper"><div class="block"></div><script>void function (root) {
+  var simulacra = root.simulacra
+  var count = 6
+  var state = {
+    numbers: Array(count)
+  }
+
+  var template = document.querySelector('.template.helper')
+
+  var bindEvents = simulacra.bindEvents
+  var animate = simulacra.animate
+  var retainElement = simulacra.retainElement
+
+  var bindFn = bindEvents({
+    click: function (event) {
+      event.target.classList.toggle('alternate')
+    }
+  })
+
+  var animateFn = animate('fade-in', 'bounce', 'fade-out', 1500)
+
+  function change (node, value) {
+    animateFn.apply(null, arguments)
+    bindFn.apply(null, arguments)
+    return value || retainElement
+  }
+
+  simulacra.useCommentNode = true
+
+  var element = simulacra(state, [ template, {
+    numbers: [ '.block', change ]
+  } ])
+  element.classList.remove('template')
+  document.querySelector('.container.helper').appendChild(element)
+
+  setState()
+
+  function setState () {
+    var i, number
+
+    for (i = 0; i < count; i++) {
+      if (Math.random() < 0.5) {
+        number = Math.ceil(Math.random() * 12)
+        if (number > 9) number = null
+        state.numbers[i] = number
+      }
+    }
+
+    setTimeout(setState, Math.random() * 250 + 250)
+  }
+}(this)</script></div></div><p>Simulacra.js includes some built-in helper functions for common use cases, such as event listening and animations. They are optionalto use, and are opt-in functionality. To use them, one can define a <em>change</em> function like so:</p><pre><code class="language-js"><span class="hljs-keyword">var</span> bindObject = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra'</span>)
+
+<span class="hljs-comment">// This is a Symbol used to signal that an element should be retained</span>
+<span class="hljs-comment">// in the DOM after its value is unset.</span>
+<span class="hljs-keyword">var</span> retainElement = bindObject.retainElement
+
+<span class="hljs-comment">// Helpers are convenience functions for common features, optional to use.</span>
+<span class="hljs-keyword">var</span> helpers = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra/helpers'</span>)
+<span class="hljs-keyword">var</span> animate = helpers.animate
+<span class="hljs-keyword">var</span> bindEvents = helpers.bindEvents
+
+<span class="hljs-comment">// Accepts a hash keyed by event names, using this has the advantage of</span>
+<span class="hljs-comment">// automatically removing event listeners, even if the element is still</span>
+<span class="hljs-comment">// in the DOM. The optional second argument is `useCapture`.</span>
+<span class="hljs-keyword">var</span> bindFn = bindEvents({
+  <span class="hljs-comment">// The first argument is the DOM event, second is the path.</span>
+  click: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event, path</span>) </span>{
+    event.target.classList.toggle(<span class="hljs-string">'alternate'</span>)
+  }
+})
+
+<span class="hljs-comment">// Accepts class names on insert, mutate, and remove, and a time in ms for</span>
+<span class="hljs-comment">// how long to retain an element after removal.</span>
+<span class="hljs-keyword">var</span> animateFn = animate(<span class="hljs-string">'fade-in'</span>, <span class="hljs-string">'bounce'</span>, <span class="hljs-string">'fade-out'</span>, <span class="hljs-number">1500</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">change</span> (<span class="hljs-params">node, value</span>) </span>{
+  animateFn.apply(<span class="hljs-literal">null</span>, <span class="hljs-built_in">arguments</span>)
+  bindFn.apply(<span class="hljs-literal">null</span>, <span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">return</span> value || retainElement
+}</code></pre><h2 id="server-side-rendering">Server-Side Rendering<a class="anchor" href="#server-side-rendering" title="Link to this section “Server-Side Rendering”">#</a></h2><p>Simulacra.js includes an optimized string rendering function. It implements a subset of Simulacra.js and the DOM, but it should work for most common use cases.</p><pre><code class="language-js"><span class="hljs-keyword">const</span> render = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra/render'</span>)
+
+<span class="hljs-keyword">const</span> state = { <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello world!'</span> }
+<span class="hljs-keyword">const</span> binding = { <span class="hljs-attr">message</span>: <span class="hljs-string">'h1'</span> }
+<span class="hljs-keyword">const</span> template = <span class="hljs-string">'&lt;h1&gt;&lt;/h1&gt;'</span>
+
+<span class="hljs-comment">// The first call to `render` will process the template.</span>
+render(state, binding, template)
+
+<span class="hljs-comment">// Subsequent calls do not need the template anymore.</span>
+<span class="hljs-built_in">console</span>.log(render(state, binding))</code></pre><p>This will print the string <code>&lt;h1&gt;Hello world!&lt;/h1&gt;</code> to <code>stdout</code>.</p><p>The DOM API in Node.js can also work, it should be called within the context of the <code>window</code> global, however this may be optional in some implementations. In the following example, <a href="https://github.com/fgnass/domino">Domino</a> is used as the DOM implementation.</p><pre><code class="language-js"><span class="hljs-keyword">const</span> domino = <span class="hljs-built_in">require</span>(<span class="hljs-string">'domino'</span>)
+<span class="hljs-keyword">const</span> bindObject = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra'</span>)
+
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">window</span> = domino.createWindow(<span class="hljs-string">'&lt;h1&gt;&lt;/h1&gt;'</span>)
+<span class="hljs-keyword">const</span> $ = bindObject.bind(<span class="hljs-built_in">window</span>)
+<span class="hljs-keyword">const</span> state = { <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello world!'</span> }
+<span class="hljs-keyword">const</span> binding = [ <span class="hljs-string">'body'</span>, { <span class="hljs-attr">message</span>: <span class="hljs-string">'h1'</span> } ]
+
+<span class="hljs-built_in">console</span>.log($(state, binding).innerHTML)</code></pre><p>This will also print the string <code>&lt;h1&gt;Hello world!&lt;/h1&gt;</code> to <code>stdout</code>.</p><h2 id="rehydrating-from-server-rendered-page">Rehydrating from Server Rendered Page<a class="anchor" href="#rehydrating-from-server-rendered-page" title="Link to this section “Rehydrating from Server Rendered Page”">#</a></h2><p>Simulacra.js also allows server-rendered DOM to be re-used or <em>rehydrated</em>. The main function accepts an optional third argument for this purpose:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> bindObject = <span class="hljs-built_in">require</span>(<span class="hljs-string">'simulacra'</span>)
+
+<span class="hljs-keyword">const</span> state = { <span class="hljs-comment">/* the state must be populated beforehand */</span> }
+<span class="hljs-keyword">const</span> binding = [ ... ]
+
+<span class="hljs-comment">// Rehydrate from existing DOM Node.</span>
+<span class="hljs-keyword">const</span> node = <span class="hljs-built_in">document</span>.querySelector(...)
+
+bindObject(state, binding, node)</code></pre><p>Instead of returning a new Node, it will return the Node that was passed in, so it's not necessary to manually append the return value to the DOM. All <em>change</em> functions will be run so that event binding can happen, but return values will be ignored. If the Node could not be rehydrated properly, it will throw an error.</p><h2 id="benchmarks">Benchmarks<a class="anchor" href="#benchmarks" title="Link to this section “Benchmarks”">#</a></h2><p>There are a few benchmarks implemented with Simulacra.js:</p><ul><li><a href="https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html">JS Framework benchmark</a>: testing most common DOM operations.</li><li><a href="http://simulacra.js.org/dbmonster/">DBMonster benchmark</a>: mainly re-render performance.</li><li><a href="https://github.com/daliwali/simulacra/blob/master/benchmark/simulacra.html">Browser render benchmark</a> (<a href="https://github.com/daliwali/simulacra/blob/master/benchmark/native.html">control</a>): this is a custom benchmark adapted from Mithril.js, used for comparing Simulacra.js against the native DOM API.</li><li><a href="https://github.com/daliwali/simulacra/blob/master/benchmark/render.js">Node.js render benchmark</a>: this is a custom benchmark used for comparing Simulacra.js against raw string building.</li></ul><h2 id="philosophy">Philosophy<a class="anchor" href="#philosophy" title="Link to this section “Philosophy”">#</a></h2><p>The namesake of this library comes from Jean Baudrillard's *<a href="https://en.wikipedia.org/wiki/Simulacra_and_Simulation">Simulacra and Simulation</a>*. The mental model it provides is that the user interface is a first order simulacrum, or a faithful representation of state.</p><p>Its design is motivated by this quote:</p><blockquote><p>"It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures." —Alan Perlis</p></blockquote><p>Simulacra.js does data binding differently:</p><ul><li>Rather than having much of a public API, it tries to be as opaque as possible. Every built-in way to mutate state is overridden, and becomes an integral part of how it works.</li><li>There is no templating syntax at all. Instead, the binding structure determines how to render an element. This also means that the state has a one-to-one mapping to the DOM.</li><li>All changes are atomic and run synchronously, there is no internal usage of timers or event loops and no need to wait for changes to occur.</li><li>It does not force any component architecture, use a single bound object or as many as desired.</li></ul><p>What Simulacra.js does is capture the intent of state changes, so it is important to use the correct semantics. Using <code>state.details = { ... }</code> is different from <code>Object.assign(state.details, { ... })</code>, the former will assume that the entire object changed and remove and append a new element, while the latter will re-use the same element and check the differences in the key values. For arrays, it is almost always more efficient to use the proper array mutator methods (<code>push</code>, <code>splice</code>, <code>pop</code>, etc). This is also important for implementing animations, since it determines whether elements are created, updated, or removed.</p><p>Nodes are updated <em>if and only if</em> their values change, that is each value has a 1:1 correspondence to the DOM. Generally, elements should be rendered based on their value alone, external inputs should be avoided.</p><h2 id="how-it-works">How it Works<a class="anchor" href="#how-it-works" title="Link to this section “How it Works”">#</a></h2><p>On initialization, Simulacra.js replaces bound elements from the template with empty text nodes (markers) for memoizing their positions. Based on a value in the bound state object, it clones template elements and applies the <em>change</em> function on the cloned elements, and appends them near the marker or adjacent nodes.</p><p>When a bound key is assigned, it gets internally casted into an array if it is not an array already, and the values of the array are compared with previous values. Based on whether a value at an index has changed, Simulacra.js will remove, insert, or mutate a DOM element corresponding to the value. Array mutator methods are overridden with optimized implementations, which are faster and simpler than diffing changes between DOM trees.</p><h2 id="caveats">Caveats<a class="anchor" href="#caveats" title="Link to this section “Caveats”">#</a></h2><ul><li>The <code>delete</code> keyword will not trigger a DOM update. Although ES6 <code>Proxy</code> has a trap for this keyword, its browser support is lacking and it can not be polyfilled. Also, it would break the API of Simulacra.js for this one feature, so the recommended practice is to set the value to <code>null</code> rather than trying to <code>delete</code> the key.</li><li>Out-of-bounds array index assignment will not work, because the number of setters is equal to the length of the array. Similarly, setting the length of an array will not work because a setter can't be defined on the <code>length</code> property.</li></ul><h2 id="under-the-hood">Under the Hood<a class="anchor" href="#under-the-hood" title="Link to this section “Under the Hood”">#</a></h2><p>This library requires these JavaScript features:</p><ul><li><strong>Object.defineProperty</strong> (ES5): used for binding keys on objects.</li></ul><p>It also makes use of these DOM API features:</p><ul><li><strong>Node.contains</strong> (DOM Living Standard): used for checking if bound nodes are valid.</li><li><strong>Node.nextElementSibling</strong> (DOM Living Standard): used for checking if a node is the last child or not.</li><li><strong>Node.nextSibling</strong> (DOM Level 1): used for performance optimizations.</li><li><strong>Node.appendChild</strong> (DOM Level 1): used for appending nodes.</li><li><strong>Node.insertBefore</strong> (DOM Level 1): used for inserting nodes.</li><li><strong>Node.removeChild</strong> (DOM Level 1): used for removing nodes.</li><li><strong>Node.cloneNode</strong> (DOM Level 2): used for creating nodes.</li><li><strong>Node.normalize</strong> (DOM Level 2): cleaning up DOM nodes.</li><li><strong>Node.isEqualNode</strong> (DOM Level 3): used for equality checking after cloning nodes.</li><li><strong>TreeWalker</strong> (DOM Level 2): fast iteration through DOM nodes.</li><li><strong>MutationObserver</strong> (DOM Level 4): used for the <code>animate</code> helper.</li></ul><p>No shims are included. The bare minimum should be IE9, which has object property support.</p><h2 id="similar-projects">Similar Projects<a class="anchor" href="#similar-projects" title="Link to this section “Similar Projects”">#</a></h2><ul><li><a href="https://vuejs.org/">Vue.js</a> uses meta-programming to <a href="https://vuejs.org/v2/guide/reactivity.html">a limited extent</a>. In contrast to Simulacra.js, it uses a templating language and comes with its own notion of <em>components</em>.</li><li><a href="https://github.com/ThoughtWorksInc/Binding.scala">Binding.scala</a> also binds objects to the DOM, but uses a templating language and is written in Scala.</li><li><a href="https://github.com/remy/bind.js/">Bind.js</a> has a similar API, but only works on simple key-value pairs and is unoptimized for arrays.</li><li><a href="https://github.com/flatiron/plates/">Plates</a> has a similar concept, but uses string templating instead of the DOM API.</li></ul><h2 id="license">License<a class="anchor" href="#license" title="Link to this section “License”">#</a></h2><p>This software is licensed under the <a href="https://raw.githubusercontent.com/daliwali/simulacra/master/LICENSE">MIT license</a>.</p></article></html>
