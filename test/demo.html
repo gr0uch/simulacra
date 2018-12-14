@@ -3,7 +3,7 @@
 <title>Simulacra Demo</title>
 <script src="../dist/simulacra.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+void function () {
   var binding = [
     '#demo', {
       news: [ '.news', {
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } ]
     }
   ]
+
   var data = {
     news: [
       { title: 'title', excerpt: 'excerpt' },
@@ -21,12 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
     ]
   }
 
-  document.body.appendChild(simulacra(data, binding))
-})
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.appendChild(simulacra(data, binding))
+  })
+}()
 </script>
 <template id="demo">
   <div class="news">
-    <div class="image"></div>
     <h3></h3>
     <p></p>
   </div>
