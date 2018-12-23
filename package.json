@@ -21,7 +21,7 @@
     "build:dist": "(node util/header.js && browserify util/global.js) > dist/simulacra.js",
     "build:min": "(node util/header.js && uglifyjs -cm -- dist/simulacra.js) > dist/simulacra.min.js",
     "build:web": "node website/build",
-    "prepublish": "npm test",
+    "prepublishOnly": "npm test",
     "postpublish": "npm run build && npm run deploy && npm run tag",
     "lint": "eslint lib test",
     "tag": "git tag `npm v simulacra version` && git push origin --tags",
