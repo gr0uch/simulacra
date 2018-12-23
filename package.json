@@ -1,7 +1,7 @@
 {
   "name": "simulacra",
   "description": "Data-binding function for the DOM.",
-  "version": "2.1.17",
+  "version": "2.1.18",
   "license": "MIT",
   "author": {
     "name": "daliwali",
@@ -38,8 +38,8 @@
   "devDependencies": {
     "browserify": "^16.2.3",
     "browserify-istanbul": "^3.0.1",
-    "caniuse-db": "^1.0.30000920",
-    "cssnano": "^4.1.7",
+    "caniuse-db": "^1.0.30000923",
+    "cssnano": "^4.1.8",
     "domino": "^2.1.1",
     "eslint": "^5.10.0",
     "eslint-config-boss": "^1.0.6",
@@ -50,13 +50,13 @@
     "marked": "^0.5.2",
     "mkdirp": "^0.5.1",
     "normalize.css": "^8.0.1",
-    "postcss": "^7.0.6",
+    "postcss": "^7.0.7",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.1",
     "rimraf": "^2.6.2",
     "tap-spec": "^5.0.0",
     "tapdance": "^5.1.1",
-    "tape-run": "^4.0.0",
+    "tape-run": "^5.0.0",
     "uglify-js": "^3.4.9"
   },
   "main": "lib/index.js",

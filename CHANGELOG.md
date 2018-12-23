@@ -1,6 +1,10 @@
 # Changelog
 
 
+### 2.1.18 (2018-12-22)
+- Fix: internal bug in key sorting order if the corresponding node doesn't exist.
+
+
 ### 2.1.17 (2018-12-13)
 - Fix: ordering of keys in binding should no longer matter.
 
