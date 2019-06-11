@@ -209,8 +209,9 @@ header code .version {
   color: var(--color-alt);
 }
 
-.template {
-  display: none;
+header hr {
+  height: calc(var(--line-height) * 5 / 2);
+  border: none;
 }
 
 .example {

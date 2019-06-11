@@ -16,13 +16,13 @@
     </div>
   </div>
 </div>
-<div class="template product">
+<template id="product">
   <h1 class="name"></h1>
   <div class="details">
     <div><span class="size"></span></div>
     <hr><h4 class="vendor"></h4>
   </div>
-</div>
+</template>
 <script>
 void function (root) {
   var simulacra = root.simulacra
@@ -53,7 +53,7 @@ void function (root) {
     }
   }
 
-  var template = document.querySelector('.template.product')
+  var template = document.querySelector('#product')
   var binding = [ template, {
     name: '.name',
     details: [ '.details', {
@@ -69,7 +69,6 @@ void function (root) {
 
   var container = document.querySelector('.product-container')
   var element = simulacra(state, binding)
-  element.classList.remove('template')
   container.appendChild(element)
 
   // Demo rehydrated state.

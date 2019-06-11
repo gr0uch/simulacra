@@ -3,9 +3,9 @@
   <div class="container helper">
   </div>
 </div>
-<div class="template helper">
+<template id="helper">
   <div class="block"></block>
-</div>
+</template>
 <script>
 void function (root) {
   var simulacra = root.simulacra
@@ -14,7 +14,7 @@ void function (root) {
     numbers: Array(count)
   }
 
-  var template = document.querySelector('.template.helper')
+  var template = document.querySelector('#helper')
 
   var bindEvents = simulacra.bindEvents
   var animate = simulacra.animate
@@ -39,7 +39,6 @@ void function (root) {
   var element = simulacra(state, [ template, {
     numbers: [ '.block', change ]
   } ])
-  element.classList.remove('template')
   document.querySelector('.container.helper').appendChild(element)
 
   setState()
