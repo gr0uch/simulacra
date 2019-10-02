@@ -484,6 +484,7 @@ article a {
 
 :--button label {
   margin-left: 0.5em;
+  cursor: inherit;
 }
 
 :--button:hover {

@@ -1,6 +1,12 @@
 # Changelog
 
 
+### 2.2.0 (2019-10-01)
+- Optimization: try to improve memory usage by refactoring closures.
+- Fix: `Array.prototype.splice` no longer reverses inserted elements.
+- Fix: `Array.prototype.unshift` is no longer broken.
+
+
 ### 2.1.18 (2018-12-22)
 - Fix: internal bug in key sorting order if the corresponding node doesn't exist.
 
