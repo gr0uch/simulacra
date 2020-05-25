@@ -94,7 +94,7 @@ run(function (assert, comment) {
   comment('checked binding')
   output.on = render({ isEnabled: true }, bind.checkbox, template.checkbox)
   output.off = render({ isEnabled: false }, bind.checkbox, template.checkbox)
-  assert(output.on === '<input type="checkbox" checked="true">', 'checked')
+  assert(output.on === '<input type="checkbox" checked>', 'checked')
   assert(output.off === '<input type="checkbox">', 'not checked')
 
   comment('value binding')
