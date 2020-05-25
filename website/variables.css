@@ -1,9 +1,8 @@
 :root {
 
   /* colors */
-  --color-background: #56485C;
-  --color-background-header: #5c4c63;
-  --color-background-header-alt: #7c627a;
+  --color-background: #242326;
+  --color-background-header: #353338;
   --color-solid: rgba(255, 255, 255, 1);
   --color-body: rgba(255, 255, 255, 0.75);
   --color-alt: rgba(255, 255, 255, 0.5);
@@ -14,7 +13,7 @@
   --color-code-a: #EB9575;
   --color-code-b: #BC8FCC;
   --color-code-c: #76B1C2;
-  --color-example: #514B63;
+  --color-example: #34313B;
 
   /* fonts */
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

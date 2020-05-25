@@ -13,7 +13,7 @@ html { box-sizing: border-box; }
 
 /* Text selection */
 ::selection {
-  background: var(--color-background-header-alt);
+  background: var(--color-code-a);
   color: #fff;
 }
 
@@ -96,10 +96,6 @@ pre code {
 }
 
 header {
-  background: linear-gradient(
-    150deg,
-    var(--color-background-header-alt) 20%,
-    var(--color-background-header) 80%);
   background-color: var(--color-background-header);
   padding:
     calc(var(--line-height) * 3)
@@ -163,7 +159,7 @@ header h1 {
   line-height: calc(var(--line-height) / 1.4);
   margin: 0;
   padding: 0;
-  color: var(--color-solid);
+  color: var(--color-alt);
 }
 
 header h1 span {
@@ -471,10 +467,10 @@ article a {
 :--button {
   display: inline-block;
   vertical-align: middle;
-  border: 1px var(--color-code-a) solid;
+  border: 1px var(--color-code-b) solid;
   border-radius: var(--border-radius);
   line-height: calc(var(--mono-height) * 2 - 2px);
-  color: var(--color-code-a);
+  color: var(--color-code-b);
   padding: 0 1em;
   font-weight: bold;
   font-size: var(--size-mono);
