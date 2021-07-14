@@ -1,3 +1,5 @@
+**Alert: this library is now deprecated. [s2](https://github.com/gr0uch/s2) is its successor. It implements what simulacra does in a better way (using Proxy), and more.**
+
 # [Simulacra.js](http://simulacra.js.org/)
 [![Build Status](https://img.shields.io/travis/daliwali/simulacra/master.svg?style=flat-square)](https://travis-ci.org/daliwali/simulacra)
 [![npm Version](https://img.shields.io/npm/v/simulacra.svg?style=flat-square)](https://www.npmjs.com/package/simulacra)
