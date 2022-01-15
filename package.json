@@ -47,7 +47,7 @@
     "highlight.js": "^10.0.3",
     "html-minifier": "^4.0.0",
     "istanbul": "^0.4.5",
-    "marked": "^1.1.0",
+    "marked": "^4.0.10",
     "mkdirp": "^1.0.4",
     "normalize.css": "^8.0.1",
     "postcss": "^7.0.30",
